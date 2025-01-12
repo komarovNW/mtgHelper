@@ -1,16 +1,29 @@
 # mtg_helper
+Приложение для игроков и коллекционеров карточной игры magic the gathering.
 
-A new Flutter project.
+## Описание
+Счетчик жизней, поиск карты, сортировка коллекции, отслеживание аукционов на сайте topdeck.ru и много чего еще в будущем.
 
-## Getting Started
+## Технологии
+- **Flutter** — для разработки мобильных приложений.
+- **Dart** — основной язык программирования.
+- **BLoC** — для управления состоянием.
+- **Flutter Localizations** — для локализации приложения.
+- **GitHub Actions** — для CI/CD.
+- continue
 
-This project is a starting point for a Flutter application.
+## Установка
 
-A few resources to get you started if this is your first Flutter project:
+Для того чтобы запустить проект локально, следуй этим шагам:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. Клонируй репозиторий:
+   ```bash
+   git clone https://github.com/mtgHelper.git
+   cd mtgHelper
+   flutter pub get
+   flutter run
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## CI/CD
+Этот проект использует GitHub Actions для автоматической проверки кода, линтинга и сборки приложения при каждом пуше и pull request.
+

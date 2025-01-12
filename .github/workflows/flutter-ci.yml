@@ -1,0 +1,37 @@
+name: Flutter CI
+
+# Триггеры для запуска
+on:
+  push:
+    branches:
+      - main # Проверять при пуше в main
+  pull_request: # Проверять все PR
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Клонирование репозитория
+      - uses: actions/checkout@v3
+
+      # Установка Flutter
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "stable" # Используемая версия Flutter
+
+      # Установка зависимостей
+      - name: Install dependencies
+        run: flutter pub get
+
+      # Анализ кода (линтинг)
+      - name: Analyze code
+        run: flutter analyze
+
+      # Проверка форматирования
+      - name: Check code formatting
+        run: dart format --set-exit-if-changed .
+
+      # Проверка сборки (debug APK)
+      - name: Build APK (debug)
+        run: flutter build apk --debug
