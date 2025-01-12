@@ -17,13 +17,10 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8
     }
-    println("minSdkVersion: $flutter.minSdkVersion")
-    println("targetSdkVersion: $flutter.targetSdkVersion")
-    println("versionCode: $flutter.versionCode")
-    println("versionName: $flutter.versionName")
 
     defaultConfig {
         applicationId = "com.mtgHelper.mtg_helper"
+//      TODO плохо что версия прописана вручную
         minSdk 23
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
