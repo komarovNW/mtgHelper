@@ -30,7 +30,7 @@ linter:
 
     # Организация кода
     sort_constructors_first: true # Конструкторы в начале класса
-    public_member_api_docs: true # Документировать публичные методы и классы
+    public_member_api_docs: false # Документировать публичные методы и классы
     require_trailing_commas: true # Запятые в конце параметров/элементов
     prefer_typing_uninitialized_variables: true # Типизировать неинициализированные переменные
 
