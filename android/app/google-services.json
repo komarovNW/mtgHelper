@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1081559787647",
+    "project_id": "samplemtghelper",
+    "storage_bucket": "samplemtghelper.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081559787647:android:1e9f594e59b6f94257f74a",
+        "android_client_info": {
+          "package_name": "com.mtgHelper.mtg_helper"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZp7A1LezZG6wRFkKM1I3TgmUA-YqBTDU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
