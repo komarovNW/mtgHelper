@@ -13,17 +13,17 @@ class _AuthPageState extends State<AuthPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('авторизация'),
+        title: const Text('авторизация'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('логин'),
+            const Text('логин'),
             TextFormField(),
-            Text('пароль'),
+            const Text('пароль'),
             TextFormField(),
-            ElevatedButton(onPressed: () => print('2'), child: Text('авторизация'))
+            ElevatedButton(onPressed: () => <void>{}, child: const Text('авторизация')),
           ],
         ),
       ),

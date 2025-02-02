@@ -6,22 +6,15 @@ import 'dart:async';
 
 void main() {
   runZonedGuarded(() async {
-    print('Инициализация Flutter...');
     WidgetsFlutterBinding.ensureInitialized();
 
-    print('Инициализация Firebase...');
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    print('Firebase успешно инициализирован.');
-
-    /// TODO крашлитика фаербейз инициализация
-    runApp(MyApp());
-    // runApp(MaterialApp(home: Scaffold(body: Center(child: Text('Hello, world1111!')))));
-  }, (error, stackTrace) {
-    /// TODO обработка неперехваченных ошибок
-    print('Произошла ошибка: $error');
-    print('Стек вызовов: $stackTrace');
+    runApp(const MyApp());
+  }, (Object error, StackTrace stackTrace) {
+    debugPrint('Произошла ошибка: $error');
+    debugPrint('Стек вызовов: $stackTrace');
   });
 }
 
@@ -29,7 +22,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Flutter Demo',
       home: AuthPage(),
     );
