@@ -6,14 +6,20 @@ import 'dart:async';
 
 void main() {
   runZonedGuarded(() async {
+    print('Инициализация Flutter...');
+    WidgetsFlutterBinding.ensureInitialized();
+
+    print('Инициализация Firebase...');
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
+    print('Firebase успешно инициализирован.');
 
     /// TODO крашлитика фаербейз инициализация
     runApp(MyApp());
+    // runApp(MaterialApp(home: Scaffold(body: Center(child: Text('Hello, world1111!')))));
   }, (error, stackTrace) {
-    /// TODO тут будут неперехватываемые ошибки, придумать что с этим делать(например в крашлитику)
+    /// TODO обработка неперехваченных ошибок
     print('Произошла ошибка: $error');
     print('Стек вызовов: $stackTrace');
   });
@@ -25,10 +31,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
       home: AuthPage(),
     );
   }
