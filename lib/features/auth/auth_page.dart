@@ -23,7 +23,10 @@ class _AuthPageState extends State<AuthPage> {
             TextFormField(),
             const Text('пароль'),
             TextFormField(),
-            ElevatedButton(onPressed: () => <void>{}, child: const Text('авторизация')),
+            ElevatedButton(
+              onPressed: () => <void>{},
+              child: const Text('авторизация'),
+            ),
           ],
         ),
       ),
