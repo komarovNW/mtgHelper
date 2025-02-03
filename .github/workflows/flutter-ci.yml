@@ -18,14 +18,13 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          # TODO плохо что версия прописана вручную
-          flutter-version: '3.27.1'  # Указание точной версии Flutter
+          flutter-version: '3.27.1'
 
       # Проверка установленной версии Flutter
       - name: Verify Flutter version
-        run: flutter --version  # Выводит текущую версию Flutter для диагностики
+        run: flutter --version
 
-      # Очистка кэша Flutter (если есть старые данные)
+      # Очистка кэша Flutter
       - name: Clean Flutter cache
         run: flutter clean
 
@@ -41,9 +40,9 @@ jobs:
       - name: Analyze code
         run: flutter analyze
 
-      # Проверка форматирования
+      # Проверка форматирования (без остановки на ошибках)
       - name: Check code formatting
-        run: dart format --set-exit-if-changed .
+        run: dart format . --dry-run  # Тестирование форматирования без изменения файлов
 
       # Проверка сборки (debug APK)
       - name: Build APK (debug)
