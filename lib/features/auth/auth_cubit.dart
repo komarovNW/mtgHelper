@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -11,10 +11,8 @@ class AuthCubit extends Cubit<AuthState> {
 
     try {
       final UserCredential userCredential = await _firebaseAuth.signInWithEmailAndPassword(
-        // email: email,
-        // password: password,
-        email: 'nikit106@gmail.com',
-        password: '1234567890',
+        email: email,
+        password: password,
       );
 
       emit(AuthState.success(userCredential.user!));
