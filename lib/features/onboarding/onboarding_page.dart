@@ -19,7 +19,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
       body: Center(
         child: ElevatedButton(
           // foreground
-          onPressed: () {
+          onPressed: () async {
             context.go('/auth');
           },
           child: const Text('auth'),

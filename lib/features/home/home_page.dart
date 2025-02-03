@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:mtg_helper/core/notifier.dart';
 
 class HomePage extends StatefulWidget {
@@ -31,7 +30,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text("Home"),
+        title: const Text('Home'),
       ),
       body: Center(
         child: Column(
@@ -41,11 +40,12 @@ class _HomePageState extends State<HomePage> {
             Text(mail),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                context.read<AuthNotifier>().signOut();
+              onPressed: () async {
+                await context.read<AuthNotifier>().signOut();
 
                 /// TODO надо подумать ок ли это или нет.
-                context.go('/');
+                // context.go('/');
+                // context.read<AuthNotifier>().signOut();
               },
               child: const Text('Выйти'),
             ),

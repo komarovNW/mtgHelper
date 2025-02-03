@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 
 class AuthNotifier extends ChangeNotifier {
   AuthNotifier() {
-    FirebaseAuth.instance.idTokenChanges().listen((User? user) {
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
       notifyListeners();
     });
   }

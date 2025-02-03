@@ -9,15 +9,15 @@ import 'dart:async';
 void main() {
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
-
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-
-    runApp(ChangeNotifierProvider<AuthNotifier>(
-      create: (_) => AuthNotifier(),
-      child: const App(),
-    ));
+    runApp(
+      ChangeNotifierProvider<AuthNotifier>(
+        create: (_) => AuthNotifier(),
+        child: const App(),
+      ),
+    );
   }, (Object error, StackTrace stackTrace) {
     debugPrint('Произошла ошибка: $error');
     debugPrint('Стек вызовов: $stackTrace');
