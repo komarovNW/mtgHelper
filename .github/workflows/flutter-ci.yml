@@ -40,9 +40,9 @@ jobs:
       - name: Analyze code
         run: flutter analyze
 
-      # Проверка форматирования без ошибок
+      # Проверка форматирования
       - name: Check code formatting
-        run: dart format . --dry-run  # Проверка форматирования без изменений
+        run: dart format --set-exit-if-changed .
 
       # Проверка сборки (debug APK)
       - name: Build APK (debug)
