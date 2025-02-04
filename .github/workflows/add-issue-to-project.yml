@@ -1,36 +1,25 @@
-name: Add issue to project
+name: List all projects
 
 on:
-  issues:
-    types: [opened]
+  push:
+    branches:
+      - main
 
 jobs:
-  add_issue_to_project:
+  list_projects:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Find project ID
+      - name: List all projects
         run: |
-          PROJECT_NAME="mtghelper"  # Название вашего проекта
           REPO="komarovNW/mtgHelper"  # Путь к вашему репозиторию
 
           # Получаем список проектов для вашего репозитория
           PROJECTS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             "https://api.github.com/repos/$REPO/projects")
           
-          # Находим ID проекта по имени
-          PROJECT_ID=$(echo "$PROJECTS" | jq -r ".[] | select(.name == \"$PROJECT_NAME\") | .id")
-
-          echo "Found project ID: $PROJECT_ID"
-          echo "::set-output name=project_id::$PROJECT_ID"
-
-      - name: Add issue to project
-        run: |
-          PROJECT_ID=${{ steps.add_issue_to_project.outputs.project_id }}
-          ISSUE_NUMBER=${{ github.event.issue.number }}
-          
-          curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -d '{"project_url": "https://api.github.com/projects/'"$PROJECT_ID"'"}' \
-            "https://api.github.com/repos/komarovNW/mtgHelper/issues/$ISSUE_NUMBER/assignees"
+          # Выводим список проектов
+          echo "Projects in $REPO:"
+          echo "$PROJECTS" | jq -r '.[] | .name'
