@@ -20,6 +20,13 @@ jobs:
           PROJECTS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             "https://api.github.com/repos/$REPO/projects")
           
+          # Проверка, что ответ от API не пустой
+          echo "API Response: $PROJECTS"
+          
           # Выводим список проектов
-          echo "Projects in $REPO:"
-          echo "$PROJECTS" | jq -r '.[] | .name'
+          if [ "$PROJECTS" != "[]" ]; then
+            echo "Projects in $REPO:"
+            echo "$PROJECTS" | jq -r '.[] | .name'
+          else
+            echo "No projects found in $REPO."
+          fi
