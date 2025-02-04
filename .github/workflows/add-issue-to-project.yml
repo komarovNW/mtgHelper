@@ -25,5 +25,9 @@ jobs:
           curl -X POST \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
-            -d '{"content_id": "${{ github.event.issue.id }}", "content_type": "Issue", "project_id": "${{ env.PROJECT_ID }}"}' \
-            https://api.github.com/projects/columns/cards
+            -d '{
+              "content_id": "${{ github.event.issue.id }}",
+              "content_type": "Issue",
+              "project_id": "${{ env.PROJECT_ID }}"
+            }' \
+            https://api.github.com/projects/v2/columns/cards
