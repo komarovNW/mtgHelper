@@ -23,14 +23,14 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Получаем список проектов и выводим их для отладки
           echo "Getting list of projects..."
-          gh project list --owner komarovNW --format=json
+          gh project list --owner komarovNW --format=json || echo "Failed to list projects"
           
-          # Извлекаем ID проекта с названием "mtghelper"
+          # Если список проектов пуст, попробуйте вывести больше информации
           PROJECT_ID=$(gh project list --owner komarovNW --format=json | jq -r '.[] | select(.title=="mtghelper") | .id')
           echo "Project ID: $PROJECT_ID"
           echo "PROJECT_ID=$PROJECT_ID" >> $GITHUB_ENV
+
 
       - name: Add issue to project
         run: |
