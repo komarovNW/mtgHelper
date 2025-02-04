@@ -28,6 +28,6 @@ jobs:
             -d '{
               "content_id": "${{ github.event.issue.id }}",
               "content_type": "Issue",
-              "project_id": "${{ env.PROJECT_ID }}"
+              "project_id": "PVT_kwHOC5qews4AxaCF"
             }' \
             https://api.github.com/projects/v2/columns/cards
