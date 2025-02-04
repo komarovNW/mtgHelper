@@ -21,11 +21,9 @@ jobs:
           echo "PROJECT_ID=$PROJECT_ID" >> $GITHUB_ENV
 
       - name: Add issue to project
-        uses: octokit/request-action@v2
-        with:
-          route: POST /projects/columns/cards
-          column_id: ${{ steps.get_project_id.outputs.PROJECT_ID }}
-          content_id: ${{ github.event.issue.id }}
-          content_type: Issue
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d '{"content_id": "${{ github.event.issue.id }}", "content_type": "Issue", "project_id": "${{ env.PROJECT_ID }}"}' \
+            https://api.github.com/projects/columns/cards
