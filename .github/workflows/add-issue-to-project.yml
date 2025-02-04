@@ -3,6 +3,7 @@ name: Add Issue to Project
 on:
   issues:
     types: [opened]
+
 jobs:
   add_to_project:
     runs-on: ubuntu-latest
@@ -11,6 +12,8 @@ jobs:
       - name: Add issue to project
         uses: peter-evans/create-or-update-project-card@v3
         with:
-          project-url: 'https://github.com/komarovNW/mtgHelper/projects/3'
-          column-name: 'Backlog'
-          issue-number: ${{ github.event.issue.number }}
+          token: ${{ secrets.GITHUB_TOKEN }} 
+          project-location: 'https://github.com/komarovNW/mtgHelper/projects/3'
+          column-name: 'Backlog' 
+          issue-number: ${{ github.event.issue.number }} 
+
