@@ -17,7 +17,7 @@ jobs:
           REPO="komarovNW/mtgHelper"  # Путь к вашему репозиторию
 
           # Получаем список проектов для вашего репозитория
-          PROJECTS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          PROJECTS=$(curl -s -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
             "https://api.github.com/repos/$REPO/projects?visibility=all")
           
           # Проверка, что ответ от API не пустой
