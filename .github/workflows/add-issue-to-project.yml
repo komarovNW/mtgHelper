@@ -7,28 +7,25 @@ on:
 jobs:
   add_to_project:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Authenticate with GitHub CLI
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh auth status
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Get project ID
         id: get_project_id
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          PROJECT_ID=$(gh project list --owner komarovNW --format=json | jq -r '.[] | select(.title=="mtgHelper") | .id')
+          PROJECT_ID=$(gh project list --owner komarovNW --format=json | jq -r '.projects[] | select(.title=="mtghelper") | .id')
           echo "Project ID: $PROJECT_ID"
           echo "PROJECT_ID=$PROJECT_ID" >> $GITHUB_ENV
 
       - name: Add issue to project
+        uses: octokit/request-action@v2
+        with:
+          route: POST /projects/columns/cards
+          column_id: ${{ steps.get_project_id.outputs.PROJECT_ID }}
+          content_id: ${{ github.event.issue.id }}
+          content_type: Issue
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if [[ -z "$PROJECT_ID" ]]; then
-            echo "❌ Ошибка: PROJECT_ID пустой!"
-            exit 1
-          fi
-          gh project item-add $PROJECT_ID --owner komarovNW --url ${{ github.event.issue.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
