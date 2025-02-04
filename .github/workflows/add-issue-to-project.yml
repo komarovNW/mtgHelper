@@ -13,30 +13,25 @@ jobs:
 
       - name: Get project ID
         id: get_project_id
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          PROJECT_ID=$(gh project list --owner komarovNW --format=json | jq -r '.projects[] | select(.title=="mtghelper") | .id')
+          # Получаем список проектов и выводим их для отладки
+          echo "Getting list of projects..."
+          gh project list --owner komarovNW --format=json
+          
+          # Извлекаем ID проекта с названием "mtghelper"
+          PROJECT_ID=$(gh project list --owner komarovNW --format=json | jq -r '.[] | select(.title=="mtghelper") | .id')
           echo "Project ID: $PROJECT_ID"
           echo "PROJECT_ID=$PROJECT_ID" >> $GITHUB_ENV
 
-      - name: Get column ID
-        id: get_column_id
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Add issue to project
         run: |
-          COLUMN_ID=$(gh project column list --project-id $PROJECT_ID --format=json | jq -r '.[0].id')  # Или выберите нужный столбец
-          echo "Column ID: $COLUMN_ID"
-          echo "COLUMN_ID=$COLUMN_ID" >> $GITHUB_ENV
-
-      - name: Add issue to project column
-        run: |
+          echo "Project ID: $PROJECT_ID"
           curl -X POST \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
             -d '{
               "content_id": "${{ github.event.issue.id }}",
               "content_type": "Issue",
-              "column_id": "${{ steps.get_column_id.outputs.COLUMN_ID }}"
+              "project_id": "'${PROJECT_ID}'"
             }' \
-            https://api.github.com/projects/columns/cards
+            https://api.github.com/projects/v2/columns/cards
