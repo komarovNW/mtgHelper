@@ -9,8 +9,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Authenticate with GitHub CLI
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh auth status
+
       - name: Add issue to project
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh project item-add 3 --owner komarovNW --url ${{ github.event.issue.html_url }}
+          PROJECT_ID=$(gh project list --owner komarovNW --format=json | jq '.[] | select(.title=="mtgHelper") | .id')
+          gh project item-add $PROJECT_ID --url ${{ github.event.issue.html_url }}
