@@ -13,5 +13,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh project item-add 3 --owner komarovNW --content-id ${{ github.event.issue.node_id }}
-
+          gh project item-add 3 --owner komarovNW --url ${{ github.event.issue.html_url }}
