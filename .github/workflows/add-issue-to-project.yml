@@ -14,9 +14,16 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh auth status
 
+      - name: Get project ID
+        id: get_project_id
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PROJECT_ID=$(gh project list --owner komarovNW --format=json | jq -r '.projects[] | select(.title=="mtgHelper") | .id')
+          echo "PROJECT_ID=$PROJECT_ID" >> $GITHUB_ENV
+
       - name: Add issue to project
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          PROJECT_ID=$(gh project list --owner komarovNW --format=json | jq '.[] | select(.title=="mtgHelper") | .id')
           gh project item-add $PROJECT_ID --url ${{ github.event.issue.html_url }}
