@@ -10,9 +10,8 @@ jobs:
 
     steps:
       - name: Add issue to project
-        uses: github/add-to-project@v1
-        with:
-          project-url: https://github.com/users/komarovNW/projects/3
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          content-id: ${{ github.event.issue.node_id }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh project item-add 3 --owner komarovNW --content-id ${{ github.event.issue.node_id }}
 
