@@ -18,13 +18,14 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.27.1'
+          # TODO плохо что версия прописана вручную
+          flutter-version: '3.27.1'  # Указание точной версии Flutter
 
       # Проверка установленной версии Flutter
       - name: Verify Flutter version
-        run: flutter --version
+        run: flutter --version  # Выводит текущую версию Flutter для диагностики
 
-      # Очистка кэша Flutter
+      # Очистка кэша Flutter (если есть старые данные)
       - name: Clean Flutter cache
         run: flutter clean
 
