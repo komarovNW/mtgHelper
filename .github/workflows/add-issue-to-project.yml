@@ -1,0 +1,32 @@
+name: List all projects
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  list_projects:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: List all projects
+        run: |
+          REPO="komarovNW/mtgHelper"  # Путь к вашему репозиторию
+
+          # Получаем список проектов для вашего репозитория
+          PROJECTS=$(curl -s -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
+            "https://api.github.com/repos/$REPO/projects?visibility=all")
+          
+          # Проверка, что ответ от API не пустой
+          echo "API Response: $PROJECTS"
+          
+          # Выводим список проектов
+          if [ "$PROJECTS" != "[]" ]; then
+            echo "Projects in $REPO:"
+            echo "$PROJECTS" | jq -r '.[] | .name'
+          else
+            echo "No projects found in $REPO."
+          fi
