@@ -74,26 +74,29 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        alignment: AlignmentDirectional.bottomCenter,
-        children: <Widget>[
-          PageView(
-            controller: _pageViewController,
-            onPageChanged: _handlePageViewChanged,
-            children: _onBoardingList.map((OnboardingListModel e) => OnboardingItem(item: e)).toList(),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
-            child: TabPageSelector(
-              selectedColor: Colors.white,
-              controller: _tabController,
+      body: SafeArea(
+        top: false,
+        child: Stack(
+          alignment: AlignmentDirectional.bottomCenter,
+          children: <Widget>[
+            PageView(
+              controller: _pageViewController,
+              onPageChanged: _handlePageViewChanged,
+              children: _onBoardingList.map((OnboardingListModel e) => OnboardingItem(item: e)).toList(),
             ),
-          ),
-          OnboardingButtons(
-            updateCurrentPageIndex: _updateCurrentPageIndex,
-            isLastPage: _currentPageIndex == _onBoardingList.length - 1,
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.only(bottom: 16.0),
+              child: TabPageSelector(
+                selectedColor: Colors.white,
+                controller: _tabController,
+              ),
+            ),
+            OnboardingButtons(
+              updateCurrentPageIndex: _updateCurrentPageIndex,
+              isLastPage: _currentPageIndex == _onBoardingList.length - 1,
+            ),
+          ],
+        ),
       ),
     );
   }
