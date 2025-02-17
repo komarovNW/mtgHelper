@@ -79,7 +79,9 @@ class _BodyState extends State<_Body> {
                   Text(
                     context.l10n.authApp,
                     style: const TextStyle(
-                        fontSize: 22, fontWeight: FontWeight.w800),
+                      fontSize: 22,
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
                   const HBox(12),
                   Text(context.l10n.authText),

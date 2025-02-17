@@ -29,8 +29,10 @@ class Button extends StatelessWidget {
         ),
         child: _isLoading
             ? const CircularProgressIndicator(color: Colors.white)
-            : Text(context.l10n.authButton,
-                style: const TextStyle(fontSize: 18, color: Colors.white)),
+            : Text(
+                context.l10n.authButton,
+                style: const TextStyle(fontSize: 18, color: Colors.white),
+              ),
       ),
     );
   }

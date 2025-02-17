@@ -3,9 +3,10 @@ import 'package:mtg_helper/extension/localization.dart';
 import 'package:mtg_helper/widgets/app_box.dart';
 
 class PasswordTextField extends StatefulWidget {
-  const PasswordTextField(
-      {super.key, required TextEditingController passwordController})
-      : _passwordController = passwordController;
+  const PasswordTextField({
+    super.key,
+    required TextEditingController passwordController,
+  }) : _passwordController = passwordController;
 
   final TextEditingController _passwordController;
 
@@ -57,7 +58,8 @@ class PasswordTextFieldState extends State<PasswordTextField> {
             ),
             suffixIcon: IconButton(
               icon: Icon(
-                  _obscurePassword ? Icons.visibility_off : Icons.visibility),
+                _obscurePassword ? Icons.visibility_off : Icons.visibility,
+              ),
               onPressed: () {
                 setState(() {
                   _obscurePassword = !_obscurePassword;

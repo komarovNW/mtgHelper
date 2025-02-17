@@ -21,13 +21,14 @@ final GoRouter goRouter = GoRouter(
   },
   routes: <RouteBase>[
     GoRoute(
-        path: '/',
-        builder: (BuildContext context, GoRouterState state) =>
-            const OnboardingPage()),
+      path: '/',
+      builder: (BuildContext context, GoRouterState state) =>
+          const OnboardingPage(),
+    ),
     OnAuthRoutes.route,
     GoRoute(
-        path: '/home',
-        builder: (BuildContext context, GoRouterState state) =>
-            const HomePage()),
+      path: '/home',
+      builder: (BuildContext context, GoRouterState state) => const HomePage(),
+    ),
   ],
 );
