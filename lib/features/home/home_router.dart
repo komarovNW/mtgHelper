@@ -8,7 +8,7 @@ abstract class HomeRoutes {
   static final GoRoute route = GoRoute(
     path: homePath,
     builder: (BuildContext context, GoRouterState state) {
-      return HomePage();
+      return const HomePage();
     },
   );
 }
