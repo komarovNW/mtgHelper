@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mtg_helper/extension/app_box.dart';
+import 'package:mtg_helper/extension/localization.dart';
+import 'package:mtg_helper/widgets/app_box.dart';
 
 class PasswordTextField extends StatefulWidget {
   const PasswordTextField({super.key, required TextEditingController passwordController})
@@ -17,20 +18,20 @@ class PasswordTextFieldState extends State<PasswordTextField> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
-        const Row(
+      children: <Widget>[
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Text(
-              'Пароль',
-              style: TextStyle(
+              context.l10n.authPassword,
+              style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w800,
               ),
             ),
             Text(
-              'Забыли пароль',
-              style: TextStyle(
+              context.l10n.authPasswordForgot,
+              style: const TextStyle(
                 fontSize: 14,
                 color: Colors.blue,
                 fontWeight: FontWeight.w500,
@@ -44,12 +45,12 @@ class PasswordTextFieldState extends State<PasswordTextField> {
           obscureText: _obscurePassword,
           validator: (String? value) {
             if (value == null || value.isEmpty) {
-              return 'Пожалуйста, введите пароль';
+              return context.l10n.authPasswordErrorText;
             }
             return null;
           },
           decoration: InputDecoration(
-            hintText: '••••••••••••',
+            hintText: context.l10n.authPasswordHintText,
             hintStyle: const TextStyle(
               color: Colors.grey,
             ),

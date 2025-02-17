@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mtg_helper/extension/localization.dart';
 import 'package:mtg_helper/features/onboarding/components/buttons.dart';
 import 'package:mtg_helper/features/onboarding/components/item.dart';
 
@@ -14,38 +15,12 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
   late TabController _tabController;
   int _currentPageIndex = 0;
 
-  final List<OnboardingListModel> _onBoardingList = <OnboardingListModel>[
-    const OnboardingListModel(
-      title: 'Аукционы',
-      text: 'Следи и сохраняй интересные тебе аукционы',
-      icon: 'assets/png/auction.png',
-      color: Colors.red,
-    ),
-    const OnboardingListModel(
-      title: 'Счетчик',
-      text: 'Считай жизни свои и оппонента прямо в приложении',
-      icon: 'assets/png/count.png',
-      color: Colors.blue,
-    ),
-    const OnboardingListModel(
-      title: 'Коллекция',
-      text: 'Храни и показывай свою коллекцию с телефона',
-      icon: 'assets/png/collection.png',
-      color: Colors.orange,
-    ),
-    const OnboardingListModel(
-      title: 'Статистика',
-      text: 'Записывай все свои матчи чтобы потом проанализировать',
-      icon: 'assets/png/chart.png',
-      color: Colors.purple,
-    ),
-  ];
-
   @override
   void initState() {
     super.initState();
     _pageViewController = PageController();
-    _tabController = TabController(length: _onBoardingList.length, vsync: this);
+
+    _tabController = TabController(length: 4, vsync: this);
   }
 
   @override
@@ -71,8 +46,38 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
     );
   }
 
+  _list(BuildContext context) {
+    return <OnboardingListModel>[
+      OnboardingListModel(
+        title: context.l10n.onboardingTitle1,
+        text: context.l10n.onboardingText1,
+        icon: 'assets/png/auction.png',
+        color: Colors.red,
+      ),
+      OnboardingListModel(
+        title: context.l10n.onboardingTitle2,
+        text: context.l10n.onboardingText2,
+        icon: 'assets/png/count.png',
+        color: Colors.blue,
+      ),
+      OnboardingListModel(
+        title: context.l10n.onboardingTitle3,
+        text: context.l10n.onboardingText3,
+        icon: 'assets/png/collection.png',
+        color: Colors.orange,
+      ),
+      OnboardingListModel(
+        title: context.l10n.onboardingTitle4,
+        text: context.l10n.onboardingText4,
+        icon: 'assets/png/chart.png',
+        color: Colors.purple,
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
+    final List<OnboardingListModel> onBoardingList = _list(context);
     return Scaffold(
       body: SafeArea(
         top: false,
@@ -82,10 +87,16 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
             PageView(
               controller: _pageViewController,
               onPageChanged: _handlePageViewChanged,
-              children: _onBoardingList.map((OnboardingListModel e) => OnboardingItem(item: e)).toList(),
+              children: onBoardingList
+                  .map(
+                    (OnboardingListModel e) => OnboardingItem(
+                      item: e,
+                    ),
+                  )
+                  .toList(),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 16.0),
+              padding: const EdgeInsets.only(bottom: 26.0),
               child: TabPageSelector(
                 selectedColor: Colors.white,
                 controller: _tabController,
@@ -93,7 +104,7 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
             ),
             OnboardingButtons(
               updateCurrentPageIndex: _updateCurrentPageIndex,
-              isLastPage: _currentPageIndex == _onBoardingList.length - 1,
+              isLastPage: _currentPageIndex == onBoardingList.length - 1,
             ),
           ],
         ),

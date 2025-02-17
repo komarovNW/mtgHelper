@@ -1,0 +1,71 @@
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for English (`en`).
+class AppLocalizationsEn extends AppLocalizations {
+  AppLocalizationsEn([String locale = 'en']) : super(locale);
+
+  @override
+  String get skip => 'test';
+
+  @override
+  String get ok => 'test';
+
+  @override
+  String get next => 'test';
+
+  @override
+  String get onboardingTitle1 => 'test';
+
+  @override
+  String get onboardingText1 => 'test';
+
+  @override
+  String get onboardingTitle2 => 'test';
+
+  @override
+  String get onboardingText2 => 'test';
+
+  @override
+  String get onboardingTitle3 => 'test';
+
+  @override
+  String get onboardingText3 => 'test';
+
+  @override
+  String get onboardingTitle4 => 'test';
+
+  @override
+  String get onboardingText4 => 'test';
+
+  @override
+  String get authApp => 'MTGHelper';
+
+  @override
+  String get authText => 'test';
+
+  @override
+  String get authLogin => 'test';
+
+  @override
+  String get authLoginHintText => 'hello@example.com';
+
+  @override
+  String get authLoginErrorText => 'test';
+
+  @override
+  String get authPassword => 'test';
+
+  @override
+  String get authPasswordForgot => 'test';
+
+  @override
+  String get authPasswordHintText => '••••••••••••';
+
+  @override
+  String get authPasswordErrorText => 'test';
+
+  @override
+  String get authButton => 'test';
+}

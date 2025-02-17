@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mtg_helper/extension/app_box.dart';
+import 'package:mtg_helper/extension/localization.dart';
+import 'package:mtg_helper/widgets/app_box.dart';
 import 'package:mtg_helper/features/auth/components/button.dart';
 import 'package:mtg_helper/features/auth/components/login_text_form_field.dart';
 import 'package:mtg_helper/features/auth/components/password_text_form_field.dart';
+import 'package:provider/provider.dart';
 
 import 'auth_cubit.dart';
 import 'auth_state.dart';
@@ -87,12 +89,12 @@ class _BodyState extends State<_Body> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  const Text(
-                    'MTGHelper',
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
+                  Text(
+                    context.l10n.authApp,
+                    style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
                   ),
                   const HBox(12),
-                  const Text('Добро пожаловать'),
+                  Text(context.l10n.authText),
                   const HBox(36),
                   LoginTextField(loginController: _loginController),
                   const HBox(12),

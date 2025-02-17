@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mtg_helper/features/auth/auth_router.dart';
 import 'package:mtg_helper/features/home/home_page.dart';
 import 'package:mtg_helper/features/onboarding/onboarding_page.dart';
-import 'notifier.dart';
+import 'auth_notifier.dart';
 
 final AuthNotifier _authNotifier = AuthNotifier();
 
