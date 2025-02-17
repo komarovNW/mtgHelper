@@ -36,7 +36,7 @@ class PasswordTextFieldState extends State<PasswordTextField> {
                 color: Colors.blue,
                 fontWeight: FontWeight.w500,
               ),
-            )
+            ),
           ],
         ),
         const HBox(8),
