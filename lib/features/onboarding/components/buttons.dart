@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mtg_helper/extension/localization.dart';
 
 class OnboardingButtons extends StatelessWidget {
   const OnboardingButtons({
@@ -12,31 +13,32 @@ class OnboardingButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 26.0),
       child: Stack(
         alignment: AlignmentDirectional.bottomCenter,
         children: <Widget>[
-          Positioned(
-            left: 1,
-            child: GestureDetector(
-              onTap: () => context.go('/auth'),
-              child: const Text(
-                'Пропустить',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.white,
+          if (!isLastPage)
+            Positioned(
+              left: 1,
+              child: GestureDetector(
+                onTap: () => context.go('/auth'),
+                child: Text(
+                  context.l10n.skip,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
-          ),
           Positioned(
             right: 1,
             child: isLastPage
                 ? GestureDetector(
                     onTap: () => context.go('/auth'),
-                    child: const Text(
-                      'Ок',
-                      style: TextStyle(
+                    child: Text(
+                      context.l10n.ok,
+                      style: const TextStyle(
                         fontSize: 14,
                         color: Colors.white,
                       ),
@@ -44,9 +46,9 @@ class OnboardingButtons extends StatelessWidget {
                   )
                 : GestureDetector(
                     onTap: () => updateCurrentPageIndex(),
-                    child: const Text(
-                      'Дальше',
-                      style: TextStyle(
+                    child: Text(
+                      context.l10n.next,
+                      style: const TextStyle(
                         fontSize: 14,
                         color: Colors.white,
                       ),

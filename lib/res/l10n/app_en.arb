@@ -1,0 +1,23 @@
+{
+  "skip": "test",
+  "ok": "test",
+  "next": "test",
+  "onboardingTitle1": "test",
+  "onboardingText1": "test",
+  "onboardingTitle2": "test",
+  "onboardingText2": "test",
+  "onboardingTitle3": "test",
+  "onboardingText3": "test",
+  "onboardingTitle4": "test",
+  "onboardingText4": "test",
+  "authApp": "MTGHelper",
+  "authText": "test",
+  "authLogin": "test",
+  "authLoginHintText": "hello@example.com",
+  "authLoginErrorText": "test",
+  "authPassword": "test",
+  "authPasswordForgot": "test",
+  "authPasswordHintText": "••••••••••••",
+  "authPasswordErrorText": "test",
+  "authButton": "test"
+}

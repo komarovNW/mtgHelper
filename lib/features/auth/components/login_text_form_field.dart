@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mtg_helper/extension/app_box.dart';
+import 'package:mtg_helper/extension/localization.dart';
+import 'package:mtg_helper/widgets/app_box.dart';
 
 class LoginTextField extends StatelessWidget {
   const LoginTextField({
@@ -14,9 +15,9 @@ class LoginTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const Text(
-          'Логин',
-          style: TextStyle(
+        Text(
+          context.l10n.authLogin,
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w800,
           ),
@@ -26,12 +27,12 @@ class LoginTextField extends StatelessWidget {
           controller: _loginController,
           validator: (String? value) {
             if (value == null || value.isEmpty) {
-              return 'Пожалуйста, введите логин';
+              return context.l10n.authLoginErrorText;
             }
             return null;
           },
           decoration: InputDecoration(
-            hintText: 'hello@example.com',
+            hintText: context.l10n.authLoginHintText,
             hintStyle: const TextStyle(
               color: Colors.grey,
             ),

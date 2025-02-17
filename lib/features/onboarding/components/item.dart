@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mtg_helper/extension/app_box.dart';
+import 'package:mtg_helper/widgets/app_box.dart';
 import 'package:mtg_helper/features/onboarding/onboarding_page.dart';
 
 class OnboardingItem extends StatelessWidget {

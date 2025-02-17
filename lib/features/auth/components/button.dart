@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mtg_helper/extension/localization.dart';
 
 class Button extends StatelessWidget {
   const Button({
@@ -27,7 +28,7 @@ class Button extends StatelessWidget {
         ),
         child: _isLoading
             ? const CircularProgressIndicator(color: Colors.white)
-            : const Text('Войти', style: TextStyle(fontSize: 18, color: Colors.white)),
+            : Text(context.l10n.authButton, style: const TextStyle(fontSize: 18, color: Colors.white)),
       ),
     );
   }
