@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mtg_helper/core/app_navigator.dart';
 import 'package:mtg_helper/extension/localization.dart';
 import 'package:mtg_helper/widgets/app_box.dart';
 import 'package:mtg_helper/features/auth/components/button.dart';
@@ -45,8 +46,7 @@ class _BodyState extends State<_Body> {
 
   void _validateForm() {
     setState(() {
-      _isFormValid = _loginController.text.isNotEmpty &&
-          _passwordController.text.isNotEmpty;
+      _isFormValid = _loginController.text.isNotEmpty && _passwordController.text.isNotEmpty;
     });
   }
 
@@ -55,6 +55,7 @@ class _BodyState extends State<_Body> {
     return BlocListener<AuthCubit, AuthState>(
       listener: (BuildContext context, AuthState state) {
         state.maybeWhen(
+          success: () => AppNavigator.goHome(context),
           failure: (String error) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               ScaffoldMessenger.of(context).showSnackBar(

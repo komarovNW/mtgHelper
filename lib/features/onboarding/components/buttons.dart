@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:mtg_helper/core/app_navigator.dart';
 import 'package:mtg_helper/extension/localization.dart';
 
 class OnboardingButtons extends StatelessWidget {
@@ -21,7 +21,7 @@ class OnboardingButtons extends StatelessWidget {
             Positioned(
               left: 1,
               child: GestureDetector(
-                onTap: () => context.go('/auth'),
+                onTap: () => AppNavigator.goAuth(context),
                 child: Text(
                   context.l10n.skip,
                   style: const TextStyle(
@@ -33,27 +33,16 @@ class OnboardingButtons extends StatelessWidget {
             ),
           Positioned(
             right: 1,
-            child: isLastPage
-                ? GestureDetector(
-                    onTap: () => context.go('/auth'),
-                    child: Text(
-                      context.l10n.ok,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.white,
-                      ),
-                    ),
-                  )
-                : GestureDetector(
-                    onTap: () => updateCurrentPageIndex(),
-                    child: Text(
-                      context.l10n.next,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
+            child: GestureDetector(
+              onTap: () => isLastPage ? AppNavigator.goAuth(context) : updateCurrentPageIndex(),
+              child: Text(
+                isLastPage ? context.l10n.ok : context.l10n.next,
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.white,
+                ),
+              ),
+            ),
           ),
         ],
       ),
