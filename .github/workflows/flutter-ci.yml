@@ -5,6 +5,9 @@ on:
     branches:
       - main
   pull_request:
+    branches:
+      - main
+      - '**'
 
 jobs:
   build:
@@ -48,3 +51,11 @@ jobs:
       # Проверка сборки (debug APK)
       - name: Build APK (debug)
         run: flutter build apk --debug
+
+      - name: Report success
+        run: echo "Build complete"
+        if: success()
+
+      - name: Report failure
+        run: echo "Build failed"
+        if: failure()
