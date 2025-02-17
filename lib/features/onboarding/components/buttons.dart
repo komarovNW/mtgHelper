@@ -34,7 +34,9 @@ class OnboardingButtons extends StatelessWidget {
           Positioned(
             right: 1,
             child: GestureDetector(
-              onTap: () => isLastPage ? AppNavigator.goAuth(context) : updateCurrentPageIndex(),
+              onTap: () => isLastPage
+                  ? AppNavigator.goAuth(context)
+                  : updateCurrentPageIndex(),
               child: Text(
                 isLastPage ? context.l10n.ok : context.l10n.next,
                 style: const TextStyle(
