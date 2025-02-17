@@ -19,7 +19,7 @@ void main() {
     await AppLocalizations.delegate.load(const Locale('ru'));
     runApp(
       MultiProvider(
-        providers: <ChangeNotifierProvider>[
+        providers: <ChangeNotifierProvider<dynamic>>[
           ChangeNotifierProvider<AuthNotifier>(
             create: (_) => AuthNotifier(),
           ),

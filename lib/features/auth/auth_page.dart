@@ -5,7 +5,6 @@ import 'package:mtg_helper/widgets/app_box.dart';
 import 'package:mtg_helper/features/auth/components/button.dart';
 import 'package:mtg_helper/features/auth/components/login_text_form_field.dart';
 import 'package:mtg_helper/features/auth/components/password_text_form_field.dart';
-import 'package:provider/provider.dart';
 
 import 'auth_cubit.dart';
 import 'auth_state.dart';
@@ -15,21 +14,8 @@ class AuthPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // bottomNavigationBar: Container(
-      //   color: Colors.white,
-      //   padding: const EdgeInsets.only(bottom: 30),
-      //   child: const Text(
-      //     'Создать аккаунт',
-      //     textAlign: TextAlign.center,
-      //     style: TextStyle(
-      //       fontSize: 16,
-      //       color: Colors.blue,
-      //       fontWeight: FontWeight.w600,
-      //     ),
-      //   ),
-      // ),
-      body: const _Body(),
+    return const Scaffold(
+      body: _Body(),
     );
   }
 }
