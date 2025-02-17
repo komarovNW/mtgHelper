@@ -13,14 +13,21 @@ final GoRouter goRouter = GoRouter(
   initialLocation: '/',
   redirect: (_, GoRouterState state) {
     final bool isAuthenticated = _authNotifier.isAuthenticated;
-    final bool isAtAuthOrOnboarding = state.matchedLocation == '/' || state.matchedLocation == '/auth';
+    final bool isAtAuthOrOnboarding =
+        state.matchedLocation == '/' || state.matchedLocation == '/auth';
     if (isAuthenticated && isAtAuthOrOnboarding) return '/home';
     if (!isAuthenticated && state.matchedLocation == '/home') return '/';
     return null;
   },
   routes: <RouteBase>[
-    GoRoute(path: '/', builder: (BuildContext context, GoRouterState state) => const OnboardingPage()),
+    GoRoute(
+        path: '/',
+        builder: (BuildContext context, GoRouterState state) =>
+            const OnboardingPage()),
     OnAuthRoutes.route,
-    GoRoute(path: '/home', builder: (BuildContext context, GoRouterState state) => const HomePage()),
+    GoRoute(
+        path: '/home',
+        builder: (BuildContext context, GoRouterState state) =>
+            const HomePage()),
   ],
 );

@@ -45,7 +45,8 @@ class _BodyState extends State<_Body> {
 
   void _validateForm() {
     setState(() {
-      _isFormValid = _loginController.text.isNotEmpty && _passwordController.text.isNotEmpty;
+      _isFormValid = _loginController.text.isNotEmpty &&
+          _passwordController.text.isNotEmpty;
     });
   }
 
@@ -77,7 +78,8 @@ class _BodyState extends State<_Body> {
                 children: <Widget>[
                   Text(
                     context.l10n.authApp,
-                    style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
+                    style: const TextStyle(
+                        fontSize: 22, fontWeight: FontWeight.w800),
                   ),
                   const HBox(12),
                   Text(context.l10n.authText),

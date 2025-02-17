@@ -3,7 +3,8 @@ import 'package:mtg_helper/core/result.dart';
 import 'package:mtg_helper/domain/repositories/auth/auth_repository.dart';
 
 class SignInUseCase {
-  SignInUseCase({required AuthRepository authRepository}) : _authRepository = authRepository;
+  SignInUseCase({required AuthRepository authRepository})
+      : _authRepository = authRepository;
   final AuthRepository _authRepository;
 
   Future<Result<User>> call(String email, String password) async {
