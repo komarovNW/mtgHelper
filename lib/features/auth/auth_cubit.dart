@@ -24,7 +24,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 }
 
-/// TODO подумать где и когда это переводить
+// TODO подумать где и когда это переводить
 String _getErrorMessage(String? code) {
   switch (code) {
     case 'invalid-email':
