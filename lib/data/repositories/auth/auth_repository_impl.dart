@@ -4,8 +4,7 @@ import 'package:mtg_helper/domain/repositories/auth/auth_repository.dart';
 
 /// Реализация AuthRepository через AuthRemoteDataSource.
 class AuthRepositoryImpl implements AuthRepository {
-  AuthRepositoryImpl({required AuthRemoteDataSource remoteDataSource})
-      : _remoteDataSource = remoteDataSource;
+  AuthRepositoryImpl({required AuthRemoteDataSource remoteDataSource}) : _remoteDataSource = remoteDataSource;
   final AuthRemoteDataSource _remoteDataSource;
 
   @override

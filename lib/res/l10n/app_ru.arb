@@ -3,6 +3,9 @@
   "skip": "Пропустить",
   "ok": "Ок",
   "next": "Дальше",
+  "exit": "Выход",
+  "russian": "Русский",
+  "english": "Английский",
   "onboardingTitle1": "Аукционы",
   "onboardingText1": "Следи и сохраняй интересные тебе аукционы",
   "onboardingTitle2": "Счетчик",
@@ -20,5 +23,14 @@
   "authPasswordForgot": "Забыли пароль",
   "authPasswordHintText": "••••••••••••",
   "authPasswordErrorText": "Пожалуйста, введите пароль",
-  "authButton": "Войти"
+  "authButton": "Войти",
+  "homeTitle": "Домашний экран",
+  "homeText": "Добро пожаловать!",
+  "drawerPrice": "Цены",
+  "drawerTrades": "Сделки",
+  "drawerAuctions": "Аукционы",
+  "drawerCollection": "Коллекция",
+  "drawerStatistic": "Статистика",
+  "drawerScore": "Счетчик",
+  "drawerCalendar": "Календарь"
 }

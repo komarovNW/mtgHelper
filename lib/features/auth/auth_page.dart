@@ -46,8 +46,7 @@ class _BodyState extends State<_Body> {
 
   void _validateForm() {
     setState(() {
-      _isFormValid = _loginController.text.isNotEmpty &&
-          _passwordController.text.isNotEmpty;
+      _isFormValid = _loginController.text.isNotEmpty && _passwordController.text.isNotEmpty;
     });
   }
 

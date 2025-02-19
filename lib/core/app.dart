@@ -32,11 +32,8 @@ class App extends StatelessWidget {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          localeResolutionCallback:
-              (Locale? locale, Iterable<Locale> supportedLocales) {
-            return supportedLocales.contains(locale)
-                ? locale
-                : const Locale('ru', '');
+          localeResolutionCallback: (Locale? locale, Iterable<Locale> supportedLocales) {
+            return supportedLocales.contains(locale) ? locale : const Locale('ru', '');
           },
         );
       },

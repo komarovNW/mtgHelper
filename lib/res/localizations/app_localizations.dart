@@ -62,8 +62,7 @@ import 'app_localizations_ru.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -71,8 +70,7 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-      _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -84,8 +82,7 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -115,6 +112,24 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Дальше'**
   String get next;
+
+  /// No description provided for @exit.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выход'**
+  String get exit;
+
+  /// No description provided for @russian.
+  ///
+  /// In ru, this message translates to:
+  /// **'Русский'**
+  String get russian;
+
+  /// No description provided for @english.
+  ///
+  /// In ru, this message translates to:
+  /// **'Английский'**
+  String get english;
 
   /// No description provided for @onboardingTitle1.
   ///
@@ -223,10 +238,63 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Войти'**
   String get authButton;
+
+  /// No description provided for @homeTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Домашний экран'**
+  String get homeTitle;
+
+  /// No description provided for @homeText.
+  ///
+  /// In ru, this message translates to:
+  /// **'Добро пожаловать!'**
+  String get homeText;
+
+  /// No description provided for @drawerPrice.
+  ///
+  /// In ru, this message translates to:
+  /// **'Цены'**
+  String get drawerPrice;
+
+  /// No description provided for @drawerTrades.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сделки'**
+  String get drawerTrades;
+
+  /// No description provided for @drawerAuctions.
+  ///
+  /// In ru, this message translates to:
+  /// **'Аукционы'**
+  String get drawerAuctions;
+
+  /// No description provided for @drawerCollection.
+  ///
+  /// In ru, this message translates to:
+  /// **'Коллекция'**
+  String get drawerCollection;
+
+  /// No description provided for @drawerStatistic.
+  ///
+  /// In ru, this message translates to:
+  /// **'Статистика'**
+  String get drawerStatistic;
+
+  /// No description provided for @drawerScore.
+  ///
+  /// In ru, this message translates to:
+  /// **'Счетчик'**
+  String get drawerScore;
+
+  /// No description provided for @drawerCalendar.
+  ///
+  /// In ru, this message translates to:
+  /// **'Календарь'**
+  String get drawerCalendar;
 }
 
-class _AppLocalizationsDelegate
-    extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -235,25 +303,25 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['en', 'ru'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'ru'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
+
+
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'en':
-      return AppLocalizationsEn();
-    case 'ru':
-      return AppLocalizationsRu();
+    case 'en': return AppLocalizationsEn();
+    case 'ru': return AppLocalizationsRu();
   }
 
   throw FlutterError(
-      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.'
+  );
 }

@@ -1,7 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mtg_helper/core/auth_notifier.dart';
+import 'package:mtg_helper/core/drawer.dart';
+import 'package:mtg_helper/extension/localization.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,43 +13,33 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  User? currentUser;
-  String mail = '';
-
   @override
   void initState() {
     super.initState();
-    currentUser = FirebaseAuth.instance.currentUser;
-    if (currentUser != null) {
-      mail = currentUser!.email!;
-    } else {
-      mail = 'Пользователь не авторизован';
-    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AppDrawer(),
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Home'),
+        title: Text(
+          context.l10n.homeTitle,
+        ),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('Добро пожаловать!'),
-            Text(mail),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () async {
+            Text(
+              context.l10n.homeText,
+            ),
+            ListTile(
+              title: Text(context.l10n.exit),
+              onTap: () async {
                 await context.read<AuthNotifier>().signOut();
-
-                /// TODO надо подумать ок ли это или нет.
-                // context.go('/');
-                // context.read<AuthNotifier>().signOut();
               },
-              child: const Text('Выйти'),
             ),
           ],
         ),

@@ -2,6 +2,9 @@
   "skip": "test",
   "ok": "test",
   "next": "test",
+  "exit": "Exit",
+  "russian": "Русский",
+  "english": "Английский",
   "onboardingTitle1": "test",
   "onboardingText1": "test",
   "onboardingTitle2": "test",
@@ -19,5 +22,14 @@
   "authPasswordForgot": "test",
   "authPasswordHintText": "••••••••••••",
   "authPasswordErrorText": "test",
-  "authButton": "test"
+  "authButton": "test",
+  "homeTitle": "Home Screen",
+  "homeText": "Welcome!",
+  "drawerPrice": "Price",
+  "drawerTrades": "Trades",
+  "drawerAuctions": "Auctions",
+  "drawerCollection": "Collection",
+  "drawerStatistic": "Statistic",
+  "drawerScore": "Score",
+  "drawerCalendar": "Calendar"
 }

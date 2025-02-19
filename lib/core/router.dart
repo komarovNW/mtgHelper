@@ -13,8 +13,7 @@ final GoRouter goRouter = GoRouter(
   redirect: (_, GoRouterState state) {
     final bool isAuthenticated = _authNotifier.isAuthenticated;
     final bool isAtAuthOrOnboarding =
-        state.matchedLocation == OnboardingRoutes.onboardingPath ||
-            state.matchedLocation == AuthRoutes.authPath;
+        state.matchedLocation == OnboardingRoutes.onboardingPath || state.matchedLocation == AuthRoutes.authPath;
     if (isAuthenticated && isAtAuthOrOnboarding) return HomeRoutes.homePath;
     if (!isAuthenticated && state.matchedLocation == HomeRoutes.homePath) {
       return OnboardingRoutes.onboardingPath;

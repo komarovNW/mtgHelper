@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:mtg_helper/core/localization_notifier.dart';
 import 'package:provider/provider.dart';
 
@@ -8,22 +7,30 @@ class LanguageSwitcher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LocalizationNotifier localizationNotifier =
-        Provider.of<LocalizationNotifier>(context);
+    final LocalizationNotifier localizationNotifier = Provider.of<LocalizationNotifier>(context);
 
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        ElevatedButton(
-          onPressed: () {
-            localizationNotifier.setLocale(const Locale('en'));
+        const Text('English'),
+        Radio<String>(
+          value: 'en',
+          groupValue: localizationNotifier.locale.languageCode,
+          onChanged: (String? value) {
+            if (value != null) {
+              localizationNotifier.setLocale(Locale(value));
+            }
           },
-          child: const Text('English'),
         ),
-        ElevatedButton(
-          onPressed: () {
-            localizationNotifier.setLocale(const Locale('ru'));
+        const Text('Русский'),
+        Radio<String>(
+          value: 'ru',
+          groupValue: localizationNotifier.locale.languageCode,
+          onChanged: (String? value) {
+            if (value != null) {
+              localizationNotifier.setLocale(Locale(value));
+            }
           },
-          child: const Text('Русский'),
         ),
       ],
     );
