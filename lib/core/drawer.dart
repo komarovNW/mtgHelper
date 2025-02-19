@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mtg_helper/core/auth_notifier.dart';
-import 'package:mtg_helper/core/user_notifier.dart';
 import 'package:mtg_helper/extension/localization.dart';
 import 'package:provider/provider.dart';
 
@@ -18,28 +17,27 @@ class AppDrawer extends StatelessWidget {
       context.l10n.drawerCollection,
       context.l10n.drawerCalendar,
     ];
-    final UserNotifier userNotifier = Provider.of<UserNotifier>(context);
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
           UserAccountsDrawerHeader(
-            accountName: Text(
-              userNotifier.user?.fullName ?? '',
-              style: const TextStyle(
+            accountName: const Text(
+              'Комаров Никита',
+              style: TextStyle(
                 color: Colors.black,
               ),
             ),
-            accountEmail: Text(
-              userNotifier.user?.email ?? '',
-              style: const TextStyle(
+            accountEmail: const Text(
+              'test@gmail.com',
+              style: TextStyle(
                 color: Colors.black,
               ),
             ),
-            currentAccountPicture: CircleAvatar(
+            currentAccountPicture: const CircleAvatar(
               child: Text(
-                userNotifier.user?.getInitials() ?? '',
-                style: const TextStyle(
+                'НВ',
+                style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
                 ),

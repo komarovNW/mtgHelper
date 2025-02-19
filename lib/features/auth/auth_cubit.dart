@@ -13,10 +13,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> login({required String email, required String password}) async {
     emit(const AuthState.loading());
-
-    // final Result<User> result = await _signInUseCase(email, password);
-    final Result<User> result = await _signInUseCase('test@gmail.com', '123456');
-
+    final Result<User> result = await _signInUseCase(email, password);
     if (result.isSuccess) {
       emit(const AuthState.success());
     } else {
