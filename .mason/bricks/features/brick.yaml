@@ -1,0 +1,7 @@
+version: 0.1.0
+name: "features"
+description: "Создаёт структуру фичи с Cubit, State, Page и Router"
+vars:
+  name:
+    type: string
+    description: "Название фичи"
