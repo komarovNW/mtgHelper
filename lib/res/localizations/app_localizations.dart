@@ -250,48 +250,6 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Добро пожаловать!'**
   String get homeText;
-
-  /// No description provided for @drawerPrice.
-  ///
-  /// In ru, this message translates to:
-  /// **'Цены'**
-  String get drawerPrice;
-
-  /// No description provided for @drawerTrades.
-  ///
-  /// In ru, this message translates to:
-  /// **'Сделки'**
-  String get drawerTrades;
-
-  /// No description provided for @drawerAuctions.
-  ///
-  /// In ru, this message translates to:
-  /// **'Аукционы'**
-  String get drawerAuctions;
-
-  /// No description provided for @drawerCollection.
-  ///
-  /// In ru, this message translates to:
-  /// **'Коллекция'**
-  String get drawerCollection;
-
-  /// No description provided for @drawerStatistic.
-  ///
-  /// In ru, this message translates to:
-  /// **'Статистика'**
-  String get drawerStatistic;
-
-  /// No description provided for @drawerScore.
-  ///
-  /// In ru, this message translates to:
-  /// **'Счетчик'**
-  String get drawerScore;
-
-  /// No description provided for @drawerCalendar.
-  ///
-  /// In ru, this message translates to:
-  /// **'Календарь'**
-  String get drawerCalendar;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

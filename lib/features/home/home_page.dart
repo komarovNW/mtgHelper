@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mtg_helper/core/auth_notifier.dart';
-import 'package:mtg_helper/core/drawer.dart';
 import 'package:mtg_helper/extension/localization.dart';
 import 'package:provider/provider.dart';
 
@@ -20,8 +19,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final AuthNotifier authNotifier = Provider.of<AuthNotifier>(context);
     return Scaffold(
-      drawer: const AppDrawer(),
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(
@@ -35,6 +34,7 @@ class _HomePageState extends State<HomePage> {
             Text(
               context.l10n.homeText,
             ),
+            Text(authNotifier.user?.displayName ?? 'Гость'),
             ListTile(
               title: Text(context.l10n.exit),
               onTap: () async {
