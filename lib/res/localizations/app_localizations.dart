@@ -116,6 +116,24 @@ abstract class AppLocalizations {
   /// **'Дальше'**
   String get next;
 
+  /// No description provided for @exit.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выход'**
+  String get exit;
+
+  /// No description provided for @russian.
+  ///
+  /// In ru, this message translates to:
+  /// **'Русский'**
+  String get russian;
+
+  /// No description provided for @english.
+  ///
+  /// In ru, this message translates to:
+  /// **'Английский'**
+  String get english;
+
   /// No description provided for @onboardingTitle1.
   ///
   /// In ru, this message translates to:
@@ -223,6 +241,60 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Войти'**
   String get authButton;
+
+  /// No description provided for @homeTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Домашний экран'**
+  String get homeTitle;
+
+  /// No description provided for @homeText.
+  ///
+  /// In ru, this message translates to:
+  /// **'Добро пожаловать!'**
+  String get homeText;
+
+  /// No description provided for @drawerPrice.
+  ///
+  /// In ru, this message translates to:
+  /// **'Цены'**
+  String get drawerPrice;
+
+  /// No description provided for @drawerTrades.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сделки'**
+  String get drawerTrades;
+
+  /// No description provided for @drawerAuctions.
+  ///
+  /// In ru, this message translates to:
+  /// **'Аукционы'**
+  String get drawerAuctions;
+
+  /// No description provided for @drawerCollection.
+  ///
+  /// In ru, this message translates to:
+  /// **'Коллекция'**
+  String get drawerCollection;
+
+  /// No description provided for @drawerStatistic.
+  ///
+  /// In ru, this message translates to:
+  /// **'Статистика'**
+  String get drawerStatistic;
+
+  /// No description provided for @drawerScore.
+  ///
+  /// In ru, this message translates to:
+  /// **'Счетчик'**
+  String get drawerScore;
+
+  /// No description provided for @drawerCalendar.
+  ///
+  /// In ru, this message translates to:
+  /// **'Календарь'**
+  String get drawerCalendar;
 }
 
 class _AppLocalizationsDelegate

@@ -16,6 +16,15 @@ class AppLocalizationsRu extends AppLocalizations {
   String get next => 'Дальше';
 
   @override
+  String get exit => 'Выход';
+
+  @override
+  String get russian => 'Русский';
+
+  @override
+  String get english => 'Английский';
+
+  @override
   String get onboardingTitle1 => 'Аукционы';
 
   @override
@@ -70,4 +79,31 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get authButton => 'Войти';
+
+  @override
+  String get homeTitle => 'Домашний экран';
+
+  @override
+  String get homeText => 'Добро пожаловать!';
+
+  @override
+  String get drawerPrice => 'Цены';
+
+  @override
+  String get drawerTrades => 'Сделки';
+
+  @override
+  String get drawerAuctions => 'Аукционы';
+
+  @override
+  String get drawerCollection => 'Коллекция';
+
+  @override
+  String get drawerStatistic => 'Статистика';
+
+  @override
+  String get drawerScore => 'Счетчик';
+
+  @override
+  String get drawerCalendar => 'Календарь';
 }
