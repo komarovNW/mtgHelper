@@ -3,7 +3,6 @@ import 'package:mtg_helper/core/app.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:mtg_helper/core/di.dart';
 import 'package:mtg_helper/core/localization_notifier.dart';
-import 'package:mtg_helper/core/user_notifier.dart';
 import 'package:mtg_helper/res/localizations/app_localizations.dart';
 
 import 'package:provider/provider.dart';
@@ -28,9 +27,6 @@ void main() {
           ),
           ChangeNotifierProvider<LocalizationNotifier>(
             create: (_) => LocalizationNotifier(),
-          ),
-          ChangeNotifierProvider<UserNotifier>(
-            create: (BuildContext context) => UserNotifier(),
           ),
         ],
         child: const App(),
