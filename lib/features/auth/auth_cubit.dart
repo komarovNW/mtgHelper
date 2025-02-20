@@ -15,7 +15,8 @@ class AuthCubit extends Cubit<AuthState> {
     emit(const AuthState.loading());
 
     // final Result<User> result = await _signInUseCase(email, password);
-    final Result<User> result = await _signInUseCase('test@gmail.com', '123456');
+    final Result<User> result =
+        await _signInUseCase('test@gmail.com', '123456');
 
     if (result.isSuccess) {
       emit(const AuthState.success());

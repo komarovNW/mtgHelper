@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:mtg_helper/core/auth_notifier.dart';
 import 'package:mtg_helper/extension/localization.dart';
 import 'package:provider/provider.dart';
