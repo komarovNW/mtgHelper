@@ -24,5 +24,12 @@
   "authPasswordErrorText": "test",
   "authButton": "test",
   "homeTitle": "Home Screen",
-  "homeText": "Welcome!"
+  "homeText": "Welcome!",
+  "drawerPrice": "Price",
+  "drawerTrades": "Trades",
+  "drawerAuctions": "Auctions",
+  "drawerCollection": "Collection",
+  "drawerStatistic": "Statistic",
+  "drawerScore": "Score",
+  "drawerCalendar": "Calendar"
 }

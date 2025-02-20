@@ -25,5 +25,12 @@
   "authPasswordErrorText": "Пожалуйста, введите пароль",
   "authButton": "Войти",
   "homeTitle": "Домашний экран",
-  "homeText": "Добро пожаловать!"
+  "homeText": "Добро пожаловать!",
+  "drawerPrice": "Цены",
+  "drawerTrades": "Сделки",
+  "drawerAuctions": "Аукционы",
+  "drawerCollection": "Коллекция",
+  "drawerStatistic": "Статистика",
+  "drawerScore": "Счетчик",
+  "drawerCalendar": "Календарь"
 }
