@@ -7,7 +7,8 @@ class LanguageSwitcher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LocalizationNotifier localizationNotifier = Provider.of<LocalizationNotifier>(context);
+    final LocalizationNotifier localizationNotifier =
+        Provider.of<LocalizationNotifier>(context);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,

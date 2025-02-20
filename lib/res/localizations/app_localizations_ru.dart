@@ -34,7 +34,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get onboardingTitle2 => 'Счетчик';
 
   @override
-  String get onboardingText2 => 'Считай жизни свои и оппонента прямо в приложении';
+  String get onboardingText2 =>
+      'Считай жизни свои и оппонента прямо в приложении';
 
   @override
   String get onboardingTitle3 => 'Коллекция';
@@ -46,7 +47,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get onboardingTitle4 => 'Статистика';
 
   @override
-  String get onboardingText4 => 'Записывай все свои матчи чтобы потом проанализировать';
+  String get onboardingText4 =>
+      'Записывай все свои матчи чтобы потом проанализировать';
 
   @override
   String get authApp => 'MTGHelper';

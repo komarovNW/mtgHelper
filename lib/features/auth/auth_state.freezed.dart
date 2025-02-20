@@ -70,11 +70,13 @@ mixin _$AuthState {
 
 /// @nodoc
 abstract class $AuthStateCopyWith<$Res> {
-  factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) = _$AuthStateCopyWithImpl<$Res, AuthState>;
+  factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
+      _$AuthStateCopyWithImpl<$Res, AuthState>;
 }
 
 /// @nodoc
-class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState> implements $AuthStateCopyWith<$Res> {
+class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
+    implements $AuthStateCopyWith<$Res> {
   _$AuthStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -88,14 +90,17 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState> implements $AuthStat
 
 /// @nodoc
 abstract class _$$AuthInitialImplCopyWith<$Res> {
-  factory _$$AuthInitialImplCopyWith(_$AuthInitialImpl value, $Res Function(_$AuthInitialImpl) then) =
+  factory _$$AuthInitialImplCopyWith(
+          _$AuthInitialImpl value, $Res Function(_$AuthInitialImpl) then) =
       __$$AuthInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AuthInitialImplCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$AuthInitialImpl>
+class __$$AuthInitialImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthInitialImpl>
     implements _$$AuthInitialImplCopyWith<$Res> {
-  __$$AuthInitialImplCopyWithImpl(_$AuthInitialImpl _value, $Res Function(_$AuthInitialImpl) _then)
+  __$$AuthInitialImplCopyWithImpl(
+      _$AuthInitialImpl _value, $Res Function(_$AuthInitialImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AuthState
@@ -114,7 +119,8 @@ class _$AuthInitialImpl implements AuthInitial {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is _$AuthInitialImpl);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AuthInitialImpl);
   }
 
   @override
@@ -201,14 +207,17 @@ abstract class AuthInitial implements AuthState {
 
 /// @nodoc
 abstract class _$$AuthLoadingImplCopyWith<$Res> {
-  factory _$$AuthLoadingImplCopyWith(_$AuthLoadingImpl value, $Res Function(_$AuthLoadingImpl) then) =
+  factory _$$AuthLoadingImplCopyWith(
+          _$AuthLoadingImpl value, $Res Function(_$AuthLoadingImpl) then) =
       __$$AuthLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AuthLoadingImplCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$AuthLoadingImpl>
+class __$$AuthLoadingImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthLoadingImpl>
     implements _$$AuthLoadingImplCopyWith<$Res> {
-  __$$AuthLoadingImplCopyWithImpl(_$AuthLoadingImpl _value, $Res Function(_$AuthLoadingImpl) _then)
+  __$$AuthLoadingImplCopyWithImpl(
+      _$AuthLoadingImpl _value, $Res Function(_$AuthLoadingImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AuthState
@@ -227,7 +236,8 @@ class _$AuthLoadingImpl implements AuthLoading {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is _$AuthLoadingImpl);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AuthLoadingImpl);
   }
 
   @override
@@ -314,14 +324,17 @@ abstract class AuthLoading implements AuthState {
 
 /// @nodoc
 abstract class _$$AuthSuccessImplCopyWith<$Res> {
-  factory _$$AuthSuccessImplCopyWith(_$AuthSuccessImpl value, $Res Function(_$AuthSuccessImpl) then) =
+  factory _$$AuthSuccessImplCopyWith(
+          _$AuthSuccessImpl value, $Res Function(_$AuthSuccessImpl) then) =
       __$$AuthSuccessImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AuthSuccessImplCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$AuthSuccessImpl>
+class __$$AuthSuccessImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthSuccessImpl>
     implements _$$AuthSuccessImplCopyWith<$Res> {
-  __$$AuthSuccessImplCopyWithImpl(_$AuthSuccessImpl _value, $Res Function(_$AuthSuccessImpl) _then)
+  __$$AuthSuccessImplCopyWithImpl(
+      _$AuthSuccessImpl _value, $Res Function(_$AuthSuccessImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AuthState
@@ -340,7 +353,8 @@ class _$AuthSuccessImpl implements AuthSuccess {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is _$AuthSuccessImpl);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AuthSuccessImpl);
   }
 
   @override
@@ -427,16 +441,19 @@ abstract class AuthSuccess implements AuthState {
 
 /// @nodoc
 abstract class _$$AuthFailureImplCopyWith<$Res> {
-  factory _$$AuthFailureImplCopyWith(_$AuthFailureImpl value, $Res Function(_$AuthFailureImpl) then) =
+  factory _$$AuthFailureImplCopyWith(
+          _$AuthFailureImpl value, $Res Function(_$AuthFailureImpl) then) =
       __$$AuthFailureImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String error});
 }
 
 /// @nodoc
-class __$$AuthFailureImplCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$AuthFailureImpl>
+class __$$AuthFailureImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthFailureImpl>
     implements _$$AuthFailureImplCopyWith<$Res> {
-  __$$AuthFailureImplCopyWithImpl(_$AuthFailureImpl _value, $Res Function(_$AuthFailureImpl) _then)
+  __$$AuthFailureImplCopyWithImpl(
+      _$AuthFailureImpl _value, $Res Function(_$AuthFailureImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AuthState
@@ -570,5 +587,6 @@ abstract class AuthFailure implements AuthState {
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AuthFailureImplCopyWith<_$AuthFailureImpl> get copyWith => throw _privateConstructorUsedError;
+  _$$AuthFailureImplCopyWith<_$AuthFailureImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
