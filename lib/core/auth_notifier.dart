@@ -5,13 +5,18 @@ import 'package:flutter/foundation.dart';
 class AuthNotifier extends ChangeNotifier {
   AuthNotifier() {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      _user = user;
       notifyListeners();
     });
   }
 
   bool get isAuthenticated => FirebaseAuth.instance.currentUser != null;
+  User? _user;
+
+  User? get user => _user;
 
   Future<void> signOut() async {
+    _user = null;
     await FirebaseAuth.instance.signOut();
     notifyListeners();
   }

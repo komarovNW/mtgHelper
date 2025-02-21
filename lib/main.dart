@@ -4,7 +4,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:mtg_helper/core/di.dart';
 import 'package:mtg_helper/core/localization_notifier.dart';
 import 'package:mtg_helper/res/localizations/app_localizations.dart';
-
 import 'package:provider/provider.dart';
 import 'package:mtg_helper/core/auth_notifier.dart';
 import 'package:provider/single_child_widget.dart';
@@ -18,6 +17,7 @@ void main() {
       options: DefaultFirebaseOptions.currentPlatform,
     );
     DependencyInjectionContainer.init();
+
     await AppLocalizations.delegate.load(const Locale('ru'));
     runApp(
       MultiProvider(
