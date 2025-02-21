@@ -31,9 +31,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              context.l10n.homeText,
-            ),
+            Text(context.l10n.homeText),
             Text(authNotifier.user?.displayName ?? 'Гость'),
             ListTile(
               title: Text(context.l10n.exit),

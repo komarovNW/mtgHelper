@@ -1,0 +1,36 @@
+repos:
+  - repo: local
+    hooks:
+      - id: dart-format
+        name: 🧹 Dart Format (lib/)
+        entry: dart format lib/
+        language: system
+        files: ^lib/
+        exclude: ^lib/res/.*$
+
+      - id: flutter-analyze
+        name: 🔍 Flutter Analyze (lib/)
+        entry: flutter analyze lib/
+        language: system
+        files: ^lib/
+        exclude: ^lib/res/.*$
+
+      - id: no-print
+        name: 🚫 Disallow print statements (lib/)
+        entry: bash -c "! grep -r 'print(' lib/"
+        language: system
+        files: ^lib/
+        exclude: ^lib/res/.*$
+
+      - id: no-commented-code
+        name: 🚫 Disallow commented-out code (lib/)
+        entry: bash -c "! grep -rE '^\s*//(?!.*ignore_for_file)(.*(;|{|}|=|\)|\(|return|if|else|for|while|class|import|final|var))' lib/"
+        language: system
+        files: ^lib/
+        exclude: ^lib/res/.*$
+
+# Глобальные исключения
+exclude: |
+  ^lib/res/
+  ^lib/.*\.freezed\.dart$
+  ^lib/res/l10n/.*\.arb$
