@@ -83,4 +83,25 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get homeText => 'Добро пожаловать!';
+
+  @override
+  String get drawerPrice => 'Цены';
+
+  @override
+  String get drawerTrades => 'Сделки';
+
+  @override
+  String get drawerAuctions => 'Аукционы';
+
+  @override
+  String get drawerCollection => 'Коллекция';
+
+  @override
+  String get drawerStatistic => 'Статистика';
+
+  @override
+  String get drawerScore => 'Счетчик';
+
+  @override
+  String get drawerCalendar => 'Календарь';
 }

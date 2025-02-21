@@ -83,4 +83,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get homeText => 'Welcome!';
+
+  @override
+  String get drawerPrice => 'Price';
+
+  @override
+  String get drawerTrades => 'Trades';
+
+  @override
+  String get drawerAuctions => 'Auctions';
+
+  @override
+  String get drawerCollection => 'Collection';
+
+  @override
+  String get drawerStatistic => 'Statistic';
+
+  @override
+  String get drawerScore => 'Score';
+
+  @override
+  String get drawerCalendar => 'Calendar';
 }
