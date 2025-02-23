@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:mtg_helper/core/auth_notifier.dart';
+import 'package:mtg_helper/core/drawer.dart';
 import 'package:mtg_helper/extension/localization.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +22,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final AuthNotifier authNotifier = Provider.of<AuthNotifier>(context);
     return Scaffold(
+      drawer: const AppDrawer(),
+
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(
           context.l10n.homeTitle,
@@ -33,12 +37,6 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             Text(context.l10n.homeText),
             Text(authNotifier.user?.displayName ?? 'Гость'),
-            ListTile(
-              title: Text(context.l10n.exit),
-              onTap: () async {
-                await context.read<AuthNotifier>().signOut();
-              },
-            ),
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.

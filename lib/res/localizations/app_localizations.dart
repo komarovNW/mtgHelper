@@ -110,6 +110,18 @@ abstract class AppLocalizations {
   /// **'Ок'**
   String get ok;
 
+  /// No description provided for @yes.
+  ///
+  /// In ru, this message translates to:
+  /// **'Да'**
+  String get yes;
+
+  /// No description provided for @no.
+  ///
+  /// In ru, this message translates to:
+  /// **'Нет'**
+  String get no;
+
   /// No description provided for @next.
   ///
   /// In ru, this message translates to:
@@ -295,6 +307,18 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Календарь'**
   String get drawerCalendar;
+
+  /// No description provided for @scoreTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Счетчик'**
+  String get scoreTitle;
+
+  /// No description provided for @scoreDialogText.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вы точно хотите сбросить счетчик?'**
+  String get scoreDialogText;
 }
 
 class _AppLocalizationsDelegate

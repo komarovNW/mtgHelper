@@ -13,6 +13,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ok => 'test';
 
   @override
+  String get yes => 'Да';
+
+  @override
+  String get no => 'Нет';
+
+  @override
   String get next => 'test';
 
   @override
@@ -104,4 +110,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get drawerCalendar => 'Calendar';
+
+  @override
+  String get scoreTitle => 'Счетчик';
+
+  @override
+  String get scoreDialogText => 'Вы точно хотите сбросить счетчик?';
 }

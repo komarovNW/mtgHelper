@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mtg_helper/core/app_navigator.dart';
 import 'package:mtg_helper/core/auth_notifier.dart';
+import 'package:mtg_helper/extension/initials.dart';
 import 'package:mtg_helper/extension/localization.dart';
 import 'package:provider/provider.dart';
 
@@ -8,36 +10,47 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> menuItems = <String>[
-      context.l10n.drawerScore,
-      context.l10n.drawerPrice,
-      context.l10n.drawerAuctions,
-      context.l10n.drawerStatistic,
-      context.l10n.drawerTrades,
-      context.l10n.drawerCollection,
-      context.l10n.drawerCalendar,
+    final AuthNotifier authInfo = Provider.of<AuthNotifier>(context);
+    final List<_DrawerItem> menuItems = <_DrawerItem>[
+      _DrawerItem(title: context.l10n.drawerScore, onTap: AppNavigator.goScore),
+      _DrawerItem(title: context.l10n.drawerPrice, onTap: AppNavigator.goHome),
+      _DrawerItem(
+        title: context.l10n.drawerAuctions,
+      ),
+      _DrawerItem(
+        title: context.l10n.drawerStatistic,
+      ),
+      _DrawerItem(
+        title: context.l10n.drawerTrades,
+      ),
+      _DrawerItem(
+        title: context.l10n.drawerCollection,
+      ),
+      _DrawerItem(
+        title: context.l10n.drawerCalendar,
+      ),
     ];
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
           UserAccountsDrawerHeader(
-            accountName: const Text(
-              'Комаров Никита',
-              style: TextStyle(
+            accountName: Text(
+              authInfo.user?.displayName ?? 'Гость',
+              style: const TextStyle(
                 color: Colors.black,
               ),
             ),
-            accountEmail: const Text(
-              'test@gmail.com',
-              style: TextStyle(
+            accountEmail: Text(
+              authInfo.user?.email ?? '',
+              style: const TextStyle(
                 color: Colors.black,
               ),
             ),
-            currentAccountPicture: const CircleAvatar(
+            currentAccountPicture: CircleAvatar(
               child: Text(
-                'НВ',
-                style: TextStyle(
+                authInfo.user?.displayName?.initials ?? '',
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 20,
                 ),
@@ -47,10 +60,14 @@ class AppDrawer extends StatelessWidget {
               color: Theme.of(context).colorScheme.inversePrimary,
             ),
           ),
-          ...menuItems.map((String item) {
+          ...menuItems.map((_DrawerItem item) {
             return ListTile(
-              title: Text(item),
-              onTap: () {},
+              title: Text(item.title),
+              onTap: () {
+                if (item.onTap != null) {
+                  item.onTap!(context);
+                }
+              },
             );
           }),
           ListTile(
@@ -63,4 +80,10 @@ class AppDrawer extends StatelessWidget {
       ),
     );
   }
+}
+
+class _DrawerItem {
+  _DrawerItem({required this.title, this.onTap});
+  final String title;
+  final void Function(BuildContext context)? onTap;
 }

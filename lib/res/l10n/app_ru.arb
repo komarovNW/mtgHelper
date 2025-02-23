@@ -2,6 +2,8 @@
   "@@locale": "ru",
   "skip": "Пропустить",
   "ok": "Ок",
+  "yes": "Да",
+  "no": "Нет",
   "next": "Дальше",
   "exit": "Выход",
   "russian": "Русский",
@@ -32,5 +34,7 @@
   "drawerCollection": "Коллекция",
   "drawerStatistic": "Статистика",
   "drawerScore": "Счетчик",
-  "drawerCalendar": "Календарь"
+  "drawerCalendar": "Календарь",
+  "scoreTitle": "Счетчик",
+  "scoreDialogText": "Вы точно хотите сбросить счетчик?"
 }

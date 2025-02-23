@@ -53,7 +53,7 @@ class _BodyState extends State<_Body> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthCubit, AuthState>(
+    return BlocConsumer<AuthCubit, AuthState>(
       listener: (BuildContext context, AuthState state) {
         state.maybeWhen(
           success: () => AppNavigator.goHome(context),
@@ -67,49 +67,47 @@ class _BodyState extends State<_Body> {
           orElse: () {},
         );
       },
-      child: BlocBuilder<AuthCubit, AuthState>(
-        builder: (BuildContext context, AuthState state) {
-          return Form(
-            key: _formKey,
-            child: Container(
-              color: Colors.white,
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  Text(
-                    context.l10n.authApp,
-                    style: const TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.w800,
-                    ),
+      builder: (BuildContext context, AuthState state) {
+        return Form(
+          key: _formKey,
+          child: Container(
+            color: Colors.white,
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Text(
+                  context.l10n.authApp,
+                  style: const TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w800,
                   ),
-                  const HBox(12),
-                  Text(context.l10n.authText),
-                  const HBox(36),
-                  LoginTextField(loginController: _loginController),
-                  const HBox(12),
-                  PasswordTextField(passwordController: _passwordController),
-                  const HBox(12),
-                  Button(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        context.read<AuthCubit>().login(
-                              email: _loginController.text,
-                              password: _passwordController.text,
-                            );
-                      }
-                    },
-                    isLoading: state is AuthLoading,
-                    isValid: _isFormValid,
-                  ),
-                ],
-              ),
+                ),
+                const HBox(12),
+                Text(context.l10n.authText),
+                const HBox(36),
+                LoginTextField(loginController: _loginController),
+                const HBox(12),
+                PasswordTextField(passwordController: _passwordController),
+                const HBox(12),
+                Button(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      context.read<AuthCubit>().login(
+                            email: _loginController.text,
+                            password: _passwordController.text,
+                          );
+                    }
+                  },
+                  isLoading: state is AuthLoading,
+                  isValid: _isFormValid,
+                ),
+              ],
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 

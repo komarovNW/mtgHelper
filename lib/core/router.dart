@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mtg_helper/features/auth/auth_router.dart';
 import 'package:mtg_helper/features/home/home_router.dart';
 import 'package:mtg_helper/features/onboarding/onboarding_router.dart';
+import 'package:mtg_helper/features/score/score_router.dart';
 import 'auth_notifier.dart';
 
 final AuthNotifier _authNotifier = AuthNotifier();
@@ -25,5 +26,6 @@ final GoRouter goRouter = GoRouter(
     OnboardingRoutes.route,
     AuthRoutes.route,
     HomeRoutes.route,
+    ScoreRoutes.route,
   ],
 );
