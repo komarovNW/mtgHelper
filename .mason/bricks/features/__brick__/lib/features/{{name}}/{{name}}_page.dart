@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mtg_helper/core/app_navigator.dart';
 import 'package:mtg_helper/extension/localization.dart';
-
+import 'package:mtg_helper/core/drawer.dart';
 import '{{name}}_cubit.dart';
 import '{{name}}_state.dart';
 
@@ -11,8 +11,16 @@ class {{name.pascalCase()}}Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: _Body(),
+    return Scaffold(
+    drawer: const AppDrawer(),
+    appBar: AppBar(
+      centerTitle: true,
+      backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      title: Text(
+          "{{name.pascalCase()}} Page",
+        ),
+      ),
+    body: _Body(),
     );
   }
 }
@@ -38,7 +46,9 @@ class _BodyState extends State<_Body> {
       },
       child: BlocBuilder<{{name.pascalCase()}}Cubit, {{name.pascalCase()}}State>(
         builder: (BuildContext context, {{name.pascalCase()}}State state) {
-          return SizedBox();
+          return Center(
+              child: Text("{{name.pascalCase()}} Page",),
+          );
         },
       ),
     );
