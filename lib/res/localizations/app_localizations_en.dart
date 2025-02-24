@@ -116,4 +116,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get scoreDialogText => 'Вы точно хотите сбросить счетчик?';
+
+  @override
+  String get auctionTitle => 'Аукционы';
+
+  @override
+  String get auctionSearch => 'Поиск';
+
+  @override
+  String get auctionHintText => 'Например lightning bolt';
+
+  @override
+  String get auctionEmptyList => 'По вашему запросу ничего не нашли';
+
+  @override
+  String get auctionErrorList => 'Что то пошло не так, перезайдите пожалуйста';
+
+  @override
+  String get auctionCardDescriptionLot => 'Лот: ';
+
+  @override
+  String get auctionCardDescriptionSeller => 'Продавец: ';
+
+  @override
+  String get auctionCardDescriptionCurrentBid => 'Максимальная ставка: ';
+
+  @override
+  String get auctionCardDescriptionBidAmount => 'Кол-во ставок: ';
+
+  @override
+  String get auctionCardDescriptionDateEstimated => 'Дата и время окончания: ';
 }

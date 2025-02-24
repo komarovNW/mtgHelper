@@ -16,6 +16,7 @@ class AppDrawer extends StatelessWidget {
       _DrawerItem(title: context.l10n.drawerPrice, onTap: AppNavigator.goHome),
       _DrawerItem(
         title: context.l10n.drawerAuctions,
+        onTap: AppNavigator.goAuction,
       ),
       _DrawerItem(
         title: context.l10n.drawerStatistic,
