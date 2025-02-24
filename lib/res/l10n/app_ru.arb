@@ -36,5 +36,15 @@
   "drawerScore": "Счетчик",
   "drawerCalendar": "Календарь",
   "scoreTitle": "Счетчик",
-  "scoreDialogText": "Вы точно хотите сбросить счетчик?"
+  "scoreDialogText": "Вы точно хотите сбросить счетчик?",
+  "auctionTitle": "Аукционы",
+  "auctionSearch": "Поиск",
+  "auctionHintText": "Например lightning bolt",
+  "auctionEmptyList": "По вашему запросу ничего не нашли",
+  "auctionErrorList": "Что то пошло не так, перезайдите пожалуйста",
+  "auctionCardDescriptionLot": "Лот: ",
+  "auctionCardDescriptionSeller": "Продавец: ",
+  "auctionCardDescriptionCurrentBid": "Максимальная ставка: ",
+  "auctionCardDescriptionBidAmount": "Кол-во ставок: ",
+  "auctionCardDescriptionDateEstimated": "Дата и время окончания: "
 }

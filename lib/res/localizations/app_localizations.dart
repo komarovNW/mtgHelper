@@ -319,6 +319,66 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Вы точно хотите сбросить счетчик?'**
   String get scoreDialogText;
+
+  /// No description provided for @auctionTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Аукционы'**
+  String get auctionTitle;
+
+  /// No description provided for @auctionSearch.
+  ///
+  /// In ru, this message translates to:
+  /// **'Поиск'**
+  String get auctionSearch;
+
+  /// No description provided for @auctionHintText.
+  ///
+  /// In ru, this message translates to:
+  /// **'Например lightning bolt'**
+  String get auctionHintText;
+
+  /// No description provided for @auctionEmptyList.
+  ///
+  /// In ru, this message translates to:
+  /// **'По вашему запросу ничего не нашли'**
+  String get auctionEmptyList;
+
+  /// No description provided for @auctionErrorList.
+  ///
+  /// In ru, this message translates to:
+  /// **'Что то пошло не так, перезайдите пожалуйста'**
+  String get auctionErrorList;
+
+  /// No description provided for @auctionCardDescriptionLot.
+  ///
+  /// In ru, this message translates to:
+  /// **'Лот: '**
+  String get auctionCardDescriptionLot;
+
+  /// No description provided for @auctionCardDescriptionSeller.
+  ///
+  /// In ru, this message translates to:
+  /// **'Продавец: '**
+  String get auctionCardDescriptionSeller;
+
+  /// No description provided for @auctionCardDescriptionCurrentBid.
+  ///
+  /// In ru, this message translates to:
+  /// **'Максимальная ставка: '**
+  String get auctionCardDescriptionCurrentBid;
+
+  /// No description provided for @auctionCardDescriptionBidAmount.
+  ///
+  /// In ru, this message translates to:
+  /// **'Кол-во ставок: '**
+  String get auctionCardDescriptionBidAmount;
+
+  /// No description provided for @auctionCardDescriptionDateEstimated.
+  ///
+  /// In ru, this message translates to:
+  /// **'Дата и время окончания: '**
+  String get auctionCardDescriptionDateEstimated;
 }
 
 class _AppLocalizationsDelegate

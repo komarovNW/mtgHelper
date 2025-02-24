@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:mtg_helper/features/auction/auction_router.dart';
 import 'package:mtg_helper/features/auth/auth_router.dart';
 import 'package:mtg_helper/features/home/home_router.dart';
 import 'package:mtg_helper/features/onboarding/onboarding_router.dart';
@@ -27,5 +28,6 @@ final GoRouter goRouter = GoRouter(
     AuthRoutes.route,
     HomeRoutes.route,
     ScoreRoutes.route,
+    AuctionRoutes.route,
   ],
 );
