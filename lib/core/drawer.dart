@@ -13,7 +13,7 @@ class AppDrawer extends StatelessWidget {
     final AuthNotifier authInfo = Provider.of<AuthNotifier>(context);
     final List<_DrawerItem> menuItems = <_DrawerItem>[
       _DrawerItem(title: context.l10n.drawerScore, onTap: AppNavigator.goScore),
-      _DrawerItem(title: context.l10n.drawerPrice, onTap: AppNavigator.goHome),
+      _DrawerItem(title: context.l10n.drawerPrice, onTap: AppNavigator.goPrice),
       _DrawerItem(
         title: context.l10n.drawerAuctions,
         onTap: AppNavigator.goAuction,

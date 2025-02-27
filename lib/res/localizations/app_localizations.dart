@@ -385,6 +385,18 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Перейти на TopDeck'**
   String get auctionCardButtonText;
+
+  /// No description provided for @priceBodyEmpty.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ничего не найдено'**
+  String get priceBodyEmpty;
+
+  /// No description provided for @priceBodyInitial.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите первые 3 буквы названия карты на английском или на русском'**
+  String get priceBodyInitial;
 }
 
 class _AppLocalizationsDelegate
