@@ -148,4 +148,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get auctionCardDescriptionDateEstimated => 'Дата и время окончания: ';
+
+  @override
+  String get auctionCardButtonText => 'Перейти на TopDeck';
 }

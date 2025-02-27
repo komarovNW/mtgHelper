@@ -6,16 +6,20 @@ class SearchTextField extends StatelessWidget {
     super.key,
     required TextEditingController searchController,
     required VoidCallback onTapIcon,
+    required Function(String) test,
   })  : _searchController = searchController,
-        _onTap = onTapIcon;
+        _onTap = onTapIcon,
+        _test = test;
 
   final TextEditingController _searchController;
   final VoidCallback _onTap;
+  final Function(String) _test;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: _searchController,
+      onChanged: (String query) => _test(query),
       decoration: InputDecoration(
         hintText: context.l10n.auctionHintText,
         hintStyle: const TextStyle(

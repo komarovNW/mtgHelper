@@ -46,5 +46,6 @@
   "auctionCardDescriptionSeller": "Продавец: ",
   "auctionCardDescriptionCurrentBid": "Максимальная ставка: ",
   "auctionCardDescriptionBidAmount": "Кол-во ставок: ",
-  "auctionCardDescriptionDateEstimated": "Дата и время окончания: "
+  "auctionCardDescriptionDateEstimated": "Дата и время окончания: ",
+  "auctionCardButtonText": "Перейти на TopDeck"
 }

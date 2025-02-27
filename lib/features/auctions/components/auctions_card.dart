@@ -1,58 +1,15 @@
 import 'package:flutter/material.dart';
+
+import 'package:mtg_helper/domain/entities/auction.dart';
 import 'package:mtg_helper/extension/localization.dart';
 import 'package:mtg_helper/widgets/app_box.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:intl/intl.dart';
-
-class AuctionBody extends StatelessWidget {
-  const AuctionBody({
-    super.key,
-    required List<Map<String, dynamic>> list,
-    required ScrollController scrollController,
-    required bool hasMore,
-  })  : _list = list,
-        _scrollController = scrollController,
-        _hasMore = hasMore;
-
-  final List<Map<String, dynamic>> _list;
-  final ScrollController _scrollController;
-  final bool _hasMore;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ListView.builder(
-        controller: _scrollController,
-        itemCount: _hasMore ? _list.length + 1 : _list.length,
-        itemBuilder: (BuildContext context, int index) {
-          if (index == _list.length && _hasMore) {
-            return const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
-          } else {
-            return AuctionCard(
-              item: _list[index],
-            );
-          }
-        },
-      ),
-    );
-  }
-}
+import 'package:mtg_helper/extension/auction.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AuctionCard extends StatelessWidget {
   const AuctionCard({super.key, required this.item});
-  final Map<String, dynamic> item;
-
-  _checkData(String timestampString) {
-    final int timestamp = int.parse(timestampString);
-    final DateTime date = DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
-    return DateFormat('dd.MM HH:mm').format(date);
-  }
+  final Auction item;
 
   @override
   Widget build(BuildContext context) {
@@ -62,19 +19,21 @@ class AuctionCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           AuctionCardImage(
-            imgUrl: item['image_url'],
+            imgUrl: item.imageUrl,
           ),
           const HBox(8),
           AuctionCardDescription(
-            lot: item['lot'].toString(),
-            sellerName: item['seller']['name'].toString(),
-            sellerRefs: item['seller']['refs'].toString(),
-            currentBid: item['current_bid'].toString(),
-            bidAmount: item['bid_amount'].toString(),
-            dateEstimated: _checkData(item['date_estimated']),
+            lot: item.lot,
+            sellerName: item.seller.name,
+            sellerRefs: item.seller.refs,
+            currentBid: item.formattedCurrentBid,
+            bidAmount: item.bidAmount.toString(),
+            dateEstimated: item.formattedDateEstimated,
           ),
           const HBox(8),
-          const AuctionCardButton(),
+          AuctionCardButton(
+            item: item,
+          ),
         ],
       ),
     );
@@ -97,8 +56,8 @@ class AuctionCardImage extends StatelessWidget {
       ),
       child: CachedNetworkImage(
         imageUrl: _imgUrl,
-        fadeInDuration: const Duration(milliseconds: 300),
-        fadeOutDuration: const Duration(milliseconds: 100),
+        width: double.infinity,
+        height: 500.0,
         placeholder: (BuildContext context, String url) => Container(
           width: double.infinity,
           height: 500.0,
@@ -161,7 +120,7 @@ class AuctionCardDescription extends StatelessWidget {
         ),
         AuctionTextItem(
           title: context.l10n.auctionCardDescriptionCurrentBid,
-          text: '$_currentBid руб',
+          text: _currentBid,
         ),
         AuctionTextItem(
           title: context.l10n.auctionCardDescriptionBidAmount,
@@ -177,18 +136,29 @@ class AuctionCardDescription extends StatelessWidget {
 }
 
 class AuctionCardButton extends StatelessWidget {
-  const AuctionCardButton({super.key});
+  const AuctionCardButton({super.key, required this.item});
+  final Auction item;
+
+  void _launchURL() async {
+    final Uri url =
+        Uri.parse('https://topdeck.ru/apps/toptrade/auctions/${item.id}');
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Не удалось открыть ссылку $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => debugPrint('переход на topdeck'),
-      child: const Center(
+      onTap: () => _launchURL(),
+      child: Center(
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 12),
+          padding: const EdgeInsets.symmetric(vertical: 12),
           child: Text(
-            'Перейти на TopDeck',
-            style: TextStyle(
+            context.l10n.auctionCardButtonText,
+            style: const TextStyle(
               color: Colors.blue,
               fontWeight: FontWeight.w800,
               fontSize: 18,

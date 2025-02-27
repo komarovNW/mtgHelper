@@ -52,7 +52,7 @@ class _OnboardingPageState extends State<OnboardingPage>
       OnboardingListModel(
         title: context.l10n.onboardingTitle1,
         text: context.l10n.onboardingText1,
-        icon: 'assets/png/auction.png',
+        icon: 'assets/png/auctions.png',
         color: Colors.red,
       ),
       OnboardingListModel(

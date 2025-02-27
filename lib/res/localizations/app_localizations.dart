@@ -379,6 +379,12 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Дата и время окончания: '**
   String get auctionCardDescriptionDateEstimated;
+
+  /// No description provided for @auctionCardButtonText.
+  ///
+  /// In ru, this message translates to:
+  /// **'Перейти на TopDeck'**
+  String get auctionCardButtonText;
 }
 
 class _AppLocalizationsDelegate
