@@ -27,7 +27,13 @@
 ## CI/CD
 Этот проект использует GitHub Actions для автоматической проверки кода, линтинга и сборки приложения при каждом пуше и pull request.
 
+## Freezed
+```flutter pub run build_runner build --delete-conflicting-outputs```
 
+## Mason
+```mason make features```
+Название фичи
 
-## TODO
-убрать warning при запуске приложения на android
+## Перед пушом
+```flutter analyze .```
+```Dart format```

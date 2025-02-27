@@ -47,5 +47,7 @@
   "auctionCardDescriptionCurrentBid": "Максимальная ставка: ",
   "auctionCardDescriptionBidAmount": "Кол-во ставок: ",
   "auctionCardDescriptionDateEstimated": "Дата и время окончания: ",
-  "auctionCardButtonText": "Перейти на TopDeck"
+  "auctionCardButtonText": "Перейти на TopDeck",
+  "priceBodyEmpty": "Ничего не найдено",
+  "priceBodyInitial": "Введите первые 3 буквы названия карты на английском или на русском"
 }

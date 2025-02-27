@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mtg_helper/extension/localization.dart';
@@ -6,6 +5,7 @@ import 'package:mtg_helper/core/drawer.dart';
 import 'package:mtg_helper/features/auctions/components/auctions_card.dart';
 import 'package:mtg_helper/features/auctions/components/search_text_form_field.dart';
 import 'auctions_cubit.dart';
+import 'package:mtg_helper/core/debouncer.dart';
 import 'auctions_state.dart';
 
 class AuctionsPage extends StatefulWidget {
@@ -18,7 +18,8 @@ class AuctionsPage extends StatefulWidget {
 class _AuctionsPageState extends State<AuctionsPage> {
   final ScrollController _scrollController = ScrollController();
   final TextEditingController _searchController = TextEditingController();
-  Timer? _debounce;
+  final Debouncer _debouncer =
+      Debouncer(delay: const Duration(milliseconds: 300));
   String _previousQuery = '';
 
   @override
@@ -29,24 +30,19 @@ class _AuctionsPageState extends State<AuctionsPage> {
 
   void _onSearchChanged(String query) {
     if (query == _previousQuery) return;
-
-    if (_debounce?.isActive ?? false) _debounce!.cancel();
-    _debounce = Timer(
-      const Duration(milliseconds: 300),
-      () {
-        if (query.length >= 3) {
-          context.read<AuctionsCubit>().filter(query);
-          _scrollController.animateTo(
-            0,
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.easeOut,
-          );
-        } else if (_previousQuery.length >= 3 && query.length < 3) {
-          context.read<AuctionsCubit>().reset();
-        }
-        _previousQuery = query;
-      },
-    );
+    _debouncer.run(() {
+      if (query.length >= 3) {
+        context.read<AuctionsCubit>().filter(query);
+        _scrollController.animateTo(
+          0,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      } else if (_previousQuery.length >= 3 && query.length < 3) {
+        context.read<AuctionsCubit>().reset();
+      }
+      _previousQuery = query;
+    });
   }
 
   void _onTapIcon() {

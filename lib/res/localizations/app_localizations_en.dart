@@ -149,4 +149,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get auctionCardButtonText => 'Перейти на TopDeck';
+
+  @override
+  String get priceBodyEmpty => 'Ничего не найдено';
+
+  @override
+  String get priceBodyInitial =>
+      'Введите первые 3 буквы названия карты на английском или на русском';
 }
