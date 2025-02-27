@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'auction_state.dart';
+part of 'auctions_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,111 +15,107 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$AuctionState {
+mixin _$AuctionsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(
-            List<Map<String, dynamic>> allAuctions, bool hasMore)
-        success,
+    required TResult Function(List<Auction> allAuctions) success,
     required TResult Function(String error) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Map<String, dynamic>> allAuctions, bool hasMore)?
-        success,
+    TResult? Function(List<Auction> allAuctions)? success,
     TResult? Function(String error)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Map<String, dynamic>> allAuctions, bool hasMore)?
-        success,
+    TResult Function(List<Auction> allAuctions)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuctionLoading value) loading,
-    required TResult Function(AuctionSuccess value) success,
-    required TResult Function(AuctionFailure value) failure,
+    required TResult Function(AuctionsLoading value) loading,
+    required TResult Function(AuctionsSuccess value) success,
+    required TResult Function(AuctionsFailure value) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuctionLoading value)? loading,
-    TResult? Function(AuctionSuccess value)? success,
-    TResult? Function(AuctionFailure value)? failure,
+    TResult? Function(AuctionsLoading value)? loading,
+    TResult? Function(AuctionsSuccess value)? success,
+    TResult? Function(AuctionsFailure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuctionLoading value)? loading,
-    TResult Function(AuctionSuccess value)? success,
-    TResult Function(AuctionFailure value)? failure,
+    TResult Function(AuctionsLoading value)? loading,
+    TResult Function(AuctionsSuccess value)? success,
+    TResult Function(AuctionsFailure value)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AuctionStateCopyWith<$Res> {
-  factory $AuctionStateCopyWith(
-          AuctionState value, $Res Function(AuctionState) then) =
-      _$AuctionStateCopyWithImpl<$Res, AuctionState>;
+abstract class $AuctionsStateCopyWith<$Res> {
+  factory $AuctionsStateCopyWith(
+          AuctionsState value, $Res Function(AuctionsState) then) =
+      _$AuctionsStateCopyWithImpl<$Res, AuctionsState>;
 }
 
 /// @nodoc
-class _$AuctionStateCopyWithImpl<$Res, $Val extends AuctionState>
-    implements $AuctionStateCopyWith<$Res> {
-  _$AuctionStateCopyWithImpl(this._value, this._then);
+class _$AuctionsStateCopyWithImpl<$Res, $Val extends AuctionsState>
+    implements $AuctionsStateCopyWith<$Res> {
+  _$AuctionsStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of AuctionState
+  /// Create a copy of AuctionsState
   /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$AuctionLoadingImplCopyWith<$Res> {
-  factory _$$AuctionLoadingImplCopyWith(_$AuctionLoadingImpl value,
-          $Res Function(_$AuctionLoadingImpl) then) =
-      __$$AuctionLoadingImplCopyWithImpl<$Res>;
+abstract class _$$AuctionsLoadingImplCopyWith<$Res> {
+  factory _$$AuctionsLoadingImplCopyWith(_$AuctionsLoadingImpl value,
+          $Res Function(_$AuctionsLoadingImpl) then) =
+      __$$AuctionsLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AuctionLoadingImplCopyWithImpl<$Res>
-    extends _$AuctionStateCopyWithImpl<$Res, _$AuctionLoadingImpl>
-    implements _$$AuctionLoadingImplCopyWith<$Res> {
-  __$$AuctionLoadingImplCopyWithImpl(
-      _$AuctionLoadingImpl _value, $Res Function(_$AuctionLoadingImpl) _then)
+class __$$AuctionsLoadingImplCopyWithImpl<$Res>
+    extends _$AuctionsStateCopyWithImpl<$Res, _$AuctionsLoadingImpl>
+    implements _$$AuctionsLoadingImplCopyWith<$Res> {
+  __$$AuctionsLoadingImplCopyWithImpl(
+      _$AuctionsLoadingImpl _value, $Res Function(_$AuctionsLoadingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AuctionState
+  /// Create a copy of AuctionsState
   /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$AuctionLoadingImpl implements AuctionLoading {
-  const _$AuctionLoadingImpl();
+class _$AuctionsLoadingImpl implements AuctionsLoading {
+  const _$AuctionsLoadingImpl();
 
   @override
   String toString() {
-    return 'AuctionState.loading()';
+    return 'AuctionsState.loading()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AuctionLoadingImpl);
+        (other.runtimeType == runtimeType && other is _$AuctionsLoadingImpl);
   }
 
   @override
@@ -129,9 +125,7 @@ class _$AuctionLoadingImpl implements AuctionLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(
-            List<Map<String, dynamic>> allAuctions, bool hasMore)
-        success,
+    required TResult Function(List<Auction> allAuctions) success,
     required TResult Function(String error) failure,
   }) {
     return loading();
@@ -141,8 +135,7 @@ class _$AuctionLoadingImpl implements AuctionLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Map<String, dynamic>> allAuctions, bool hasMore)?
-        success,
+    TResult? Function(List<Auction> allAuctions)? success,
     TResult? Function(String error)? failure,
   }) {
     return loading?.call();
@@ -152,8 +145,7 @@ class _$AuctionLoadingImpl implements AuctionLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Map<String, dynamic>> allAuctions, bool hasMore)?
-        success,
+    TResult Function(List<Auction> allAuctions)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
@@ -166,9 +158,9 @@ class _$AuctionLoadingImpl implements AuctionLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuctionLoading value) loading,
-    required TResult Function(AuctionSuccess value) success,
-    required TResult Function(AuctionFailure value) failure,
+    required TResult Function(AuctionsLoading value) loading,
+    required TResult Function(AuctionsSuccess value) success,
+    required TResult Function(AuctionsFailure value) failure,
   }) {
     return loading(this);
   }
@@ -176,9 +168,9 @@ class _$AuctionLoadingImpl implements AuctionLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuctionLoading value)? loading,
-    TResult? Function(AuctionSuccess value)? success,
-    TResult? Function(AuctionFailure value)? failure,
+    TResult? Function(AuctionsLoading value)? loading,
+    TResult? Function(AuctionsSuccess value)? success,
+    TResult? Function(AuctionsFailure value)? failure,
   }) {
     return loading?.call(this);
   }
@@ -186,9 +178,9 @@ class _$AuctionLoadingImpl implements AuctionLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuctionLoading value)? loading,
-    TResult Function(AuctionSuccess value)? success,
-    TResult Function(AuctionFailure value)? failure,
+    TResult Function(AuctionsLoading value)? loading,
+    TResult Function(AuctionsSuccess value)? success,
+    TResult Function(AuctionsFailure value)? failure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -198,131 +190,114 @@ class _$AuctionLoadingImpl implements AuctionLoading {
   }
 }
 
-abstract class AuctionLoading implements AuctionState {
-  const factory AuctionLoading() = _$AuctionLoadingImpl;
+abstract class AuctionsLoading implements AuctionsState {
+  const factory AuctionsLoading() = _$AuctionsLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$AuctionSuccessImplCopyWith<$Res> {
-  factory _$$AuctionSuccessImplCopyWith(_$AuctionSuccessImpl value,
-          $Res Function(_$AuctionSuccessImpl) then) =
-      __$$AuctionSuccessImplCopyWithImpl<$Res>;
+abstract class _$$AuctionsSuccessImplCopyWith<$Res> {
+  factory _$$AuctionsSuccessImplCopyWith(_$AuctionsSuccessImpl value,
+          $Res Function(_$AuctionsSuccessImpl) then) =
+      __$$AuctionsSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Map<String, dynamic>> allAuctions, bool hasMore});
+  $Res call({List<Auction> allAuctions});
 }
 
 /// @nodoc
-class __$$AuctionSuccessImplCopyWithImpl<$Res>
-    extends _$AuctionStateCopyWithImpl<$Res, _$AuctionSuccessImpl>
-    implements _$$AuctionSuccessImplCopyWith<$Res> {
-  __$$AuctionSuccessImplCopyWithImpl(
-      _$AuctionSuccessImpl _value, $Res Function(_$AuctionSuccessImpl) _then)
+class __$$AuctionsSuccessImplCopyWithImpl<$Res>
+    extends _$AuctionsStateCopyWithImpl<$Res, _$AuctionsSuccessImpl>
+    implements _$$AuctionsSuccessImplCopyWith<$Res> {
+  __$$AuctionsSuccessImplCopyWithImpl(
+      _$AuctionsSuccessImpl _value, $Res Function(_$AuctionsSuccessImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AuctionState
+  /// Create a copy of AuctionsState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? allAuctions = null,
-    Object? hasMore = null,
   }) {
-    return _then(_$AuctionSuccessImpl(
+    return _then(_$AuctionsSuccessImpl(
       allAuctions: null == allAuctions
           ? _value._allAuctions
           : allAuctions // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, dynamic>>,
-      hasMore: null == hasMore
-          ? _value.hasMore
-          : hasMore // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as List<Auction>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$AuctionSuccessImpl implements AuctionSuccess {
-  const _$AuctionSuccessImpl(
-      {required final List<Map<String, dynamic>> allAuctions,
-      required this.hasMore})
+class _$AuctionsSuccessImpl implements AuctionsSuccess {
+  const _$AuctionsSuccessImpl({required final List<Auction> allAuctions})
       : _allAuctions = allAuctions;
 
-// required List<Map<String, dynamic>> visibleAuctions,
-  final List<Map<String, dynamic>> _allAuctions;
-// required List<Map<String, dynamic>> visibleAuctions,
+  final List<Auction> _allAuctions;
   @override
-  List<Map<String, dynamic>> get allAuctions {
+  List<Auction> get allAuctions {
     if (_allAuctions is EqualUnmodifiableListView) return _allAuctions;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_allAuctions);
   }
 
   @override
-  final bool hasMore;
-
-  @override
   String toString() {
-    return 'AuctionState.success(allAuctions: $allAuctions, hasMore: $hasMore)';
+    return 'AuctionsState.success(allAuctions: $allAuctions)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuctionSuccessImpl &&
+            other is _$AuctionsSuccessImpl &&
             const DeepCollectionEquality()
-                .equals(other._allAuctions, _allAuctions) &&
-            (identical(other.hasMore, hasMore) || other.hasMore == hasMore));
+                .equals(other._allAuctions, _allAuctions));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_allAuctions), hasMore);
+      runtimeType, const DeepCollectionEquality().hash(_allAuctions));
 
-  /// Create a copy of AuctionState
+  /// Create a copy of AuctionsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuctionSuccessImplCopyWith<_$AuctionSuccessImpl> get copyWith =>
-      __$$AuctionSuccessImplCopyWithImpl<_$AuctionSuccessImpl>(
+  _$$AuctionsSuccessImplCopyWith<_$AuctionsSuccessImpl> get copyWith =>
+      __$$AuctionsSuccessImplCopyWithImpl<_$AuctionsSuccessImpl>(
           this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(
-            List<Map<String, dynamic>> allAuctions, bool hasMore)
-        success,
+    required TResult Function(List<Auction> allAuctions) success,
     required TResult Function(String error) failure,
   }) {
-    return success(allAuctions, hasMore);
+    return success(allAuctions);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Map<String, dynamic>> allAuctions, bool hasMore)?
-        success,
+    TResult? Function(List<Auction> allAuctions)? success,
     TResult? Function(String error)? failure,
   }) {
-    return success?.call(allAuctions, hasMore);
+    return success?.call(allAuctions);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Map<String, dynamic>> allAuctions, bool hasMore)?
-        success,
+    TResult Function(List<Auction> allAuctions)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(allAuctions, hasMore);
+      return success(allAuctions);
     }
     return orElse();
   }
@@ -330,9 +305,9 @@ class _$AuctionSuccessImpl implements AuctionSuccess {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuctionLoading value) loading,
-    required TResult Function(AuctionSuccess value) success,
-    required TResult Function(AuctionFailure value) failure,
+    required TResult Function(AuctionsLoading value) loading,
+    required TResult Function(AuctionsSuccess value) success,
+    required TResult Function(AuctionsFailure value) failure,
   }) {
     return success(this);
   }
@@ -340,9 +315,9 @@ class _$AuctionSuccessImpl implements AuctionSuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuctionLoading value)? loading,
-    TResult? Function(AuctionSuccess value)? success,
-    TResult? Function(AuctionFailure value)? failure,
+    TResult? Function(AuctionsLoading value)? loading,
+    TResult? Function(AuctionsSuccess value)? success,
+    TResult? Function(AuctionsFailure value)? failure,
   }) {
     return success?.call(this);
   }
@@ -350,9 +325,9 @@ class _$AuctionSuccessImpl implements AuctionSuccess {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuctionLoading value)? loading,
-    TResult Function(AuctionSuccess value)? success,
-    TResult Function(AuctionFailure value)? failure,
+    TResult Function(AuctionsLoading value)? loading,
+    TResult Function(AuctionsSuccess value)? success,
+    TResult Function(AuctionsFailure value)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -362,47 +337,44 @@ class _$AuctionSuccessImpl implements AuctionSuccess {
   }
 }
 
-abstract class AuctionSuccess implements AuctionState {
-  const factory AuctionSuccess(
-      {required final List<Map<String, dynamic>> allAuctions,
-      required final bool hasMore}) = _$AuctionSuccessImpl;
+abstract class AuctionsSuccess implements AuctionsState {
+  const factory AuctionsSuccess({required final List<Auction> allAuctions}) =
+      _$AuctionsSuccessImpl;
 
-// required List<Map<String, dynamic>> visibleAuctions,
-  List<Map<String, dynamic>> get allAuctions;
-  bool get hasMore;
+  List<Auction> get allAuctions;
 
-  /// Create a copy of AuctionState
+  /// Create a copy of AuctionsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AuctionSuccessImplCopyWith<_$AuctionSuccessImpl> get copyWith =>
+  _$$AuctionsSuccessImplCopyWith<_$AuctionsSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AuctionFailureImplCopyWith<$Res> {
-  factory _$$AuctionFailureImplCopyWith(_$AuctionFailureImpl value,
-          $Res Function(_$AuctionFailureImpl) then) =
-      __$$AuctionFailureImplCopyWithImpl<$Res>;
+abstract class _$$AuctionsFailureImplCopyWith<$Res> {
+  factory _$$AuctionsFailureImplCopyWith(_$AuctionsFailureImpl value,
+          $Res Function(_$AuctionsFailureImpl) then) =
+      __$$AuctionsFailureImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String error});
 }
 
 /// @nodoc
-class __$$AuctionFailureImplCopyWithImpl<$Res>
-    extends _$AuctionStateCopyWithImpl<$Res, _$AuctionFailureImpl>
-    implements _$$AuctionFailureImplCopyWith<$Res> {
-  __$$AuctionFailureImplCopyWithImpl(
-      _$AuctionFailureImpl _value, $Res Function(_$AuctionFailureImpl) _then)
+class __$$AuctionsFailureImplCopyWithImpl<$Res>
+    extends _$AuctionsStateCopyWithImpl<$Res, _$AuctionsFailureImpl>
+    implements _$$AuctionsFailureImplCopyWith<$Res> {
+  __$$AuctionsFailureImplCopyWithImpl(
+      _$AuctionsFailureImpl _value, $Res Function(_$AuctionsFailureImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AuctionState
+  /// Create a copy of AuctionsState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? error = null,
   }) {
-    return _then(_$AuctionFailureImpl(
+    return _then(_$AuctionsFailureImpl(
       null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -413,44 +385,42 @@ class __$$AuctionFailureImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuctionFailureImpl implements AuctionFailure {
-  const _$AuctionFailureImpl(this.error);
+class _$AuctionsFailureImpl implements AuctionsFailure {
+  const _$AuctionsFailureImpl(this.error);
 
   @override
   final String error;
 
   @override
   String toString() {
-    return 'AuctionState.failure(error: $error)';
+    return 'AuctionsState.failure(error: $error)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuctionFailureImpl &&
+            other is _$AuctionsFailureImpl &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, error);
 
-  /// Create a copy of AuctionState
+  /// Create a copy of AuctionsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuctionFailureImplCopyWith<_$AuctionFailureImpl> get copyWith =>
-      __$$AuctionFailureImplCopyWithImpl<_$AuctionFailureImpl>(
+  _$$AuctionsFailureImplCopyWith<_$AuctionsFailureImpl> get copyWith =>
+      __$$AuctionsFailureImplCopyWithImpl<_$AuctionsFailureImpl>(
           this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(
-            List<Map<String, dynamic>> allAuctions, bool hasMore)
-        success,
+    required TResult Function(List<Auction> allAuctions) success,
     required TResult Function(String error) failure,
   }) {
     return failure(error);
@@ -460,8 +430,7 @@ class _$AuctionFailureImpl implements AuctionFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Map<String, dynamic>> allAuctions, bool hasMore)?
-        success,
+    TResult? Function(List<Auction> allAuctions)? success,
     TResult? Function(String error)? failure,
   }) {
     return failure?.call(error);
@@ -471,8 +440,7 @@ class _$AuctionFailureImpl implements AuctionFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Map<String, dynamic>> allAuctions, bool hasMore)?
-        success,
+    TResult Function(List<Auction> allAuctions)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
@@ -485,9 +453,9 @@ class _$AuctionFailureImpl implements AuctionFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuctionLoading value) loading,
-    required TResult Function(AuctionSuccess value) success,
-    required TResult Function(AuctionFailure value) failure,
+    required TResult Function(AuctionsLoading value) loading,
+    required TResult Function(AuctionsSuccess value) success,
+    required TResult Function(AuctionsFailure value) failure,
   }) {
     return failure(this);
   }
@@ -495,9 +463,9 @@ class _$AuctionFailureImpl implements AuctionFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuctionLoading value)? loading,
-    TResult? Function(AuctionSuccess value)? success,
-    TResult? Function(AuctionFailure value)? failure,
+    TResult? Function(AuctionsLoading value)? loading,
+    TResult? Function(AuctionsSuccess value)? success,
+    TResult? Function(AuctionsFailure value)? failure,
   }) {
     return failure?.call(this);
   }
@@ -505,9 +473,9 @@ class _$AuctionFailureImpl implements AuctionFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuctionLoading value)? loading,
-    TResult Function(AuctionSuccess value)? success,
-    TResult Function(AuctionFailure value)? failure,
+    TResult Function(AuctionsLoading value)? loading,
+    TResult Function(AuctionsSuccess value)? success,
+    TResult Function(AuctionsFailure value)? failure,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -517,14 +485,14 @@ class _$AuctionFailureImpl implements AuctionFailure {
   }
 }
 
-abstract class AuctionFailure implements AuctionState {
-  const factory AuctionFailure(final String error) = _$AuctionFailureImpl;
+abstract class AuctionsFailure implements AuctionsState {
+  const factory AuctionsFailure(final String error) = _$AuctionsFailureImpl;
 
   String get error;
 
-  /// Create a copy of AuctionState
+  /// Create a copy of AuctionsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AuctionFailureImplCopyWith<_$AuctionFailureImpl> get copyWith =>
+  _$$AuctionsFailureImplCopyWith<_$AuctionsFailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

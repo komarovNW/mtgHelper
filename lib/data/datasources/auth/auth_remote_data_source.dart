@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-/// Этот класс отвечает за работу с Firebase.
 class AuthRemoteDataSource {
   AuthRemoteDataSource({FirebaseAuth? firebaseAuth})
       : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;

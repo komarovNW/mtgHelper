@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mtg_helper/features/auction/auction_router.dart';
+import 'package:mtg_helper/features/auctions/auctions_router.dart';
 import 'package:mtg_helper/features/auth/auth_router.dart';
 import 'package:mtg_helper/features/home/home_router.dart';
 import 'package:mtg_helper/features/score/score_router.dart';
@@ -11,5 +11,5 @@ class AppNavigator {
   static void goScore(BuildContext context) =>
       context.go(ScoreRoutes.scorePath);
   static void goAuction(BuildContext context) =>
-      context.go(AuctionRoutes.auctionPath);
+      context.go(AuctionsRoutes.auctionsPath);
 }

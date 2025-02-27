@@ -1,16 +1,18 @@
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mtg_helper/features/auction/auction_factory.dart';
+import 'package:mtg_helper/features/auctions/auctions_factory.dart';
 import 'package:mtg_helper/features/auth/auth_factory.dart';
 import 'package:mtg_helper/features/score/score_factory.dart';
 
 class DependencyInjectionContainer {
   static late AuthFactory authFactory;
   static late ScoreFactory scoreFactory;
-  static late AuctionFactory auctionFactory;
+  static late AuctionsFactory auctionsFactory;
   static void init() {
     final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+    final Dio dio = Dio();
     authFactory = AuthFactory(firebaseAuth: firebaseAuth);
     scoreFactory = ScoreFactory();
-    auctionFactory = AuctionFactory();
+    auctionsFactory = AuctionsFactory(dio: dio);
   }
 }
