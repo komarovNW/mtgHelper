@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mtg_helper/extension/localization.dart';
+import 'package:mtg_helper/extension/localization_extension.dart';
 
 class Alert extends StatelessWidget {
   const Alert({

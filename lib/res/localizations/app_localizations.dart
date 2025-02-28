@@ -122,6 +122,12 @@ abstract class AppLocalizations {
   /// **'Нет'**
   String get no;
 
+  /// No description provided for @failure.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ошибка'**
+  String get failure;
+
   /// No description provided for @next.
   ///
   /// In ru, this message translates to:
@@ -266,11 +272,11 @@ abstract class AppLocalizations {
   /// **'Добро пожаловать!'**
   String get homeText;
 
-  /// No description provided for @drawerPrice.
+  /// No description provided for @drawerSearch.
   ///
   /// In ru, this message translates to:
   /// **'Цены'**
-  String get drawerPrice;
+  String get drawerSearch;
 
   /// No description provided for @drawerTrades.
   ///
@@ -344,12 +350,6 @@ abstract class AppLocalizations {
   /// **'По вашему запросу ничего не нашли'**
   String get auctionEmptyList;
 
-  /// No description provided for @auctionErrorList.
-  ///
-  /// In ru, this message translates to:
-  /// **'Что то пошло не так, перезайдите пожалуйста'**
-  String get auctionErrorList;
-
   /// No description provided for @auctionCardDescriptionLot.
   ///
   /// In ru, this message translates to:
@@ -386,17 +386,17 @@ abstract class AppLocalizations {
   /// **'Перейти на TopDeck'**
   String get auctionCardButtonText;
 
-  /// No description provided for @priceBodyEmpty.
+  /// No description provided for @searchBodyEmpty.
   ///
   /// In ru, this message translates to:
   /// **'Ничего не найдено'**
-  String get priceBodyEmpty;
+  String get searchBodyEmpty;
 
-  /// No description provided for @priceBodyInitial.
+  /// No description provided for @searchBodyInitial.
   ///
   /// In ru, this message translates to:
   /// **'Введите первые 3 буквы названия карты на английском или на русском'**
-  String get priceBodyInitial;
+  String get searchBodyInitial;
 }
 
 class _AppLocalizationsDelegate

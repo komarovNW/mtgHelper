@@ -3,9 +3,9 @@ import 'package:mtg_helper/features/auctions/auctions_router.dart';
 import 'package:mtg_helper/features/auth/auth_router.dart';
 import 'package:mtg_helper/features/home/home_router.dart';
 import 'package:mtg_helper/features/onboarding/onboarding_router.dart';
-import 'package:mtg_helper/features/price/price_router.dart';
 import 'package:mtg_helper/features/score/score_router.dart';
-import 'auth_notifier.dart';
+import 'package:mtg_helper/features/search/search_router.dart';
+import '../utils/auth_notifier.dart';
 
 final AuthNotifier _authNotifier = AuthNotifier();
 
@@ -30,6 +30,6 @@ final GoRouter goRouter = GoRouter(
     HomeRoutes.route,
     ScoreRoutes.route,
     AuctionsRoutes.route,
-    PriceRoutes.route,
+    SearchRoutes.route,
   ],
 );

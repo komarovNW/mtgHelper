@@ -39,5 +39,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/png/
+    - assets/kiki.jpg
 
 

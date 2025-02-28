@@ -19,6 +19,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get no => 'Нет';
 
   @override
+  String get failure => 'Ошибка';
+
+  @override
   String get next => 'test';
 
   @override
@@ -91,7 +94,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeText => 'Welcome!';
 
   @override
-  String get drawerPrice => 'Price';
+  String get drawerSearch => 'Search';
 
   @override
   String get drawerTrades => 'Trades';
@@ -130,9 +133,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get auctionEmptyList => 'По вашему запросу ничего не нашли';
 
   @override
-  String get auctionErrorList => 'Что то пошло не так, перезайдите пожалуйста';
-
-  @override
   String get auctionCardDescriptionLot => 'Лот: ';
 
   @override
@@ -151,9 +151,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get auctionCardButtonText => 'Перейти на TopDeck';
 
   @override
-  String get priceBodyEmpty => 'Ничего не найдено';
+  String get searchBodyEmpty => 'Ничего не найдено';
 
   @override
-  String get priceBodyInitial =>
+  String get searchBodyInitial =>
       'Введите первые 3 буквы названия карты на английском или на русском';
 }

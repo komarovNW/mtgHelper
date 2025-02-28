@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mtg_helper/core/app_navigator.dart';
-import 'package:mtg_helper/extension/localization.dart';
-import 'package:mtg_helper/core/drawer.dart';
+import 'package:mtg_helper/extension/localization_extension.dart';
+import 'package:mtg_helper/core/app_drawer.dart';
 import '{{name}}_cubit.dart';
 import '{{name}}_state.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mtg_helper/core/auth_notifier.dart';
-import 'package:mtg_helper/core/localization_notifier.dart';
+import 'package:mtg_helper/utils/auth_notifier.dart';
+import 'package:mtg_helper/utils/localization_notifier.dart';
 import 'package:mtg_helper/core/router.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mtg_helper/res/localizations/app_localizations.dart';
