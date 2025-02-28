@@ -4,6 +4,7 @@
   "ok": "Ок",
   "yes": "Да",
   "no": "Нет",
+  "failure": "Ошибка",
   "next": "Дальше",
   "exit": "Выход",
   "russian": "Русский",
@@ -28,7 +29,7 @@
   "authButton": "Войти",
   "homeTitle": "Домашний экран",
   "homeText": "Добро пожаловать!",
-  "drawerPrice": "Цены",
+  "drawerSearch": "Цены",
   "drawerTrades": "Сделки",
   "drawerAuctions": "Аукционы",
   "drawerCollection": "Коллекция",
@@ -41,13 +42,12 @@
   "auctionSearch": "Поиск",
   "auctionHintText": "Например lightning bolt",
   "auctionEmptyList": "По вашему запросу ничего не нашли",
-  "auctionErrorList": "Что то пошло не так, перезайдите пожалуйста",
   "auctionCardDescriptionLot": "Лот: ",
   "auctionCardDescriptionSeller": "Продавец: ",
   "auctionCardDescriptionCurrentBid": "Максимальная ставка: ",
   "auctionCardDescriptionBidAmount": "Кол-во ставок: ",
   "auctionCardDescriptionDateEstimated": "Дата и время окончания: ",
   "auctionCardButtonText": "Перейти на TopDeck",
-  "priceBodyEmpty": "Ничего не найдено",
-  "priceBodyInitial": "Введите первые 3 буквы названия карты на английском или на русском"
+  "searchBodyEmpty": "Ничего не найдено",
+  "searchBodyInitial": "Введите первые 3 буквы названия карты на английском или на русском"
 }

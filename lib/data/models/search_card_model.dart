@@ -1,3 +1,4 @@
+/// TODO связать SearchCardModel и SearchCard
 class SearchCardModel {
   SearchCardModel({
     required this.name,

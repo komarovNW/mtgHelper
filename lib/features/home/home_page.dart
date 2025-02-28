@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:mtg_helper/core/auth_notifier.dart';
-import 'package:mtg_helper/core/drawer.dart';
-import 'package:mtg_helper/extension/localization.dart';
+import 'package:mtg_helper/utils/auth_notifier.dart';
+import 'package:mtg_helper/widgets/app_drawer.dart';
+import 'package:mtg_helper/extension/localization_extension.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,7 +22,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final AuthNotifier authNotifier = Provider.of<AuthNotifier>(context);
     return Scaffold(
-      drawer: const AppDrawer(),
+      drawer: const AppDrawer(
+        currentPage: '',
+      ),
 
       appBar: AppBar(
         centerTitle: true,

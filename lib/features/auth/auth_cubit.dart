@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mtg_helper/core/result.dart';
-import 'package:mtg_helper/domain/use_cases/sign_in_use_case.dart';
+import 'package:mtg_helper/utils/result.dart';
+import 'package:mtg_helper/domain/use_cases/auth/sign_in_use_case.dart';
 import 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -13,9 +13,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> login({required String email, required String password}) async {
     emit(const AuthState.loading());
-    // final Result<User> result = await _signInUseCase(email, password);
-    final Result<User> result =
-        await _signInUseCase('test@gmail.com', '123456');
+    final Result<User> result = await _signInUseCase(email, password);
     if (result.isSuccess) {
       emit(const AuthState.success());
     } else {

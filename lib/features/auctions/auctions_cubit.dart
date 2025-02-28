@@ -1,17 +1,17 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mtg_helper/domain/entities/auction.dart';
 import 'package:mtg_helper/domain/use_cases/auction/filter_use_case.dart';
-import 'package:mtg_helper/domain/use_cases/auction/get_use_case.dart';
+import 'package:mtg_helper/domain/use_cases/auction/get_auctions_use_case.dart';
 import 'package:mtg_helper/features/auctions/auctions_state.dart';
 
 class AuctionsCubit extends Cubit<AuctionsState> {
   AuctionsCubit({
-    required GetUseCase getUseCase,
+    required GetAuctionsUseCase getUseCase,
     required FilterUseCase filterUseCase,
   })  : _getUseCase = getUseCase,
         _filterUseCase = filterUseCase,
         super(const AuctionsState.loading());
-  final GetUseCase _getUseCase;
+  final GetAuctionsUseCase _getUseCase;
   final FilterUseCase _filterUseCase;
 
   List<Auction> _allAuctions = <Auction>[];

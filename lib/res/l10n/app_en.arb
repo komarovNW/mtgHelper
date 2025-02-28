@@ -25,7 +25,7 @@
   "authButton": "test",
   "homeTitle": "Home Screen",
   "homeText": "Welcome!",
-  "drawerPrice": "Price",
+  "drawerSearch": "Search",
   "drawerTrades": "Trades",
   "drawerAuctions": "Auctions",
   "drawerCollection": "Collection",

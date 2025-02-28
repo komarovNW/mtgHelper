@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mtg_helper/core/app_navigator.dart';
-import 'package:mtg_helper/extension/localization.dart';
+import 'package:mtg_helper/utils/app_navigator.dart';
+import 'package:mtg_helper/extension/localization_extension.dart';
 import 'package:mtg_helper/widgets/app_box.dart';
 import 'package:mtg_helper/features/auth/components/button.dart';
 import 'package:mtg_helper/features/auth/components/login_text_form_field.dart';

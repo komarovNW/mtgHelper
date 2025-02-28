@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mtg_helper/data/datasources/auctions/auctions_remote_data_source.dart';
-import 'package:mtg_helper/data/repositories/auctions/auctions_repository_impl.dart';
-import 'package:mtg_helper/domain/repositories/auction/auctions_repository.dart';
+import 'package:mtg_helper/data/datasources/auctions_remote_data_source.dart';
+import 'package:mtg_helper/data/repositories/auctions_repository_impl.dart';
+import 'package:mtg_helper/domain/repositories/auctions_repository.dart';
 import 'package:mtg_helper/domain/use_cases/auction/filter_use_case.dart';
-import 'package:mtg_helper/domain/use_cases/auction/get_use_case.dart';
+import 'package:mtg_helper/domain/use_cases/auction/get_auctions_use_case.dart';
 
 import 'package:mtg_helper/features/auctions/auctions_cubit.dart';
 import 'package:mtg_helper/features/auctions/auctions_page.dart';
@@ -21,8 +21,8 @@ class AuctionsFactory {
     return AuctionsRepositoryImpl(remoteDataSource: createAuctionsDataSource());
   }
 
-  GetUseCase createGetUseCase() {
-    return GetUseCase(repository: createAuctionsRepository());
+  GetAuctionsUseCase createGetUseCase() {
+    return GetAuctionsUseCase(repository: createAuctionsRepository());
   }
 
   FilterUseCase createFilterUseCase() {

@@ -1,10 +1,10 @@
 import 'package:mtg_helper/data/models/search_card_model.dart';
 
-class SearchCardEntity {
-  SearchCardEntity({required this.cards});
+class SearchCard {
+  SearchCard({required this.cards});
 
-  factory SearchCardEntity.fromJson(Map<String, dynamic> json) {
-    return SearchCardEntity(
+  factory SearchCard.fromJson(Map<String, dynamic> json) {
+    return SearchCard(
       cards: json.values
           .map((dynamic card) => SearchCardModel.fromJson(card))
           .toList(),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mtg_helper/extension/localization.dart';
-import 'package:mtg_helper/core/drawer.dart';
+import 'package:mtg_helper/extension/localization_extension.dart';
+import 'package:mtg_helper/widgets/app_bar.dart';
+import 'package:mtg_helper/widgets/app_drawer.dart';
 import 'package:mtg_helper/features/auctions/components/auctions_card.dart';
-import 'package:mtg_helper/features/auctions/components/search_text_form_field.dart';
 import 'auctions_cubit.dart';
-import 'package:mtg_helper/core/debouncer.dart';
+import 'package:mtg_helper/utils/debouncer.dart';
 import 'auctions_state.dart';
 
 class AuctionsPage extends StatefulWidget {
@@ -58,29 +58,22 @@ class _AuctionsPageState extends State<AuctionsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const AppDrawer(),
-      body: CustomScrollView(
-        controller: _scrollController,
-        slivers: <Widget>[
-          SliverAppBar(
-            floating: true,
-            snap: true,
-            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-            title: Text(context.l10n.auctionTitle),
-            bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(60),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SearchTextField(
-                  searchController: _searchController,
-                  test: _onSearchChanged,
-                  onTapIcon: _onTapIcon,
-                ),
-              ),
+      drawer: AppDrawer(
+        currentPage: context.l10n.drawerAuctions,
+      ),
+      body: Container(
+        color: Colors.white,
+        child: CustomScrollView(
+          controller: _scrollController,
+          slivers: <Widget>[
+            CustomAppBar(
+              searchController: _searchController,
+              onChange: _onSearchChanged,
+              onTapIcon: _onTapIcon,
             ),
-          ),
-          const _Body(),
-        ],
+            const _Body(),
+          ],
+        ),
       ),
     );
   }
@@ -128,14 +121,16 @@ class _BodyState extends State<_Body> {
               child: SizedBox(
                 height: 50,
                 width: 50,
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  color: Color(0xffF45D01),
+                ),
               ),
             ),
           ),
           failure: (_) => SliverFillRemaining(
             hasScrollBody: false,
             child: Center(
-              child: Text(context.l10n.auctionErrorList),
+              child: Text(context.l10n.failure),
             ),
           ),
         );
