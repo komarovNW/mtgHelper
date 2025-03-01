@@ -12,7 +12,10 @@ class SearchCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        AppCachedNetworkImage(url: _item.imageUrl),
+        AppCachedNetworkImage(
+          url: _item.imageUrl,
+          size: ImageSize.small,
+        ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 4),
           child: Text(
