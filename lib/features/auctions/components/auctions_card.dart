@@ -4,6 +4,7 @@ import 'package:mtg_helper/extension/localization_extension.dart';
 import 'package:mtg_helper/widgets/app_box.dart';
 import 'package:mtg_helper/extension/auction_extension.dart';
 import 'package:mtg_helper/widgets/app_cached_network_image.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 
 class AuctionCard extends StatelessWidget {
@@ -17,12 +18,7 @@ class AuctionCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          AppCachedNetworkImage(
-            url: item.imageUrl,
-          ),
-          // AuctionCardImage(
-          //   imgUrl: item.imageUrl,
-          // ),
+          AppCachedNetworkImage(url: item.imageUrl, size: ImageSize.large),
           const HBox(8),
           AuctionCardDescription(
             lot: item.lot,
@@ -41,47 +37,6 @@ class AuctionCard extends StatelessWidget {
     );
   }
 }
-
-// class AuctionCardImage extends StatelessWidget {
-//   const AuctionCardImage({
-//     super.key,
-//     required String imgUrl,
-//   }) : _imgUrl = imgUrl;
-//   final String _imgUrl;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return ClipRRect(
-//       borderRadius: const BorderRadius.only(
-//         topLeft: Radius.circular(16.0),
-//         topRight: Radius.circular(16.0),
-//       ),
-//       child: CachedNetworkImage(
-//         imageUrl: _imgUrl,
-//         width: double.infinity,
-//         height: 500.0,
-//         placeholder: (BuildContext context, String url) => Container(
-//           width: double.infinity,
-//           height: 500.0,
-//           decoration: BoxDecoration(
-//             gradient: LinearGradient(
-//               colors: <Color>[Colors.grey[300]!, Colors.grey[200]!],
-//               begin: Alignment.topLeft,
-//               end: Alignment.bottomRight,
-//             ),
-//             borderRadius: BorderRadius.circular(16.0),
-//           ),
-//           child: const Center(
-//             child: CircularProgressIndicator(
-//               valueColor: AlwaysStoppedAnimation<Color>(Color(0xffF45D01)),
-//             ),
-//           ),
-//         ),
-//         errorWidget: (BuildContext context, String url, Object error) => const Icon(Icons.error),
-//       ),
-//     );
-//   }
-// }
 
 class AuctionCardDescription extends StatelessWidget {
   const AuctionCardDescription({
