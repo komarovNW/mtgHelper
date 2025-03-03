@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mtg_helper/data/datasources/search_remote_data_source.dart';
 import 'package:mtg_helper/data/repositories/search_repository_impl.dart';
@@ -29,7 +30,7 @@ class SearchFactory {
     );
   }
 
-  BlocProvider<SearchCubit> createSearchBlocProvider() {
+  Widget createSearchPage() {
     return BlocProvider<SearchCubit>(
       create: (_) => createSearchCubit(),
       child: const SearchPage(),

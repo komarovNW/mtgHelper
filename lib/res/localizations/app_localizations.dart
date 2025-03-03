@@ -397,6 +397,42 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Введите первые 3 буквы названия карты на английском или на русском'**
   String get searchBodyInitial;
+
+  /// No description provided for @priceTabTCG.
+  ///
+  /// In ru, this message translates to:
+  /// **'TCG'**
+  String get priceTabTCG;
+
+  /// No description provided for @priceTabSCG.
+  ///
+  /// In ru, this message translates to:
+  /// **'SCG'**
+  String get priceTabSCG;
+
+  /// No description provided for @priceTabSingles.
+  ///
+  /// In ru, this message translates to:
+  /// **'Синглы'**
+  String get priceTabSingles;
+
+  /// No description provided for @priceTabAuctions.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ауки'**
+  String get priceTabAuctions;
+
+  /// No description provided for @priceAuctionCurrentTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Текущие аукционы'**
+  String get priceAuctionCurrentTitle;
+
+  /// No description provided for @priceAuctionPastTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Завершенные аукционы'**
+  String get priceAuctionPastTitle;
 }
 
 class _AppLocalizationsDelegate

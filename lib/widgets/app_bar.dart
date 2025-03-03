@@ -1,66 +1,92 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
 import 'package:mtg_helper/widgets/app_text_form_field.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     super.key,
-    TextEditingController? searchController,
-    VoidCallback? onTapIcon,
-    Function(String)? onChange,
-    String? title,
-  })  : _searchController = searchController,
-        _onTap = onTapIcon,
-        _onChange = onChange,
-        _title = title,
-        preferredSize = const Size.fromHeight(kToolbarHeight);
+    this.searchController,
+    this.onTapIcon,
+    this.onChange,
+    this.title,
+    this.bottom,
+    this.needBackButton = false,
+  }) : preferredSize = const Size.fromHeight(kToolbarHeight);
 
-  final TextEditingController? _searchController;
-  final VoidCallback? _onTap;
-  final Function(String)? _onChange;
-  final String? _title;
+  final TextEditingController? searchController;
+  final VoidCallback? onTapIcon;
+  final Function(String)? onChange;
+  final String? title;
+  final PreferredSizeWidget? bottom;
+  final bool needBackButton;
+
   @override
   final Size preferredSize;
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      bottom: bottom,
       expandedHeight: 70.0,
       titleSpacing: 0,
       floating: true,
       snap: true,
-      leading: Builder(
-        builder: (BuildContext context) => Padding(
-          padding: const EdgeInsets.only(top: 12.0),
-          child: IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-          ),
-        ),
-      ),
+      leading: needBackButton
+          ? _buildBackButton(context)
+          : _buildMenuButton(context),
       iconTheme: const IconThemeData(
         color: Color(0xffF45D01),
       ),
       backgroundColor: const Color(0xff474647),
-      title: _title != null
-          ? Padding(
-              padding: const EdgeInsets.only(top: 12.0),
-              child: Text(
-                _title,
-                style: const TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            )
-          : Padding(
-              padding: const EdgeInsets.only(top: 8.0, right: 16.0),
-              child: AppTextFormField(
-                searchController: _searchController!,
-                onChange: _onChange!,
-                onTapIcon: _onTap!,
-              ),
-            ),
+      title: _buildTitle(),
     );
+  }
+
+  Widget _buildMenuButton(BuildContext context) {
+    return Builder(
+      builder: (BuildContext context) => Padding(
+        padding: const EdgeInsets.only(top: 12.0),
+        child: IconButton(
+          icon: const Icon(Icons.menu),
+          onPressed: () => Scaffold.of(context).openDrawer(),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBackButton(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 12.0),
+      child: IconButton(
+        icon: const Icon(Icons.arrow_back_ios_new),
+        onPressed: () => context.go('/search'),
+      ),
+    );
+  }
+
+  Widget _buildTitle() {
+    if (title != null) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 12.0),
+        child: Text(
+          title!,
+          style: const TextStyle(color: Colors.white),
+        ),
+      );
+    }
+
+    if (searchController != null && onChange != null && onTapIcon != null) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 8.0, right: 16.0),
+        child: AppTextFormField(
+          searchController: searchController!,
+          onChange: onChange!,
+          onTapIcon: onTapIcon!,
+        ),
+      );
+    }
+
+    return const SizedBox();
   }
 }

@@ -14,12 +14,18 @@ class SearchCubit extends Cubit<SearchState> {
 
   Future<void> search(String query) async {
     emit(const SearchState.loading());
-    _allCards = await _getListOfSearchCardsUseCase(query);
-    emit(
-      SearchState.success(
-        allCards: List<SearchCardModel>.of(_allCards),
-      ),
-    );
+    try {
+      _allCards = await _getListOfSearchCardsUseCase(query);
+      emit(
+        SearchState.success(
+          allCards: List<SearchCardModel>.of(_allCards),
+        ),
+      );
+    } catch (e) {
+      emit(
+        const SearchState.failure(''),
+      );
+    }
   }
 
   Future<void> reset() async {

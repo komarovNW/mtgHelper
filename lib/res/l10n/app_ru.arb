@@ -49,5 +49,11 @@
   "auctionCardDescriptionDateEstimated": "Дата и время окончания: ",
   "auctionCardButtonText": "Перейти на TopDeck",
   "searchBodyEmpty": "Ничего не найдено",
-  "searchBodyInitial": "Введите первые 3 буквы названия карты на английском или на русском"
+  "searchBodyInitial": "Введите первые 3 буквы названия карты на английском или на русском",
+  "priceTabTCG": "TCG",
+  "priceTabSCG": "SCG",
+  "priceTabSingles": "Синглы",
+  "priceTabAuctions": "Ауки",
+  "priceAuctionCurrentTitle": "Текущие аукционы",
+  "priceAuctionPastTitle": "Завершенные аукционы"
 }
