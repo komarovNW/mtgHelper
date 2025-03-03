@@ -272,6 +272,12 @@ abstract class AppLocalizations {
   /// **'Добро пожаловать!'**
   String get homeText;
 
+  /// No description provided for @drawerProfile.
+  ///
+  /// In ru, this message translates to:
+  /// **'Профиль'**
+  String get drawerProfile;
+
   /// No description provided for @drawerSearch.
   ///
   /// In ru, this message translates to:
@@ -433,6 +439,12 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Завершенные аукционы'**
   String get priceAuctionPastTitle;
+
+  /// No description provided for @profileTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Профиль'**
+  String get profileTitle;
 }
 
 class _AppLocalizationsDelegate

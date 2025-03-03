@@ -96,6 +96,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get homeText => 'Добро пожаловать!';
 
   @override
+  String get drawerProfile => 'Профиль';
+
+  @override
   String get drawerSearch => 'Цены';
 
   @override
@@ -176,4 +179,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get priceAuctionPastTitle => 'Завершенные аукционы';
+
+  @override
+  String get profileTitle => 'Профиль';
 }

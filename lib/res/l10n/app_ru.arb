@@ -29,6 +29,7 @@
   "authButton": "Войти",
   "homeTitle": "Домашний экран",
   "homeText": "Добро пожаловать!",
+  "drawerProfile": "Профиль",
   "drawerSearch": "Цены",
   "drawerTrades": "Сделки",
   "drawerAuctions": "Аукционы",
@@ -55,5 +56,6 @@
   "priceTabSingles": "Синглы",
   "priceTabAuctions": "Ауки",
   "priceAuctionCurrentTitle": "Текущие аукционы",
-  "priceAuctionPastTitle": "Завершенные аукционы"
+  "priceAuctionPastTitle": "Завершенные аукционы",
+  "profileTitle": "Профиль"
 }
