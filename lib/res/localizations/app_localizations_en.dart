@@ -94,6 +94,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeText => 'Welcome!';
 
   @override
+  String get drawerProfile => 'Профиль';
+
+  @override
   String get drawerSearch => 'Search';
 
   @override
@@ -174,4 +177,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get priceAuctionPastTitle => 'Завершенные аукционы';
+
+  @override
+  String get profileTitle => 'Профиль';
 }

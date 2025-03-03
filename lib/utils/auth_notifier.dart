@@ -20,4 +20,15 @@ class AuthNotifier extends ChangeNotifier {
     await FirebaseAuth.instance.signOut();
     notifyListeners();
   }
+
+  Future<void> updateDisplayName(String newName) async {
+    try {
+      await _user!.updateDisplayName(newName);
+      await _user!.reload();
+      _user = FirebaseAuth.instance.currentUser;
+      notifyListeners();
+    } catch (e) {
+      debugPrint('e $e');
+    }
+  }
 }
