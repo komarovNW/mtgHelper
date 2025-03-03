@@ -156,4 +156,22 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get searchBodyInitial =>
       'Введите первые 3 буквы названия карты на английском или на русском';
+
+  @override
+  String get priceTabTCG => 'TCG';
+
+  @override
+  String get priceTabSCG => 'SCG';
+
+  @override
+  String get priceTabSingles => 'Синглы';
+
+  @override
+  String get priceTabAuctions => 'Ауки';
+
+  @override
+  String get priceAuctionCurrentTitle => 'Текущие аукционы';
+
+  @override
+  String get priceAuctionPastTitle => 'Завершенные аукционы';
 }

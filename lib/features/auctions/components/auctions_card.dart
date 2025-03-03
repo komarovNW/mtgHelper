@@ -76,7 +76,7 @@ class AuctionCardDescription extends StatelessWidget {
         ),
         AuctionTextItem(
           title: context.l10n.auctionCardDescriptionCurrentBid,
-          text: _currentBid,
+          text: '$_currentBid ₽',
         ),
         AuctionTextItem(
           title: context.l10n.auctionCardDescriptionBidAmount,
@@ -151,7 +151,7 @@ class AuctionTextItem extends StatelessWidget {
                     text: title,
                     style: const TextStyle(
                       color: Color(0xff474647),
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.bold,
                       fontSize: 14,
                     ),
                   ),

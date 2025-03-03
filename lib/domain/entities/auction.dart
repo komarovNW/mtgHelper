@@ -14,7 +14,7 @@ class Auction {
   final String id;
   final DateTime dateEstimated;
   final String lot;
-  final double currentBid;
+  final int currentBid;
   final int bidAmount;
   final String shippingInfoQuick;
   final String shippingInfo;

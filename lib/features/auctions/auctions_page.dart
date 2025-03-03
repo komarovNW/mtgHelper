@@ -4,6 +4,8 @@ import 'package:mtg_helper/extension/localization_extension.dart';
 import 'package:mtg_helper/widgets/app_bar.dart';
 import 'package:mtg_helper/widgets/app_drawer.dart';
 import 'package:mtg_helper/features/auctions/components/auctions_card.dart';
+import 'package:mtg_helper/widgets/app_error.dart';
+import 'package:mtg_helper/widgets/app_loader.dart';
 import 'auctions_cubit.dart';
 import 'package:mtg_helper/utils/debouncer.dart';
 import 'auctions_state.dart';
@@ -58,6 +60,7 @@ class _AuctionsPageState extends State<AuctionsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       drawer: AppDrawer(
         currentPage: context.l10n.drawerAuctions,
       ),
@@ -117,21 +120,11 @@ class _BodyState extends State<_Body> {
           },
           loading: (_) => const SliverFillRemaining(
             hasScrollBody: false,
-            child: Center(
-              child: SizedBox(
-                height: 50,
-                width: 50,
-                child: CircularProgressIndicator(
-                  color: Color(0xffF45D01),
-                ),
-              ),
-            ),
+            child: AppLoader(),
           ),
-          failure: (_) => SliverFillRemaining(
+          failure: (_) => const SliverFillRemaining(
             hasScrollBody: false,
-            child: Center(
-              child: Text(context.l10n.failure),
-            ),
+            child: AppError(),
           ),
         );
       },

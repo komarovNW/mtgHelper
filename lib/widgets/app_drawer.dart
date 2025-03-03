@@ -26,18 +26,18 @@ class AppDrawer extends StatelessWidget {
         title: context.l10n.drawerAuctions,
         onTap: AppNavigator.goAuction,
       ),
-      _DrawerItem(
-        title: context.l10n.drawerStatistic,
-      ),
-      _DrawerItem(
-        title: context.l10n.drawerTrades,
-      ),
-      _DrawerItem(
-        title: context.l10n.drawerCollection,
-      ),
-      _DrawerItem(
-        title: context.l10n.drawerCalendar,
-      ),
+      // _DrawerItem(
+      //   title: context.l10n.drawerStatistic,
+      // ),
+      // _DrawerItem(
+      //   title: context.l10n.drawerTrades,
+      // ),
+      // _DrawerItem(
+      //   title: context.l10n.drawerCollection,
+      // ),
+      // _DrawerItem(
+      //   title: context.l10n.drawerCalendar,
+      // ),
     ];
     return Drawer(
       child: ListView(

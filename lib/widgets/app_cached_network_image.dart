@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:mtg_helper/widgets/app_loader.dart';
 
 enum ImageSize {
   large(double.infinity, 500, 16),
-  small(null, 270, 8);
+  small(null, 270, 8),
+  medium(60, 80, 0);
 
   const ImageSize(this.width, this.height, this.borderRadius);
 
@@ -35,23 +37,22 @@ class AppCachedNetworkImage extends StatelessWidget {
         width: _size.width,
         fit: BoxFit.fitWidth,
         height: _size.height,
-        placeholder: (BuildContext context, String url) => Container(
-          width: _size.width,
-          height: _size.height,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: <Color>[Colors.grey[300]!, Colors.grey[200]!],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-            borderRadius: BorderRadius.circular(_size.borderRadius),
-          ),
-          child: const Center(
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-            ),
-          ),
-        ),
+        placeholder: (BuildContext context, String url) =>
+            _size == ImageSize.medium
+                ? const SizedBox.shrink()
+                : Container(
+                    width: _size.width,
+                    height: _size.height,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: <Color>[Colors.grey[300]!, Colors.grey[200]!],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                      borderRadius: BorderRadius.circular(_size.borderRadius),
+                    ),
+                    child: const AppLoader(),
+                  ),
         errorWidget: (BuildContext context, String url, Object error) =>
             const Icon(Icons.error),
       ),

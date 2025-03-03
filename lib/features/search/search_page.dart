@@ -6,6 +6,8 @@ import 'package:mtg_helper/data/models/search_card_model.dart';
 import 'package:mtg_helper/extension/localization_extension.dart';
 import 'package:mtg_helper/widgets/app_bar.dart';
 import 'package:mtg_helper/widgets/app_drawer.dart';
+import 'package:mtg_helper/widgets/app_error.dart';
+import 'package:mtg_helper/widgets/app_loader.dart';
 
 import 'search_cubit.dart';
 import 'search_state.dart';
@@ -96,30 +98,16 @@ class _BodyState extends State<_Body> {
           success: (SearchSuccess state) =>
               SearchSuccessBody(allCards: state.allCards),
           initial: (_) => const SearchInitialBody(),
-          loading: (_) => const SearchLoadingBody(),
-          failure: (_) => const SearchFailureBody(),
+          loading: (_) => const SliverFillRemaining(
+            hasScrollBody: false,
+            child: AppLoader(),
+          ),
+          failure: (_) => const SliverFillRemaining(
+            hasScrollBody: false,
+            child: AppError(),
+          ),
         );
       },
-    );
-  }
-}
-
-class SearchLoadingBody extends StatelessWidget {
-  const SearchLoadingBody({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const SliverFillRemaining(
-      hasScrollBody: false,
-      child: Center(
-        child: SizedBox(
-          height: 50,
-          width: 50,
-          child: CircularProgressIndicator(
-            color: Color(0xffF45D01),
-          ),
-        ),
-      ),
     );
   }
 }
@@ -136,26 +124,6 @@ class SearchInitialBody extends StatelessWidget {
         child: Center(
           child: Text(
             context.l10n.searchBodyInitial,
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class SearchFailureBody extends StatelessWidget {
-  const SearchFailureBody({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverPadding(
-      padding: const EdgeInsets.all(8),
-      sliver: SliverFillRemaining(
-        hasScrollBody: false,
-        child: Center(
-          child: Text(
-            context.l10n.failure,
             textAlign: TextAlign.center,
           ),
         ),

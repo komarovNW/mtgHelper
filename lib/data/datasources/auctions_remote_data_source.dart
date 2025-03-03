@@ -10,6 +10,7 @@ class AuctionsRemoteDataSource {
       final Response<dynamic> response = await _dio.get(
         'https://topdeck.ru/apps/toptrade/api-v1/auctions',
       );
+
       final List<dynamic> data = response.data as List<dynamic>;
 
       return data

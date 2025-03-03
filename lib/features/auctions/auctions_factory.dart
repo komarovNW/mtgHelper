@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mtg_helper/data/datasources/auctions_remote_data_source.dart';
 import 'package:mtg_helper/data/repositories/auctions_repository_impl.dart';
@@ -36,7 +37,7 @@ class AuctionsFactory {
     );
   }
 
-  BlocProvider<AuctionsCubit> createAuctionsBlocProvider() {
+  Widget createAuctionsPage() {
     return BlocProvider<AuctionsCubit>(
       create: (_) => createAuctionsCubit(),
       child: const AuctionsPage(),
