@@ -1,6 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mtg_helper/core/dio_client.dart';
 import 'package:mtg_helper/data/datasources/price/auction_remote_data_source.dart';
 import 'package:mtg_helper/data/datasources/price/scg_remote_data_source.dart';
 import 'package:mtg_helper/data/datasources/price/singles_remote_data_source.dart';
@@ -29,23 +29,32 @@ import 'package:mtg_helper/features/price/price_tcg/price_tcg_cubit.dart';
 import 'package:provider/single_child_widget.dart';
 
 class PriceFactory {
-  PriceFactory({required this.dio});
-  final Dio dio;
+  PriceFactory({required this.dioService});
+
+  final DioService dioService;
 
   PriceAuctionRemoteDataSource createAuctionRemoteDataSource() {
-    return PriceAuctionRemoteDataSource(dio: dio);
+    return PriceAuctionRemoteDataSource(
+      dioService: dioService,
+    );
   }
 
   SCGRemoteDataSource createSCGRemoteDataSource() {
-    return SCGRemoteDataSource(dio: dio);
+    return SCGRemoteDataSource(
+      dioService: dioService,
+    );
   }
 
   SinglesRemoteDataSource createSinglesRemoteDataSource() {
-    return SinglesRemoteDataSource(dio: dio);
+    return SinglesRemoteDataSource(
+      dioService: dioService,
+    );
   }
 
   TCGRemoteDataSource createTCGRemoteDataSource() {
-    return TCGRemoteDataSource(dio: dio);
+    return TCGRemoteDataSource(
+      dioService: dioService,
+    );
   }
 
   PriceAuctionRepository createPriceAuctionRepository() {

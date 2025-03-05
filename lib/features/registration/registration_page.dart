@@ -67,75 +67,67 @@ class _BodyState extends State<_Body> {
       builder: (BuildContext context, RegistrationState state) {
         return Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const SizedBox(
-                height: 70,
-              ),
-              Center(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      _TextFormField(
-                        label: context.l10n.email,
-                        controller: _emailController,
-                        errorText: state.validationErrors.emailError,
-                      ),
-                      _TextFormField(
-                        label: context.l10n.login,
-                        controller: _displayNameController,
-                      ),
-                      _TextFormField(
-                        label: context.l10n.password,
-                        controller: _passwordController,
-                        obscureText: true,
-                        errorText: state.validationErrors.passwordError,
-                      ),
-                      _TextFormField(
-                        label: context.l10n.repeatPassword,
-                        controller: _repeatPasswordController,
-                        obscureText: true,
-                        errorText: state.validationErrors.repeatPasswordError,
-                      ),
-                    ],
-                  ),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const SizedBox(
+                  height: 70,
                 ),
-              ),
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      context.read<RegistrationCubit>().validateForm(
-                            email: _emailController.text,
-                            password: _passwordController.text,
-                            repeatPassword: _repeatPasswordController.text,
-                            displayName: _repeatPasswordController.text,
-                          );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xffF45D01),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4),
-                        side: const BorderSide(
-                          color: Color(0xffF45D01),
+                _TextFormField(
+                  label: context.l10n.email,
+                  controller: _emailController,
+                  errorText: state.validationErrors.emailError,
+                ),
+                _TextFormField(
+                  label: context.l10n.login,
+                  controller: _displayNameController,
+                ),
+                _TextFormField(
+                  label: context.l10n.password,
+                  controller: _passwordController,
+                  obscureText: true,
+                  errorText: state.validationErrors.passwordError,
+                ),
+                _TextFormField(
+                  label: context.l10n.repeatPassword,
+                  controller: _repeatPasswordController,
+                  obscureText: true,
+                  errorText: state.validationErrors.repeatPasswordError,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        context.read<RegistrationCubit>().validateForm(
+                              email: _emailController.text,
+                              password: _passwordController.text,
+                              repeatPassword: _repeatPasswordController.text,
+                              displayName: _repeatPasswordController.text,
+                            );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xffF45D01),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                          side: const BorderSide(
+                            color: Color(0xffF45D01),
+                          ),
+                        ),
+                      ),
+                      child: Text(
+                        context.l10n.save,
+                        style: const TextStyle(
+                          color: Colors.white,
                         ),
                       ),
                     ),
-                    child: Text(
-                      context.l10n.save,
-                      style: const TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },

@@ -1,6 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mtg_helper/core/dio_client.dart';
 import 'package:mtg_helper/data/datasources/auctions_remote_data_source.dart';
 import 'package:mtg_helper/data/repositories/auctions_repository_impl.dart';
 import 'package:mtg_helper/domain/repositories/auctions_repository.dart';
@@ -11,11 +11,14 @@ import 'package:mtg_helper/features/auctions/auctions_cubit.dart';
 import 'package:mtg_helper/features/auctions/auctions_page.dart';
 
 class AuctionsFactory {
-  AuctionsFactory({required this.dio});
-  final Dio dio;
+  AuctionsFactory({required this.dioService});
+
+  final DioService dioService;
 
   AuctionsRemoteDataSource createAuctionsDataSource() {
-    return AuctionsRemoteDataSource(dio: dio);
+    return AuctionsRemoteDataSource(
+      dioService: dioService,
+    );
   }
 
   AuctionsRepository createAuctionsRepository() {

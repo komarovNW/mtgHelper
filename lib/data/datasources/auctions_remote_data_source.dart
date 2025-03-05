@@ -1,14 +1,18 @@
 import 'package:dio/dio.dart';
+import 'package:mtg_helper/core/dio_client.dart';
 import 'package:mtg_helper/data/models/auction_model.dart';
+import 'package:mtg_helper/utils/api_constants.dart';
 
 class AuctionsRemoteDataSource {
-  AuctionsRemoteDataSource({required Dio dio}) : _dio = dio;
-  final Dio _dio;
+  AuctionsRemoteDataSource({required DioService dioService})
+      : _dioService = dioService;
+
+  final DioService _dioService;
 
   Future<List<AuctionModel>> getAuctions() async {
     try {
-      final Response<dynamic> response = await _dio.get(
-        'https://topdeck.ru/apps/toptrade/api-v1/auctions',
+      final Response<dynamic> response = await _dioService.get(
+        ApiConstants.topdeckAuctions,
       );
 
       final List<dynamic> data = response.data as List<dynamic>;

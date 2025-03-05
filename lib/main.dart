@@ -1,3 +1,4 @@
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:mtg_helper/core/app.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -16,6 +17,9 @@ void main() {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
+    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
     DependencyInjectionContainer.init();
 
     await AppLocalizations.delegate.load(const Locale('ru'));
@@ -33,6 +37,7 @@ void main() {
       ),
     );
   }, (Object error, StackTrace stackTrace) {
+    FirebaseCrashlytics.instance.recordError(error, stackTrace, fatal: true);
     debugPrint('Произошла ошибка: $error');
     debugPrint('Стек вызовов: $stackTrace');
   });

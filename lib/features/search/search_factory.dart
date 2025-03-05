@@ -1,6 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mtg_helper/core/dio_client.dart';
 import 'package:mtg_helper/data/datasources/search_remote_data_source.dart';
 import 'package:mtg_helper/data/repositories/search_repository_impl.dart';
 import 'package:mtg_helper/domain/repositories/search_repository.dart';
@@ -9,11 +9,14 @@ import 'package:mtg_helper/features/search/search_cubit.dart';
 import 'package:mtg_helper/features/search/search_page.dart';
 
 class SearchFactory {
-  SearchFactory({required this.dio});
-  final Dio dio;
+  SearchFactory({required this.dioService});
+
+  final DioService dioService;
 
   SearchRemoteDataSource createSearchDataSource() {
-    return SearchRemoteDataSource(dio: dio);
+    return SearchRemoteDataSource(
+      dioService: dioService,
+    );
   }
 
   SearchRepository createSearchRepository() {
