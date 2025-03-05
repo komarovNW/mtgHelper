@@ -56,7 +56,7 @@ class _BodyState extends State<_Body> {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (BuildContext context, AuthState state) {
         state.maybeWhen(
-          success: () => AppNavigator.goHome(context),
+          success: () => AppNavigator.goScore(context),
           failure: (String error) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -82,10 +82,14 @@ class _BodyState extends State<_Body> {
                   style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w800,
+                    color: Color(0xff474647),
                   ),
                 ),
                 const HBox(12),
-                Text(context.l10n.authText),
+                Text(
+                  context.l10n.authText,
+                  style: const TextStyle(color: Color(0xff474647)),
+                ),
                 const HBox(36),
                 LoginTextField(loginController: _loginController),
                 const HBox(12),

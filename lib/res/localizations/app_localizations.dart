@@ -152,6 +152,36 @@ abstract class AppLocalizations {
   /// **'Английский'**
   String get english;
 
+  /// No description provided for @email.
+  ///
+  /// In ru, this message translates to:
+  /// **'Почта'**
+  String get email;
+
+  /// No description provided for @login.
+  ///
+  /// In ru, this message translates to:
+  /// **'Логин'**
+  String get login;
+
+  /// No description provided for @password.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пароль'**
+  String get password;
+
+  /// No description provided for @repeatPassword.
+  ///
+  /// In ru, this message translates to:
+  /// **'Повторите пароль'**
+  String get repeatPassword;
+
+  /// No description provided for @save.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сохранить'**
+  String get save;
+
   /// No description provided for @onboardingTitle1.
   ///
   /// In ru, this message translates to:
@@ -236,11 +266,11 @@ abstract class AppLocalizations {
   /// **'Пароль'**
   String get authPassword;
 
-  /// No description provided for @authPasswordForgot.
+  /// No description provided for @authRegistration.
   ///
   /// In ru, this message translates to:
-  /// **'Забыли пароль'**
-  String get authPasswordForgot;
+  /// **'Регистрация'**
+  String get authRegistration;
 
   /// No description provided for @authPasswordHintText.
   ///
