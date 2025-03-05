@@ -34,6 +34,21 @@ class AppLocalizationsRu extends AppLocalizations {
   String get english => 'Английский';
 
   @override
+  String get email => 'Почта';
+
+  @override
+  String get login => 'Логин';
+
+  @override
+  String get password => 'Пароль';
+
+  @override
+  String get repeatPassword => 'Повторите пароль';
+
+  @override
+  String get save => 'Сохранить';
+
+  @override
   String get onboardingTitle1 => 'Аукционы';
 
   @override
@@ -78,7 +93,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get authPassword => 'Пароль';
 
   @override
-  String get authPasswordForgot => 'Забыли пароль';
+  String get authRegistration => 'Регистрация';
 
   @override
   String get authPasswordHintText => '••••••••••••';

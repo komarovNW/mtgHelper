@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mtg_helper/extension/localization_extension.dart';
+import 'package:mtg_helper/utils/app_navigator.dart';
 import 'package:mtg_helper/widgets/app_box.dart';
 
 class PasswordTextField extends StatefulWidget {
@@ -29,14 +30,18 @@ class PasswordTextFieldState extends State<PasswordTextField> {
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w800,
+                color: Color(0xff474647),
               ),
             ),
-            Text(
-              context.l10n.authPasswordForgot,
-              style: const TextStyle(
-                fontSize: 14,
-                color: Colors.blue,
-                fontWeight: FontWeight.w500,
+            InkWell(
+              onTap: () => AppNavigator.goRegistration(context),
+              child: Text(
+                context.l10n.authRegistration,
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Color(0xffF45D01),
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ],
@@ -51,10 +56,12 @@ class PasswordTextFieldState extends State<PasswordTextField> {
             }
             return null;
           },
+          style: const TextStyle(color: Color(0xff474647)),
+          cursorColor: const Color(0xffF45D01),
           decoration: InputDecoration(
             hintText: context.l10n.authPasswordHintText,
             hintStyle: const TextStyle(
-              color: Colors.grey,
+              color: Color(0xff474647),
             ),
             suffixIcon: IconButton(
               icon: Icon(
@@ -66,7 +73,20 @@ class PasswordTextFieldState extends State<PasswordTextField> {
                 });
               },
             ),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(
+                color: Color(0xffF45D01),
+              ),
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(
+                color: Color(0xffF45D01),
+              ),
+            ),
           ),
         ),
       ],

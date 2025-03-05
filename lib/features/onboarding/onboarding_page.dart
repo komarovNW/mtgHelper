@@ -82,6 +82,7 @@ class _OnboardingPageState extends State<OnboardingPage>
     return Scaffold(
       body: SafeArea(
         top: false,
+        bottom: false,
         child: Stack(
           alignment: AlignmentDirectional.bottomCenter,
           children: <Widget>[

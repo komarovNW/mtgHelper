@@ -70,6 +70,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
+  /// TODO должен быть pop
   Widget _buildBackButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 12.0),

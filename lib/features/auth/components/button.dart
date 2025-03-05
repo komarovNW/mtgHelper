@@ -23,7 +23,7 @@ class Button extends StatelessWidget {
       child: ElevatedButton(
         onPressed: _isLoading ? null : _onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: _isValid ? Colors.blue : Colors.grey,
+          backgroundColor: _isValid ? const Color(0xffF45D01) : Colors.grey,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         ),
