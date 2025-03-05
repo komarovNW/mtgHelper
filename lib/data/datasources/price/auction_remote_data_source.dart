@@ -1,12 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:mtg_helper/core/dio_client.dart';
 import 'package:mtg_helper/data/models/all_auctions_model.dart';
 import 'package:mtg_helper/data/models/auction_model.dart';
 import 'package:mtg_helper/data/models/past_auctions_model.dart';
+import 'package:mtg_helper/utils/api_constants.dart';
 
 class PriceAuctionRemoteDataSource {
-  PriceAuctionRemoteDataSource({required Dio dio}) : _dio = dio;
-  final Dio _dio;
+  PriceAuctionRemoteDataSource({required DioService dioService})
+      : _dioService = dioService;
+
+  final DioService _dioService;
 
   Future<AllAuctionsModel> getAuctions(
     String name,
@@ -42,7 +46,7 @@ class PriceAuctionRemoteDataSource {
   }) async {
     try {
       final Response<dynamic> responseCurrentAuc =
-          await _dio.get('https://topdeck.ru/apps/toptrade/api-v1/auctions');
+          await _dioService.get(ApiConstants.topdeckAuctions);
       final List<dynamic> dataCurrentAuc =
           responseCurrentAuc.data as List<dynamic>;
 
@@ -83,8 +87,9 @@ class PriceAuctionRemoteDataSource {
 
     for (final String query in queries) {
       try {
-        final Response<dynamic> response = await _dio.get(
-          'https://topdeck.ru/apps/toptrade/api-v1/auctions/search?q=$query',
+        final Response<dynamic> response = await _dioService.get(
+          ApiConstants.topdeckAuctionSearch,
+          queryParameters: <String, dynamic>{'q': query},
         );
         final PastAuctionDataModelResponse data =
             PastAuctionDataModelResponse.fromJson(response.data);

@@ -1,9 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:mtg_helper/core/dio_client.dart';
 import 'package:mtg_helper/data/models/singles_card_model.dart';
+import 'package:mtg_helper/utils/api_constants.dart';
 
 class SinglesRemoteDataSource {
-  SinglesRemoteDataSource({required Dio dio}) : _dio = dio;
-  final Dio _dio;
+  SinglesRemoteDataSource({required DioService dioService})
+      : _dioService = dioService;
+
+  final DioService _dioService;
   Future<List<SinglesCardModel>> getSingles(
     String name,
     String? localizationName,
@@ -11,8 +15,8 @@ class SinglesRemoteDataSource {
     try {
       final List<SinglesCardModel> allCards = <SinglesCardModel>[];
 
-      final Response<dynamic> responseName = await _dio.get(
-        'https://topdeck.ru/apps/toptrade/api-v1/singles/search',
+      final Response<dynamic> responseName = await _dioService.get(
+        ApiConstants.topdeckSingles,
         queryParameters: <String, dynamic>{'q': name},
       );
 
@@ -36,11 +40,10 @@ class SinglesRemoteDataSource {
       }
 
       if (localizationName != null && localizationName.isNotEmpty) {
-        final Response<dynamic> responseLocalization = await _dio.get(
-          'https://topdeck.ru/apps/toptrade/api-v1/singles/search',
+        final Response<dynamic> responseLocalization = await _dioService.get(
+          ApiConstants.topdeckSingles,
           queryParameters: <String, dynamic>{'q': localizationName},
         );
-
         if (responseLocalization.statusCode == 200) {
           final List<dynamic> data = responseLocalization.data as List<dynamic>;
           allCards.addAll(

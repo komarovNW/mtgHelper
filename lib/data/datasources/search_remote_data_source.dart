@@ -1,14 +1,18 @@
 import 'package:dio/dio.dart';
+import 'package:mtg_helper/core/dio_client.dart';
 import 'package:mtg_helper/data/models/search_card_model.dart';
+import 'package:mtg_helper/utils/api_constants.dart';
 
 class SearchRemoteDataSource {
-  SearchRemoteDataSource({required Dio dio}) : _dio = dio;
-  final Dio _dio;
+  SearchRemoteDataSource({required DioService dioService})
+      : _dioService = dioService;
+
+  final DioService _dioService;
 
   Future<List<SearchCardModel>> getListOfSearchCards(String query) async {
     try {
-      final Response<dynamic> response = await _dio.get(
-        'https://scg.dekker.lol/api/suggest?name=$query',
+      final Response<dynamic> response = await _dioService.get(
+        '${ApiConstants.dekkerSearch}$query',
       );
 
       final Map<String, dynamic> data = response.data as Map<String, dynamic>;
