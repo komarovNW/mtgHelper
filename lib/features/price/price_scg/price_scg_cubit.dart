@@ -3,6 +3,7 @@ import 'package:mtg_helper/data/models/scg_card_model.dart';
 import 'package:mtg_helper/data/models/search_card_model.dart';
 import 'package:mtg_helper/domain/use_cases/price/get_scg_price_card_use_case.dart';
 import 'package:mtg_helper/features/price/price_scg/price_scg_state.dart';
+import 'package:mtg_helper/utils/error.handler.dart';
 
 class PriceSCGCubit extends Cubit<PriceSCGState> {
   PriceSCGCubit({
@@ -16,12 +17,18 @@ class PriceSCGCubit extends Cubit<PriceSCGState> {
   final SearchCardModel _searchCard;
 
   void loadPrice() async {
-    final List<SCGCardModel> list =
-        await _getPriceSCGCardUseCase(_searchCard.text);
-    emit(
-      PriceSCGState.success(
-        list: List<SCGCardModel>.of(list),
-      ),
-    );
+    try {
+      final List<SCGCardModel> list =
+          await _getPriceSCGCardUseCase(_searchCard.text);
+      emit(
+        PriceSCGState.success(
+          list: List<SCGCardModel>.of(list),
+        ),
+      );
+    } catch (e) {
+      ErrorHandler.handleError(e, (String errorMessage) {
+        emit(PriceSCGState.failure(errorMessage));
+      });
+    }
   }
 }

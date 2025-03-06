@@ -4,6 +4,7 @@ import 'package:mtg_helper/data/models/search_card_model.dart';
 import 'package:mtg_helper/data/models/singles_card_model.dart';
 import 'package:mtg_helper/domain/use_cases/price/get_singles_price_card_use_case.dart';
 import 'package:mtg_helper/features/price/price_singles/price_singles_state.dart';
+import 'package:mtg_helper/utils/error.handler.dart';
 
 class PriceSinglesCubit extends Cubit<PriceSinglesState> {
   PriceSinglesCubit({
@@ -26,7 +27,9 @@ class PriceSinglesCubit extends Cubit<PriceSinglesState> {
       );
       emit(PriceSinglesState.success(list: list));
     } catch (e) {
-      emit(const PriceSinglesState.failure(''));
+      ErrorHandler.handleError(e, (String errorMessage) {
+        emit(PriceSinglesState.failure(errorMessage));
+      });
     }
   }
 }

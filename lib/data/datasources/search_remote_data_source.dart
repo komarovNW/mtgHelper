@@ -14,9 +14,7 @@ class SearchRemoteDataSource {
       final Response<dynamic> response = await _dioService.get(
         '${ApiConstants.dekkerSearch}$query',
       );
-
       final Map<String, dynamic> data = response.data as Map<String, dynamic>;
-
       return data.values
           .map(
             (dynamic json) =>
@@ -24,7 +22,7 @@ class SearchRemoteDataSource {
           )
           .toList();
     } catch (e) {
-      throw Exception('Failed to load auctions: $e');
+      rethrow;
     }
   }
 }

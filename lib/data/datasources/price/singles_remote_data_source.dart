@@ -8,68 +8,37 @@ class SinglesRemoteDataSource {
       : _dioService = dioService;
 
   final DioService _dioService;
+
   Future<List<SinglesCardModel>> getSingles(
     String name,
     String? localizationName,
   ) async {
     try {
       final List<SinglesCardModel> allCards = <SinglesCardModel>[];
-
-      final Response<dynamic> responseName = await _dioService.get(
-        ApiConstants.topdeckSingles,
-        queryParameters: <String, dynamic>{'q': name},
-      );
-
-      if (responseName.statusCode == 200) {
-        final List<dynamic> data = responseName.data as List<dynamic>;
-        allCards.addAll(
-          data
-              .map(
-                (dynamic json) =>
-                    SinglesCardModel.fromJson(json as Map<String, dynamic>),
-              )
-              .where(
-                (SinglesCardModel card) =>
-                    card.name.toLowerCase() == name.toLowerCase(),
-              ),
-        );
-      } else {
-        throw Exception(
-          'Failed to load cards for name: ${responseName.statusCode}',
-        );
+      await _fetchAndAddCards(allCards, name);
+      if (localizationName?.isNotEmpty ?? false) {
+        await _fetchAndAddCards(allCards, localizationName!);
       }
-
-      if (localizationName != null && localizationName.isNotEmpty) {
-        final Response<dynamic> responseLocalization = await _dioService.get(
-          ApiConstants.topdeckSingles,
-          queryParameters: <String, dynamic>{'q': localizationName},
-        );
-        if (responseLocalization.statusCode == 200) {
-          final List<dynamic> data = responseLocalization.data as List<dynamic>;
-          allCards.addAll(
-            data
-                .map(
-                  (dynamic json) =>
-                      SinglesCardModel.fromJson(json as Map<String, dynamic>),
-                )
-                .where(
-                  (SinglesCardModel card) =>
-                      card.name.toLowerCase() == localizationName.toLowerCase(),
-                ),
-          );
-        } else {
-          throw Exception(
-            'Failed to load cards for localizationName: ${responseLocalization.statusCode}',
-          );
-        }
-      }
-      allCards.sort(
-        (SinglesCardModel a, SinglesCardModel b) => a.cost.compareTo(b.cost),
-      );
-
       return allCards;
     } catch (e) {
-      throw Exception('Failed to load cards: $e');
+      rethrow;
     }
+  }
+
+  Future<void> _fetchAndAddCards(
+    List<SinglesCardModel> allCards,
+    String query,
+  ) async {
+    final Response<dynamic> response = await _dioService.get(
+      ApiConstants.topdeckSingles,
+      queryParameters: <String, dynamic>{'q': query},
+    );
+    final List<dynamic> data = response.data as List<dynamic>;
+    allCards.addAll(
+      data.map(
+        (dynamic json) =>
+            SinglesCardModel.fromJson(json as Map<String, dynamic>),
+      ),
+    );
   }
 }

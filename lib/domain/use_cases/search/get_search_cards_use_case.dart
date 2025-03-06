@@ -7,6 +7,10 @@ class GetSearchCardsUseCase {
   final SearchRepository _repository;
 
   Future<List<SearchCardModel>> call(String query) async {
-    return await _repository.getListOfSearchCards(query);
+    try {
+      return await _repository.getListOfSearchCards(query);
+    } catch (e) {
+      rethrow;
+    }
   }
 }

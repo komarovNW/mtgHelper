@@ -15,6 +15,10 @@ class PriceAuctionRepositoryImpl implements PriceAuctionRepository {
     String name,
     String? localizationName,
   ) {
-    return _auctionRemoteDataSource.getAuctions(name, localizationName);
+    try {
+      return _auctionRemoteDataSource.getAuctions(name, localizationName);
+    } catch (e) {
+      rethrow;
+    }
   }
 }

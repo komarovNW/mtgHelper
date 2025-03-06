@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:mtg_helper/core/dio_client.dart';
 import 'package:mtg_helper/data/models/all_auctions_model.dart';
 import 'package:mtg_helper/data/models/auction_model.dart';
@@ -24,7 +23,7 @@ class PriceAuctionRemoteDataSource {
         localizationName: localizationName,
       );
     } catch (e) {
-      throw Exception('_fetchCurrentAuctions: $e');
+      rethrow;
     }
     try {
       y = await _fetchPastAuctions(
@@ -32,7 +31,7 @@ class PriceAuctionRemoteDataSource {
         localizationName: localizationName,
       );
     } catch (e) {
-      throw Exception('_fetchPastAuctions: $e');
+      rethrow;
     }
     return AllAuctionsModel(
       currentAuctions: x.reversed.toList(),
@@ -44,34 +43,20 @@ class PriceAuctionRemoteDataSource {
     required String name,
     String? localizationName,
   }) async {
-    try {
-      final Response<dynamic> responseCurrentAuc =
-          await _dioService.get(ApiConstants.topdeckAuctions);
-      final List<dynamic> dataCurrentAuc =
-          responseCurrentAuc.data as List<dynamic>;
+    final Response<dynamic> responseCurrentAuc =
+        await _dioService.get(ApiConstants.topdeckAuctions);
+    final List<dynamic> dataCurrentAuc =
+        responseCurrentAuc.data as List<dynamic>;
+    final List<AuctionModel> auctionCurrentAucList =
+        dataCurrentAuc.map((dynamic json) {
+      return AuctionModel.fromJson(json as Map<String, dynamic>);
+    }).toList();
 
-      final List<AuctionModel> auctionCurrentAucList =
-          dataCurrentAuc.map((dynamic json) {
-        try {
-          return AuctionModel.fromJson(json as Map<String, dynamic>);
-        } catch (e) {
-          debugPrint(
-            '_fetchCurrentAuctions Ошибка при парсинге AuctionModel: $e',
-          );
-          debugPrint('_fetchCurrentAuctions Ошибка на ключах: ${json.keys}');
-          rethrow;
-        }
-      }).toList();
-
-      return _filterAuctions<AuctionModel>(
-        auctionCurrentAucList,
-        name,
-        localizationName,
-      );
-    } catch (e) {
-      debugPrint('Ошибка при получении текущих аукционов: $e');
-      rethrow;
-    }
+    return _filterAuctions<AuctionModel>(
+      auctionCurrentAucList,
+      name,
+      localizationName,
+    );
   }
 
   Future<List<PastAuctionModel>> _fetchPastAuctions({
@@ -86,20 +71,13 @@ class PriceAuctionRemoteDataSource {
     final List<PastAuctionModel> list = <PastAuctionModel>[];
 
     for (final String query in queries) {
-      try {
-        final Response<dynamic> response = await _dioService.get(
-          ApiConstants.topdeckAuctionSearch,
-          queryParameters: <String, dynamic>{'q': query},
-        );
-        final PastAuctionDataModelResponse data =
-            PastAuctionDataModelResponse.fromJson(response.data);
-        list.addAll(data.auctions);
-      } catch (e) {
-        debugPrint(
-          'Ошибка при получении данных о прошлых аукционах для запроса "$query": $e',
-        );
-        rethrow;
-      }
+      final Response<dynamic> response = await _dioService.get(
+        ApiConstants.topdeckAuctionSearch,
+        queryParameters: <String, dynamic>{'q': query},
+      );
+      final PastAuctionDataModelResponse data =
+          PastAuctionDataModelResponse.fromJson(response.data);
+      list.addAll(data.auctions);
     }
 
     return _filterAuctions<PastAuctionModel>(list, name, localizationName);

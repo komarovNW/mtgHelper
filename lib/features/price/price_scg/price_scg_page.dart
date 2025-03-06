@@ -29,7 +29,7 @@ class _PriceSCGPageState extends State<PriceSCGPage> {
         return state.map(
           success: (PriceSCGSuccess state) => _Body(list: state.list),
           loading: (_) => const AppLoader(),
-          failure: (_) => const AppError(),
+          failure: (_) => const AppError(error: 'ошибка'),
         );
       },
     );

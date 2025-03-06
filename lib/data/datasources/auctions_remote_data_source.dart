@@ -6,17 +6,13 @@ import 'package:mtg_helper/utils/api_constants.dart';
 class AuctionsRemoteDataSource {
   AuctionsRemoteDataSource({required DioService dioService})
       : _dioService = dioService;
-
   final DioService _dioService;
-
   Future<List<AuctionModel>> getAuctions() async {
     try {
       final Response<dynamic> response = await _dioService.get(
         ApiConstants.topdeckAuctions,
       );
-
       final List<dynamic> data = response.data as List<dynamic>;
-
       return data
           .map(
             (dynamic json) =>
@@ -24,7 +20,7 @@ class AuctionsRemoteDataSource {
           )
           .toList();
     } catch (e) {
-      throw Exception('Failed to load auctions: $e');
+      rethrow;
     }
   }
 }

@@ -13,7 +13,22 @@ class PriceSinglesRepositoryImpl implements PriceSinglesRepository {
   Future<List<SinglesCardModel>> getSinglesPrice(
     String name,
     String? localizationName,
-  ) {
-    return _singlesRemoteDataSource.getSingles(name, localizationName);
+  ) async {
+    try {
+      final List<SinglesCardModel> allCards =
+          await _singlesRemoteDataSource.getSingles(name, localizationName);
+      final List<SinglesCardModel> filteredCards = allCards
+          .where(
+            (SinglesCardModel card) =>
+                card.name.toLowerCase() == name.toLowerCase(),
+          )
+          .toList();
+      filteredCards.sort(
+        (SinglesCardModel a, SinglesCardModel b) => a.cost.compareTo(b.cost),
+      );
+      return filteredCards;
+    } catch (e) {
+      rethrow;
+    }
   }
 }

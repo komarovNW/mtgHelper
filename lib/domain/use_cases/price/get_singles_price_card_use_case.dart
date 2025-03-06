@@ -10,6 +10,10 @@ class GetPriceSinglesCardUseCase {
     String name,
     String? localizationName,
   ) async {
-    return await _repository.getSinglesPrice(name, localizationName);
+    try {
+      return await _repository.getSinglesPrice(name, localizationName);
+    } catch (e) {
+      rethrow;
+    }
   }
 }
