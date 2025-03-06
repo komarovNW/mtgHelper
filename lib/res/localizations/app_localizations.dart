@@ -464,11 +464,23 @@ abstract class AppLocalizations {
   /// **'Текущие аукционы'**
   String get priceAuctionCurrentTitle;
 
+  /// No description provided for @priceAuctionCurrentEmptyTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'На данный момент аукционов с этой картой нет'**
+  String get priceAuctionCurrentEmptyTitle;
+
   /// No description provided for @priceAuctionPastTitle.
   ///
   /// In ru, this message translates to:
   /// **'Завершенные аукционы'**
   String get priceAuctionPastTitle;
+
+  /// No description provided for @priceAuctionPastEmptyTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Аукционов с этой картой не было'**
+  String get priceAuctionPastEmptyTitle;
 
   /// No description provided for @profileTitle.
   ///

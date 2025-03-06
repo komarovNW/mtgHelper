@@ -15,60 +15,45 @@ class PriceAuctionRemoteDataSource {
     String name,
     String? localizationName,
   ) async {
-    final List<AuctionModel> x;
-    final List<PastAuctionModel> y;
-    try {
-      x = await _fetchCurrentAuctions(
-        name: name,
-        localizationName: localizationName,
-      );
-    } catch (e) {
-      rethrow;
-    }
-    try {
-      y = await _fetchPastAuctions(
-        name: name,
-        localizationName: localizationName,
-      );
-    } catch (e) {
-      rethrow;
-    }
+    final Future<List<AuctionModel>> currentAuctionsFuture =
+        _fetchAuctions<AuctionModel>(
+      ApiConstants.topdeckAuctions,
+      (dynamic json) => AuctionModel.fromJson(json as Map<String, dynamic>),
+    );
+
+    final Future<List<PastAuctionModel>> pastAuctionsFuture =
+        _fetchPastAuctions(name, localizationName);
+
+    final List<AuctionModel> currentAuctions =
+        await _safeFetch(currentAuctionsFuture);
+    final List<PastAuctionModel> pastAuctions =
+        await _safeFetch(pastAuctionsFuture);
+
     return AllAuctionsModel(
-      currentAuctions: x.reversed.toList(),
-      pastAuctions: y,
+      currentAuctions: currentAuctions.reversed.toList(),
+      pastAuctions: pastAuctions,
     );
   }
 
-  Future<List<AuctionModel>> _fetchCurrentAuctions({
-    required String name,
-    String? localizationName,
-  }) async {
-    final Response<dynamic> responseCurrentAuc =
-        await _dioService.get(ApiConstants.topdeckAuctions);
-    final List<dynamic> dataCurrentAuc =
-        responseCurrentAuc.data as List<dynamic>;
-    final List<AuctionModel> auctionCurrentAucList =
-        dataCurrentAuc.map((dynamic json) {
-      return AuctionModel.fromJson(json as Map<String, dynamic>);
-    }).toList();
+  Future<List<T>> _fetchAuctions<T>(
+    String url,
+    T Function(dynamic json) fromJson,
+  ) async {
+    final Response<dynamic> response = await _dioService.get(url);
+    final List<dynamic> data = response.data as List<dynamic>;
+    return data.map((dynamic json) => fromJson(json)).toList();
+  }
 
-    return _filterAuctions<AuctionModel>(
-      auctionCurrentAucList,
+  Future<List<PastAuctionModel>> _fetchPastAuctions(
+    String name,
+    String? localizationName,
+  ) async {
+    final List<String> queries = <String>[
       name,
-      localizationName,
-    );
-  }
+      if (localizationName?.isNotEmpty ?? false) localizationName!,
+    ];
 
-  Future<List<PastAuctionModel>> _fetchPastAuctions({
-    required String name,
-    String? localizationName,
-  }) async {
-    final List<String> queries = <String>[name];
-    if (localizationName?.isNotEmpty ?? false) {
-      queries.add(localizationName!);
-    }
-
-    final List<PastAuctionModel> list = <PastAuctionModel>[];
+    final List<PastAuctionModel> pastAuctions = <PastAuctionModel>[];
 
     for (final String query in queries) {
       final Response<dynamic> response = await _dioService.get(
@@ -77,26 +62,16 @@ class PriceAuctionRemoteDataSource {
       );
       final PastAuctionDataModelResponse data =
           PastAuctionDataModelResponse.fromJson(response.data);
-      list.addAll(data.auctions);
+      pastAuctions.addAll(data.auctions);
     }
-
-    return _filterAuctions<PastAuctionModel>(list, name, localizationName);
+    return pastAuctions;
   }
-}
 
-List<T> _filterAuctions<T>(
-  List<T> auctions,
-  String name,
-  String? localizationName,
-) {
-  return auctions.where((T item) {
-    final String lot = item is AuctionModel
-        ? item.lot.toLowerCase()
-        : (item as PastAuctionModel).lot.toLowerCase();
-    final bool matchesName = lot.contains(name.toLowerCase());
-    final bool matchesLocalization = localizationName?.isNotEmpty ?? false
-        ? lot.contains(localizationName!.toLowerCase())
-        : false;
-    return matchesName || matchesLocalization;
-  }).toList();
+  Future<List<T>> _safeFetch<T>(Future<List<T>> fetch) async {
+    try {
+      return await fetch;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

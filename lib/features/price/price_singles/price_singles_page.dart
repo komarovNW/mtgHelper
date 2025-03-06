@@ -20,14 +20,20 @@ class PriceSinglesPage extends StatelessWidget {
       listener: (BuildContext context, PriceSinglesState state) {},
       builder: (BuildContext context, PriceSinglesState state) {
         return state.map(
-          success: (PriceSinglesSuccess state) => ListView.builder(
-            itemCount: state.list.length,
-            itemBuilder: (BuildContext context, int index) {
-              return SingleCard(item: state.list[index]);
-            },
-          ),
+          success: (PriceSinglesSuccess state) {
+            return state.list.isEmpty
+                ? const Center(
+                    child: Text('Пусто'),
+                  )
+                : ListView.builder(
+                    itemCount: state.list.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return SingleCard(item: state.list[index]);
+                    },
+                  );
+          },
           loading: (_) => const AppLoader(),
-          failure: (_) => const AppError(error: 'ошибка'),
+          failure: (PriceSinglesFailure state) => AppError(error: state.error),
         );
       },
     );
