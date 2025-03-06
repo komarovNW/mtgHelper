@@ -65,9 +65,9 @@ class AuctionModel extends LoggableModel {
 
   static DateTime _parseDate(dynamic timestamp) {
     if (timestamp == null) return DateTime.fromMillisecondsSinceEpoch(0);
-    return DateTime.fromMillisecondsSinceEpoch(
-      int.tryParse(timestamp.toString()) ?? 0 * 1000,
-    );
+    final int? millis = int.tryParse(timestamp.toString());
+    if (millis == null) return DateTime.fromMillisecondsSinceEpoch(0);
+    return DateTime.fromMillisecondsSinceEpoch(millis * 1000);
   }
 }
 

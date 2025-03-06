@@ -102,9 +102,9 @@ class _BodyState extends State<_Body> {
             hasScrollBody: false,
             child: AppLoader(),
           ),
-          failure: (_) => const SliverFillRemaining(
+          failure: (SearchFailure state) => SliverFillRemaining(
             hasScrollBody: false,
-            child: AppError(error: 'ошибка'),
+            child: AppError(error: state.error),
           ),
         );
       },

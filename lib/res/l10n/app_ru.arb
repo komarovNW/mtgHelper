@@ -61,6 +61,8 @@
   "priceTabSingles": "Синглы",
   "priceTabAuctions": "Ауки",
   "priceAuctionCurrentTitle": "Текущие аукционы",
+  "priceAuctionCurrentEmptyTitle": "На данный момент аукционов с этой картой нет",
   "priceAuctionPastTitle": "Завершенные аукционы",
+  "priceAuctionPastEmptyTitle": "Аукционов с этой картой не было",
   "profileTitle": "Профиль"
 }

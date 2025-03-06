@@ -25,8 +25,8 @@ class PriceAuctionPage extends StatelessWidget {
         return state.map(
           success: (PriceAuctionSuccess state) => _Body(item: state.item),
           loading: (_) => const AppLoader(),
-          failure: (_) => const AppError(
-            error: 'ошибка',
+          failure: (PriceAuctionFailure state) => AppError(
+            error: state.error,
           ),
         );
       },
@@ -46,12 +46,14 @@ class _Body extends StatelessWidget {
         children: <Widget>[
           AuctionSection<AuctionModel>(
             title: context.l10n.priceAuctionCurrentTitle,
+            emptyTitle: context.l10n.priceAuctionCurrentEmptyTitle,
             auctions: item.currentAuctions,
             buildCard: (AuctionModel auction) =>
                 CurrentAuctionCard(item: auction),
           ),
           AuctionSection<PastAuctionModel>(
             title: context.l10n.priceAuctionPastTitle,
+            emptyTitle: context.l10n.priceAuctionPastEmptyTitle,
             auctions: item.pastAuctions,
             buildCard: (PastAuctionModel auction) =>
                 PastAuctionCard(item: auction),
@@ -66,16 +68,29 @@ class AuctionSection<T> extends StatelessWidget {
   const AuctionSection({
     super.key,
     required this.title,
+    required this.emptyTitle,
     required this.auctions,
     required this.buildCard,
   });
   final String title;
+  final String emptyTitle;
   final List<T> auctions;
   final Widget Function(T) buildCard;
 
   @override
   Widget build(BuildContext context) {
-    if (auctions.isEmpty) return const SizedBox.shrink();
+    if (auctions.isEmpty) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+        child: Center(
+          child: Text(
+            emptyTitle,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+        ),
+      );
+    }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[

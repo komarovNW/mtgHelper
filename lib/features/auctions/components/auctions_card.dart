@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:mtg_helper/data/models/auction_model.dart';
 import 'package:mtg_helper/extension/localization_extension.dart';
 import 'package:mtg_helper/widgets/app_box.dart';

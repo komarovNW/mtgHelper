@@ -191,7 +191,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get priceAuctionCurrentTitle => 'Текущие аукционы';
 
   @override
+  String get priceAuctionCurrentEmptyTitle =>
+      'На данный момент аукционов с этой картой нет';
+
+  @override
   String get priceAuctionPastTitle => 'Завершенные аукционы';
+
+  @override
+  String get priceAuctionPastEmptyTitle => 'Аукционов с этой картой не было';
 
   @override
   String get profileTitle => 'Профиль';
