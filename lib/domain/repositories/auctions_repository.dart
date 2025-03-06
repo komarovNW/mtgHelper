@@ -1,5 +1,5 @@
-import 'package:mtg_helper/domain/entities/auction.dart';
+import 'package:mtg_helper/data/models/auction_model.dart';
 
 abstract class AuctionsRepository {
-  Future<List<Auction>> getAuctions();
+  Future<List<AuctionModel>> getAuctions();
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mtg_helper/domain/entities/auction.dart';
+import 'package:mtg_helper/data/models/auction_model.dart';
 import 'package:mtg_helper/extension/localization_extension.dart';
 import 'package:mtg_helper/widgets/app_box.dart';
 import 'package:mtg_helper/extension/auction_extension.dart';
@@ -9,7 +9,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class AuctionCard extends StatelessWidget {
   const AuctionCard({super.key, required this.item});
-  final Auction item;
+  final AuctionModel item;
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +93,7 @@ class AuctionCardDescription extends StatelessWidget {
 
 class AuctionCardButton extends StatelessWidget {
   const AuctionCardButton({super.key, required this.item});
-  final Auction item;
+  final AuctionModel item;
 
   void _launchURL() async {
     final Uri url =
