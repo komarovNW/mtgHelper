@@ -3,27 +3,25 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-
 class DioService {
   DioService(this._dio) {
     _dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (RequestOptions options, RequestInterceptorHandler handler) {
-          final String userId = _getCurrentUserId();
-          final String email = _getCurrentUserEmail();
-          debugPrint(
-            '➡️ [$email - $userId] Request: ${options.method} ${options.uri}',
-          );
+          // final String userId = _getCurrentUserId();
+          // final String email = _getCurrentUserEmail();
+          // debugPrint(
+          //   '➡️ [$email - $userId] Request: ${options.method} ${options.uri}',
+          // );
           return handler.next(options);
         },
         onResponse:
             (Response<dynamic> response, ResponseInterceptorHandler handler) {
-          final String userId = _getCurrentUserId();
-          final String email = _getCurrentUserEmail();
-          debugPrint(
-            '✅ [$email - $userId] Response: ${response.statusCode} ${response.data}',
-          );
+          // final String userId = _getCurrentUserId();
+          // final String email = _getCurrentUserEmail();
+          // debugPrint(
+          //   '✅ [$email - $userId] Response: ${response.statusCode} ${response.data}',
+          // );
           return handler.next(response);
         },
         onError: (DioException e, ErrorInterceptorHandler handler) {
@@ -123,11 +121,11 @@ class DioService {
     CustomException customException,
   ) {
     final String userId = _getCurrentUserId();
-    final String email = _getCurrentUserEmail();
-    final String errorMessage =
-        '❌ [$email - $userId] Dio Error: ${e.type} - ${e.message}\n${e.error}';
+    // final String email = _getCurrentUserEmail();
+    // final String errorMessage =
+    //     '❌ [$email - $userId] Dio Error: ${e.type} - ${e.message}\n${e.error}';
 
-    debugPrint(errorMessage);
+    // debugPrint(errorMessage);
     FirebaseCrashlytics.instance.setUserIdentifier(userId);
     FirebaseCrashlytics.instance.setCustomKey(
       'custom_message',
@@ -150,10 +148,10 @@ class DioService {
     return user?.uid ?? 'Гость';
   }
 
-  String _getCurrentUserEmail() {
-    final String? email = FirebaseAuth.instance.currentUser?.email;
-    return email ?? 'Неопознанный ';
-  }
+  // String _getCurrentUserEmail() {
+  //   final String? email = FirebaseAuth.instance.currentUser?.email;
+  //   return email ?? 'Неопознанный ';
+  // }
 }
 
 class NetworkException implements Exception {

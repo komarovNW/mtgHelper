@@ -8,6 +8,10 @@ class GetPriceAuctionCardUseCase {
   final PriceAuctionRepository _repository;
 
   Future<AllAuctionsModel> call(String name, String? localizationName) async {
-    return await _repository.getAuctionPrice(name, localizationName);
+    try {
+      return await _repository.getAuctionPrice(name, localizationName);
+    } catch (e) {
+      rethrow;
+    }
   }
 }

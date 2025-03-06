@@ -25,7 +25,9 @@ class PriceAuctionPage extends StatelessWidget {
         return state.map(
           success: (PriceAuctionSuccess state) => _Body(item: state.item),
           loading: (_) => const AppLoader(),
-          failure: (_) => const AppError(),
+          failure: (_) => const AppError(
+            error: 'ошибка',
+          ),
         );
       },
     );

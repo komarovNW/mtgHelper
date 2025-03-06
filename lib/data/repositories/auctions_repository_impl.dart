@@ -11,6 +11,10 @@ class AuctionsRepositoryImpl implements AuctionsRepository {
 
   @override
   Future<List<AuctionModel>> getAuctions() {
-    return _remoteDataSource.getAuctions();
+    try {
+      return _remoteDataSource.getAuctions();
+    } catch (e) {
+      rethrow;
+    }
   }
 }

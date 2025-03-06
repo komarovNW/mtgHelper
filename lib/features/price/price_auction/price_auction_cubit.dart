@@ -3,6 +3,7 @@ import 'package:mtg_helper/data/models/all_auctions_model.dart';
 import 'package:mtg_helper/data/models/search_card_model.dart';
 import 'package:mtg_helper/domain/use_cases/price/get_auction_price_card_use_case.dart';
 import 'package:mtg_helper/features/price/price_auction/price_auction_state.dart';
+import 'package:mtg_helper/utils/error.handler.dart';
 
 class PriceAuctionCubit extends Cubit<PriceAuctionState> {
   PriceAuctionCubit({
@@ -25,7 +26,9 @@ class PriceAuctionCubit extends Cubit<PriceAuctionState> {
       );
       emit(PriceAuctionState.success(item: item));
     } catch (e) {
-      emit(const PriceAuctionState.failure(''));
+      ErrorHandler.handleError(e, (String errorMessage) {
+        emit(PriceAuctionState.failure(errorMessage));
+      });
     }
   }
 }

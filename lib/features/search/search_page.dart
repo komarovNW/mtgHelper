@@ -104,7 +104,7 @@ class _BodyState extends State<_Body> {
           ),
           failure: (_) => const SliverFillRemaining(
             hasScrollBody: false,
-            child: AppError(),
+            child: AppError(error: 'ошибка'),
           ),
         );
       },

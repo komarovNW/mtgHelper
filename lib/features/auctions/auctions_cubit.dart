@@ -3,6 +3,7 @@ import 'package:mtg_helper/data/models/auction_model.dart';
 import 'package:mtg_helper/domain/use_cases/auction/filter_use_case.dart';
 import 'package:mtg_helper/domain/use_cases/auction/get_auctions_use_case.dart';
 import 'package:mtg_helper/features/auctions/auctions_state.dart';
+import 'package:mtg_helper/utils/error.handler.dart';
 
 class AuctionsCubit extends Cubit<AuctionsState> {
   AuctionsCubit({
@@ -18,12 +19,14 @@ class AuctionsCubit extends Cubit<AuctionsState> {
 
   Future<void> initProcess() async {
     emit(const AuctionsState.loading());
-    _allAuctions = (await _getUseCase()).reversed.toList();
-    emit(
-      AuctionsState.success(
-        allAuctions: _allAuctions,
-      ),
-    );
+    try {
+      _allAuctions = (await _getUseCase()).reversed.toList();
+      emit(AuctionsState.success(allAuctions: _allAuctions));
+    } catch (e) {
+      ErrorHandler.handleError(e, (String errorMessage) {
+        emit(AuctionsState.failure(errorMessage));
+      });
+    }
   }
 
   Future<void> reset() async {
@@ -37,7 +40,6 @@ class AuctionsCubit extends Cubit<AuctionsState> {
 
   void filter(String query) {
     final List<AuctionModel> filtered = _filterUseCase(_allAuctions, query);
-
     emit(AuctionsState.success(allAuctions: List<AuctionModel>.of(filtered)));
   }
 }

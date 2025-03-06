@@ -7,7 +7,12 @@ class GetPriceTCGCardUseCase {
   final PriceTCGRepository _repository;
 
   Future<List<ScryfallCardModel>> call(String query) async {
-    final List<ScryfallCardModel> cards = await _repository.getTCGPrice(query);
-    return cards.where((ScryfallCardModel card) => !card.digital).toList();
+    try {
+      final List<ScryfallCardModel> cards =
+          await _repository.getTCGPrice(query);
+      return cards.where((ScryfallCardModel card) => !card.digital).toList();
+    } catch (e) {
+      rethrow;
+    }
   }
 }

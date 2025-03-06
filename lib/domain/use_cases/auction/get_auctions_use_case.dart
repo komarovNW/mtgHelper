@@ -7,6 +7,10 @@ class GetAuctionsUseCase {
   final AuctionsRepository _repository;
 
   Future<List<AuctionModel>> call() async {
-    return await _repository.getAuctions();
+    try {
+      return await _repository.getAuctions();
+    } catch (e) {
+      rethrow;
+    }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mtg_helper/data/models/search_card_model.dart';
 import 'package:mtg_helper/domain/use_cases/search/get_search_cards_use_case.dart';
+import 'package:mtg_helper/utils/error.handler.dart';
 import 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {
@@ -22,9 +23,9 @@ class SearchCubit extends Cubit<SearchState> {
         ),
       );
     } catch (e) {
-      emit(
-        const SearchState.failure(''),
-      );
+      ErrorHandler.handleError(e, (String errorMessage) {
+        emit(SearchState.failure(errorMessage));
+      });
     }
   }
 

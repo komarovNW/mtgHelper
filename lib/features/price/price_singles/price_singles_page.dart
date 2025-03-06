@@ -27,7 +27,7 @@ class PriceSinglesPage extends StatelessWidget {
             },
           ),
           loading: (_) => const AppLoader(),
-          failure: (_) => const AppError(),
+          failure: (_) => const AppError(error: 'ошибка'),
         );
       },
     );

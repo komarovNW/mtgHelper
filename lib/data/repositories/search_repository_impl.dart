@@ -10,6 +10,10 @@ class SearchRepositoryImpl implements SearchRepository {
 
   @override
   Future<List<SearchCardModel>> getListOfSearchCards(String query) {
-    return _remoteDataSource.getListOfSearchCards(query);
+    try {
+      return _remoteDataSource.getListOfSearchCards(query);
+    } catch (e) {
+      rethrow;
+    }
   }
 }

@@ -20,19 +20,15 @@ class TCGRemoteDataSource {
         },
       );
 
-      if (response.statusCode == 200) {
-        final List<dynamic> data = response.data['data'] as List<dynamic>;
-        return data
-            .map(
-              (dynamic json) =>
-                  ScryfallCardModel.fromJson(json as Map<String, dynamic>),
-            )
-            .toList();
-      } else {
-        throw Exception('Failed to load cards: ${response.statusCode}');
-      }
+      final List<dynamic> data = response.data['data'] as List<dynamic>;
+      return data
+          .map(
+            (dynamic json) =>
+                ScryfallCardModel.fromJson(json as Map<String, dynamic>),
+          )
+          .toList();
     } catch (e) {
-      throw Exception('Failed to load auctions: $e');
+      rethrow;
     }
   }
 }

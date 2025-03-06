@@ -11,6 +11,10 @@ class PriceTCGRepositoryImpl implements PriceTCGRepository {
 
   @override
   Future<List<ScryfallCardModel>> getTCGPrice(String query) {
-    return _tcgRemoteDataSource.getTCG(query);
+    try {
+      return _tcgRemoteDataSource.getTCG(query);
+    } catch (e) {
+      rethrow;
+    }
   }
 }

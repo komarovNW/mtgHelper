@@ -122,9 +122,11 @@ class _BodyState extends State<_Body> {
             hasScrollBody: false,
             child: AppLoader(),
           ),
-          failure: (_) => const SliverFillRemaining(
+          failure: (AuctionsFailure state) => SliverFillRemaining(
             hasScrollBody: false,
-            child: AppError(),
+            child: AppError(
+              error: state.error,
+            ),
           ),
         );
       },
