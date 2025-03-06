@@ -19,21 +19,21 @@ mixin _$AuctionsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Auction> allAuctions) success,
+    required TResult Function(List<AuctionModel> allAuctions) success,
     required TResult Function(String error) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Auction> allAuctions)? success,
+    TResult? Function(List<AuctionModel> allAuctions)? success,
     TResult? Function(String error)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Auction> allAuctions)? success,
+    TResult Function(List<AuctionModel> allAuctions)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) =>
@@ -125,7 +125,7 @@ class _$AuctionsLoadingImpl implements AuctionsLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Auction> allAuctions) success,
+    required TResult Function(List<AuctionModel> allAuctions) success,
     required TResult Function(String error) failure,
   }) {
     return loading();
@@ -135,7 +135,7 @@ class _$AuctionsLoadingImpl implements AuctionsLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Auction> allAuctions)? success,
+    TResult? Function(List<AuctionModel> allAuctions)? success,
     TResult? Function(String error)? failure,
   }) {
     return loading?.call();
@@ -145,7 +145,7 @@ class _$AuctionsLoadingImpl implements AuctionsLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Auction> allAuctions)? success,
+    TResult Function(List<AuctionModel> allAuctions)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
@@ -200,7 +200,7 @@ abstract class _$$AuctionsSuccessImplCopyWith<$Res> {
           $Res Function(_$AuctionsSuccessImpl) then) =
       __$$AuctionsSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Auction> allAuctions});
+  $Res call({List<AuctionModel> allAuctions});
 }
 
 /// @nodoc
@@ -222,7 +222,7 @@ class __$$AuctionsSuccessImplCopyWithImpl<$Res>
       allAuctions: null == allAuctions
           ? _value._allAuctions
           : allAuctions // ignore: cast_nullable_to_non_nullable
-              as List<Auction>,
+              as List<AuctionModel>,
     ));
   }
 }
@@ -230,12 +230,12 @@ class __$$AuctionsSuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AuctionsSuccessImpl implements AuctionsSuccess {
-  const _$AuctionsSuccessImpl({required final List<Auction> allAuctions})
+  const _$AuctionsSuccessImpl({required final List<AuctionModel> allAuctions})
       : _allAuctions = allAuctions;
 
-  final List<Auction> _allAuctions;
+  final List<AuctionModel> _allAuctions;
   @override
-  List<Auction> get allAuctions {
+  List<AuctionModel> get allAuctions {
     if (_allAuctions is EqualUnmodifiableListView) return _allAuctions;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_allAuctions);
@@ -272,7 +272,7 @@ class _$AuctionsSuccessImpl implements AuctionsSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Auction> allAuctions) success,
+    required TResult Function(List<AuctionModel> allAuctions) success,
     required TResult Function(String error) failure,
   }) {
     return success(allAuctions);
@@ -282,7 +282,7 @@ class _$AuctionsSuccessImpl implements AuctionsSuccess {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Auction> allAuctions)? success,
+    TResult? Function(List<AuctionModel> allAuctions)? success,
     TResult? Function(String error)? failure,
   }) {
     return success?.call(allAuctions);
@@ -292,7 +292,7 @@ class _$AuctionsSuccessImpl implements AuctionsSuccess {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Auction> allAuctions)? success,
+    TResult Function(List<AuctionModel> allAuctions)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
@@ -338,10 +338,10 @@ class _$AuctionsSuccessImpl implements AuctionsSuccess {
 }
 
 abstract class AuctionsSuccess implements AuctionsState {
-  const factory AuctionsSuccess({required final List<Auction> allAuctions}) =
-      _$AuctionsSuccessImpl;
+  const factory AuctionsSuccess(
+      {required final List<AuctionModel> allAuctions}) = _$AuctionsSuccessImpl;
 
-  List<Auction> get allAuctions;
+  List<AuctionModel> get allAuctions;
 
   /// Create a copy of AuctionsState
   /// with the given fields replaced by the non-null parameter values.
@@ -420,7 +420,7 @@ class _$AuctionsFailureImpl implements AuctionsFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Auction> allAuctions) success,
+    required TResult Function(List<AuctionModel> allAuctions) success,
     required TResult Function(String error) failure,
   }) {
     return failure(error);
@@ -430,7 +430,7 @@ class _$AuctionsFailureImpl implements AuctionsFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Auction> allAuctions)? success,
+    TResult? Function(List<AuctionModel> allAuctions)? success,
     TResult? Function(String error)? failure,
   }) {
     return failure?.call(error);
@@ -440,7 +440,7 @@ class _$AuctionsFailureImpl implements AuctionsFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Auction> allAuctions)? success,
+    TResult Function(List<AuctionModel> allAuctions)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {

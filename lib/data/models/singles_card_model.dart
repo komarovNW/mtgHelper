@@ -1,6 +1,7 @@
 import 'dart:convert';
+import 'package:mtg_helper/utils/loggable_model.dart';
 
-class SinglesCardModel {
+class SinglesCardModel extends LoggableModel {
   SinglesCardModel({
     required this.url,
     required this.line,
@@ -9,23 +10,39 @@ class SinglesCardModel {
     required this.source,
     required this.qty,
     required this.seller,
-    // required this.stamp,
     this.city,
   });
 
   factory SinglesCardModel.fromJson(Map<String, dynamic> json) {
-    return SinglesCardModel(
-      url: json['url'] ?? '',
-      line: json['line'] ?? '',
-      cost: json['cost'] ?? 0,
-      name: json['name'] ?? '',
-      source: json['source'] ?? '',
-      qty: json['qty'] ?? 0,
-      seller: Seller.fromJson(json['seller']),
-      // stamp: json['stamp'] ?? '',
-      city: json['city'],
-    );
+    try {
+      return SinglesCardModel(
+        url: json['url'] ?? '',
+        line: json['line'] ?? '',
+        cost: json['cost'] is int
+            ? json['cost']
+            : int.tryParse(json['cost'].toString()) ?? 0,
+        name: json['name'] ?? '',
+        source: json['source'] ?? '',
+        qty: json['qty'] is int
+            ? json['qty']
+            : int.tryParse(json['qty'].toString()) ?? 0,
+        seller: Seller.fromJson(json['seller']),
+        city: json['city'] as String?,
+      );
+    } catch (e, stackTrace) {
+      LoggableModel.logError('SinglesCardModel', json, e, stackTrace);
+      return SinglesCardModel(
+        url: '',
+        line: '',
+        cost: 0,
+        name: 'Неизвестная карта',
+        source: '',
+        qty: 0,
+        seller: Seller.empty(),
+      );
+    }
   }
+
   final String url;
   final String line;
   final int cost;
@@ -33,7 +50,6 @@ class SinglesCardModel {
   final String source;
   final int qty;
   final Seller seller;
-  // final String stamp;
   final String? city;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -44,43 +60,43 @@ class SinglesCardModel {
         'source': source,
         'qty': qty,
         'seller': seller.toJson(),
-        // 'stamp': stamp,
         'city': city,
       };
 }
 
 class Seller {
   Seller({
-    // required this.id,
     required this.name,
     required this.city,
     required this.refs,
   });
 
   factory Seller.fromJson(dynamic json) {
-    if (json is String) {
-      return Seller(
-        // id: '',
-        name: json,
-        city: '',
-        refs: '',
-      );
-    } else {
-      return Seller(
-        // id: json['id'] ?? '',
-        name: json['name'] ?? '',
-        city: json['city'] ?? '',
-        refs: json['refs'] ?? '',
-      );
+    try {
+      if (json is String) {
+        return Seller(name: json, city: '', refs: '');
+      } else if (json is Map<String, dynamic>) {
+        return Seller(
+          name: json['name'] ?? '',
+          city: json['city'] ?? '',
+          refs: json['refs'] ?? '',
+        );
+      }
+      throw FormatException('Неизвестный формат seller: $json');
+    } catch (e, stackTrace) {
+      LoggableModel.logError('Seller', json, e, stackTrace);
+      return Seller.empty();
     }
   }
-  // final String id;
+
+  factory Seller.empty() =>
+      Seller(name: 'Неизвестный продавец', city: '', refs: '');
+
   final String name;
   final String city;
   final String refs;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        // 'id': id,
         'name': name,
         'city': city,
         'refs': refs,
@@ -88,8 +104,17 @@ class Seller {
 }
 
 List<SinglesCardModel> parseListings(String jsonStr) {
-  final List<dynamic> jsonData = json.decode(jsonStr);
-  return jsonData
-      .map((dynamic json) => SinglesCardModel.fromJson(json))
-      .toList();
+  try {
+    final List<dynamic> jsonData = json.decode(jsonStr);
+    return jsonData.map((dynamic json) {
+      if (json is Map<String, dynamic>) {
+        return SinglesCardModel.fromJson(json);
+      } else {
+        throw FormatException('Неверный формат JSON элемента: $json');
+      }
+    }).toList();
+  } catch (e, stackTrace) {
+    LoggableModel.logError('List<SinglesCardModel>', json, e, stackTrace);
+    return <SinglesCardModel>[];
+  }
 }

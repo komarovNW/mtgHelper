@@ -1,34 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:mtg_helper/utils/loggable_model.dart';
 
-class PastAuctionDataModelResponse {
-  PastAuctionDataModelResponse({
-    // required this.totalPages,
-    // required this.currentPage,
-    required this.auctions,
-  });
-
-  factory PastAuctionDataModelResponse.fromJson(Map<String, dynamic> json) {
-    try {
-      return PastAuctionDataModelResponse(
-        // totalPages: json['total_pages'],
-        // currentPage: json['current_page'],
-        auctions: List<PastAuctionModel>.from(
-          json['auctions'].map((dynamic x) => PastAuctionModel.fromJson(x)),
-        ),
-      );
-    } catch (e) {
-      debugPrint('Ошибка при парсинге PastAuctionDataModelResponse: $e');
-      debugPrint('Ошибка на ключах: ${json.keys}');
-      rethrow;
-    }
-  }
-
-  // final int totalPages;
-  // final int currentPage;
-  final List<PastAuctionModel> auctions;
-}
-
-class PastAuctionModel {
+class PastAuctionModel extends LoggableModel {
   PastAuctionModel({
     required this.id,
     required this.lot,
@@ -41,23 +13,34 @@ class PastAuctionModel {
   factory PastAuctionModel.fromJson(Map<String, dynamic> json) {
     try {
       return PastAuctionModel(
-        id: json['id'].toString(),
-        lot: json['lot'].toString(),
+        id: json['id']?.toString() ?? '',
+        lot: json['lot']?.toString() ?? '',
         dateEnded: DateTime.fromMillisecondsSinceEpoch(
-          int.parse(json['date_ended'].toString()) * 1000,
+          int.tryParse(json['date_ended']?.toString() ?? '') ?? 0,
         ),
         winner: json['winner'] != null
             ? Winner.fromJson(json['winner'])
-            : Winner(id: '', name: '', city: '', refs: ''),
-        seller: Seller.fromJson(json['seller']),
-        winningBid: json['winning_bid'].toString(),
+            : Winner.empty(),
+        seller: json['seller'] != null
+            ? Seller.fromJson(json['seller'])
+            : Seller.empty(),
+        winningBid: json['winning_bid']?.toString() ?? '',
       );
-    } catch (e) {
-      debugPrint('Ошибка при парсинге PastAuctionModel: $e');
-      debugPrint('Объект: $json');
-      debugPrint('Ошибка на ключах: ${json.keys}');
-      rethrow;
+    } catch (e, stackTrace) {
+      LoggableModel.logError('PastAuctionModel', json, e, stackTrace);
+      return PastAuctionModel.empty();
     }
+  }
+
+  factory PastAuctionModel.empty() {
+    return PastAuctionModel(
+      id: '',
+      lot: '',
+      dateEnded: DateTime.fromMillisecondsSinceEpoch(0),
+      winner: Winner.empty(),
+      seller: Seller.empty(),
+      winningBid: '',
+    );
   }
 
   final String id;
@@ -68,7 +51,7 @@ class PastAuctionModel {
   final String winningBid;
 }
 
-class Winner {
+class Winner extends LoggableModel {
   Winner({
     required this.id,
     required this.name,
@@ -79,16 +62,19 @@ class Winner {
   factory Winner.fromJson(Map<String, dynamic> json) {
     try {
       return Winner(
-        id: json['id'].toString(),
-        name: json['name'].toString(),
-        city: json['city'].toString(),
-        refs: json['refs'].toString(),
+        id: json['id']?.toString() ?? '',
+        name: json['name']?.toString() ?? '',
+        city: json['city']?.toString() ?? '',
+        refs: json['refs']?.toString() ?? '',
       );
-    } catch (e) {
-      debugPrint('Ошибка при парсинге Winner: $e');
-      debugPrint('Ошибка на ключах: ${json.keys}');
-      rethrow;
+    } catch (e, stackTrace) {
+      LoggableModel.logError('Winner', json, e, stackTrace);
+      return Winner.empty();
     }
+  }
+
+  factory Winner.empty() {
+    return Winner(id: '', name: '', city: '', refs: '');
   }
 
   final String id;
@@ -97,7 +83,7 @@ class Winner {
   final String refs;
 }
 
-class Seller {
+class Seller extends LoggableModel {
   Seller({
     required this.id,
     required this.name,
@@ -108,20 +94,51 @@ class Seller {
   factory Seller.fromJson(Map<String, dynamic> json) {
     try {
       return Seller(
-        id: json['id'].toString(),
-        name: json['name'].toString(),
-        city: json['city'].toString(),
-        refs: json['refs'].toString(),
+        id: json['id']?.toString() ?? '',
+        name: json['name']?.toString() ?? '',
+        city: json['city']?.toString() ?? '',
+        refs: json['refs']?.toString() ?? '',
       );
-    } catch (e) {
-      debugPrint('Ошибка при парсинге Seller: $e');
-      debugPrint('Ошибка на ключах: ${json.keys}');
-      rethrow;
+    } catch (e, stackTrace) {
+      LoggableModel.logError('Seller', json, e, stackTrace);
+      return Seller.empty();
     }
+  }
+
+  factory Seller.empty() {
+    return Seller(id: '', name: '', city: '', refs: '');
   }
 
   final String id;
   final String name;
   final String city;
   final String refs;
+}
+
+class PastAuctionDataModelResponse {
+  PastAuctionDataModelResponse({
+    required this.auctions,
+  });
+
+  factory PastAuctionDataModelResponse.fromJson(Map<String, dynamic> json) {
+    try {
+      return PastAuctionDataModelResponse(
+        auctions: List<PastAuctionModel>.from(
+          (json['auctions'] as List<dynamic>? ?? <PastAuctionModel>[]).map(
+            (dynamic x) => PastAuctionModel.fromJson(x as Map<String, dynamic>),
+          ),
+        ),
+      );
+    } catch (e, stackTrace) {
+      LoggableModel.logError(
+        'PastAuctionDataModelResponse',
+        json,
+        e,
+        stackTrace,
+      );
+      return PastAuctionDataModelResponse(auctions: <PastAuctionModel>[]);
+    }
+  }
+
+  final List<PastAuctionModel> auctions;
 }

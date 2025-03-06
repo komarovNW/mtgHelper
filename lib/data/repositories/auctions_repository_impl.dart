@@ -1,5 +1,6 @@
 import 'package:mtg_helper/data/datasources/auctions_remote_data_source.dart';
-import 'package:mtg_helper/domain/entities/auction.dart';
+import 'package:mtg_helper/data/models/auction_model.dart';
+
 import 'package:mtg_helper/domain/repositories/auctions_repository.dart';
 
 class AuctionsRepositoryImpl implements AuctionsRepository {
@@ -9,7 +10,7 @@ class AuctionsRepositoryImpl implements AuctionsRepository {
   final AuctionsRemoteDataSource _remoteDataSource;
 
   @override
-  Future<List<Auction>> getAuctions() {
+  Future<List<AuctionModel>> getAuctions() {
     return _remoteDataSource.getAuctions();
   }
 }

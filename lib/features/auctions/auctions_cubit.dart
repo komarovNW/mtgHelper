@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mtg_helper/domain/entities/auction.dart';
+import 'package:mtg_helper/data/models/auction_model.dart';
 import 'package:mtg_helper/domain/use_cases/auction/filter_use_case.dart';
 import 'package:mtg_helper/domain/use_cases/auction/get_auctions_use_case.dart';
 import 'package:mtg_helper/features/auctions/auctions_state.dart';
@@ -14,7 +14,7 @@ class AuctionsCubit extends Cubit<AuctionsState> {
   final GetAuctionsUseCase _getUseCase;
   final FilterUseCase _filterUseCase;
 
-  List<Auction> _allAuctions = <Auction>[];
+  List<AuctionModel> _allAuctions = <AuctionModel>[];
 
   Future<void> initProcess() async {
     emit(const AuctionsState.loading());
@@ -36,8 +36,8 @@ class AuctionsCubit extends Cubit<AuctionsState> {
   }
 
   void filter(String query) {
-    final List<Auction> filtered = _filterUseCase(_allAuctions, query);
+    final List<AuctionModel> filtered = _filterUseCase(_allAuctions, query);
 
-    emit(AuctionsState.success(allAuctions: List<Auction>.of(filtered)));
+    emit(AuctionsState.success(allAuctions: List<AuctionModel>.of(filtered)));
   }
 }
