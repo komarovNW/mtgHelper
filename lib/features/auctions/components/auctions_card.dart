@@ -9,8 +9,17 @@ import 'package:mtg_helper/widgets/app_cached_network_image.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AuctionCard extends StatelessWidget {
-  const AuctionCard({super.key, required this.item});
+  const AuctionCard({
+    super.key,
+    required this.item,
+    this.needFavoriteIcon = false,
+    this.isFavoriteIcon = false,
+    required this.onPressedFavoriteIcon,
+  });
   final AuctionModel item;
+  final bool needFavoriteIcon;
+  final bool isFavoriteIcon;
+  final VoidCallback onPressedFavoriteIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +28,13 @@ class AuctionCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          AppCachedNetworkImage(url: item.imageUrl, size: ImageSize.large),
+          AppCachedNetworkImage(
+            url: item.imageUrl,
+            size: ImageSize.large,
+            needFavoriteIcon: needFavoriteIcon,
+            isFavoriteIcon: isFavoriteIcon,
+            onPressedFavoriteIcon: onPressedFavoriteIcon,
+          ),
           const HBox(8),
           AuctionCardDescription(
             lot: item.lot,

@@ -386,6 +386,24 @@ abstract class AppLocalizations {
   /// **'По вашему запросу ничего не нашли'**
   String get auctionEmptyList;
 
+  /// No description provided for @auctionEmptyFavoritesList.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вы еще не выбрали избранные аукционы. Не забывайте что максимум 5!'**
+  String get auctionEmptyFavoritesList;
+
+  /// No description provided for @auctionTabAll.
+  ///
+  /// In ru, this message translates to:
+  /// **'Все'**
+  String get auctionTabAll;
+
+  /// No description provided for @auctionTabFavorites.
+  ///
+  /// In ru, this message translates to:
+  /// **'Избранные'**
+  String get auctionTabFavorites;
+
   /// No description provided for @auctionCardDescriptionLot.
   ///
   /// In ru, this message translates to:
