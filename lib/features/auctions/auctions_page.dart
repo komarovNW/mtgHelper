@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:mtg_helper/extension/localization_extension.dart';
+import 'package:mtg_helper/features/auctions/components/auction_body.dart';
 import 'package:mtg_helper/widgets/app_bar.dart';
 import 'package:mtg_helper/widgets/app_drawer.dart';
-import 'package:mtg_helper/features/auctions/components/auctions_card.dart';
 import 'package:mtg_helper/widgets/app_error.dart';
 import 'package:mtg_helper/widgets/app_loader.dart';
-import 'auctions_cubit.dart';
 import 'package:mtg_helper/utils/debouncer.dart';
+
+import 'auctions_cubit.dart';
 import 'auctions_state.dart';
 
 class AuctionsPage extends StatefulWidget {
@@ -17,7 +19,9 @@ class AuctionsPage extends StatefulWidget {
   State<AuctionsPage> createState() => _AuctionsPageState();
 }
 
-class _AuctionsPageState extends State<AuctionsPage> {
+class _AuctionsPageState extends State<AuctionsPage>
+    with SingleTickerProviderStateMixin {
+  late final TabController _tabController;
   final ScrollController _scrollController = ScrollController();
   final TextEditingController _searchController = TextEditingController();
   final Debouncer _debouncer =
@@ -27,32 +31,26 @@ class _AuctionsPageState extends State<AuctionsPage> {
   @override
   void initState() {
     super.initState();
+    _tabController = TabController(length: 2, vsync: this);
     context.read<AuctionsCubit>().initProcess();
   }
 
   void _onSearchChanged(String query) {
     if (query == _previousQuery) return;
     _debouncer.run(() {
+      final AuctionsCubit cubit = context.read<AuctionsCubit>();
       if (query.length >= 3) {
-        context.read<AuctionsCubit>().filter(query);
-        _scrollController.animateTo(
-          0,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeOut,
-        );
+        cubit.filter(query);
+        _scrollController.jumpTo(0);
       } else if (_previousQuery.length >= 3 && query.length < 3) {
-        context.read<AuctionsCubit>().reset();
+        cubit.reset();
       }
       _previousQuery = query;
     });
   }
 
   void _onTapIcon() {
-    _scrollController.animateTo(
-      0,
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeOut,
-    );
+    _scrollController.jumpTo(0);
     context.read<AuctionsCubit>().reset();
     _searchController.clear();
   }
@@ -60,21 +58,37 @@ class _AuctionsPageState extends State<AuctionsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      drawer: AppDrawer(
-        currentPage: context.l10n.drawerAuctions,
-      ),
-      body: Container(
-        color: Colors.white,
-        child: CustomScrollView(
-          controller: _scrollController,
-          slivers: <Widget>[
-            CustomAppBar(
-              searchController: _searchController,
-              onChange: _onSearchChanged,
-              onTapIcon: _onTapIcon,
+      backgroundColor: const Color(0xffF6F6F6),
+      drawer: AppDrawer(currentPage: context.l10n.drawerAuctions),
+      body: NestedScrollView(
+        controller: _scrollController,
+        headerSliverBuilder: (_, __) => <Widget>[
+          CustomAppBar(
+            searchController: _searchController,
+            onChange: _onSearchChanged,
+            onTapIcon: _onTapIcon,
+            bottom: TabBar(
+              controller: _tabController,
+              indicatorSize: TabBarIndicatorSize.tab,
+              labelColor: Colors.white,
+              unselectedLabelColor: Colors.grey,
+              indicator: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(color: Color(0xffF45D01), width: 3),
+                ),
+              ),
+              tabs: <Widget>[
+                Tab(text: context.l10n.auctionTabAll),
+                Tab(text: context.l10n.auctionTabFavorites),
+              ],
             ),
-            const _Body(),
+          ),
+        ],
+        body: TabBarView(
+          controller: _tabController,
+          children: const <Widget>[
+            _AuctionListView(isFavorites: false),
+            _AuctionListView(isFavorites: true),
           ],
         ),
       ),
@@ -82,52 +96,24 @@ class _AuctionsPageState extends State<AuctionsPage> {
   }
 }
 
-class _Body extends StatefulWidget {
-  const _Body();
+class _AuctionListView extends StatelessWidget {
+  const _AuctionListView({required this.isFavorites});
+  final bool isFavorites;
 
-  @override
-  State<_Body> createState() => _BodyState();
-}
-
-class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuctionsCubit, AuctionsState>(
-      listener: (BuildContext context, AuctionsState state) {},
+      listener: (_, __) {},
       builder: (BuildContext context, AuctionsState state) {
         return state.map(
-          success: (AuctionsSuccess state) {
-            if (state.allAuctions.isEmpty) {
-              return SliverFillRemaining(
-                hasScrollBody: false,
-                child: Center(
-                  child: Text(context.l10n.auctionEmptyList),
-                ),
-              );
-            } else {
-              return SliverPadding(
-                padding: const EdgeInsets.all(8.0),
-                sliver: SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) => AuctionCard(
-                      item: state.allAuctions[index],
-                    ),
-                    childCount: state.allAuctions.length,
-                  ),
-                ),
-              );
-            }
-          },
-          loading: (_) => const SliverFillRemaining(
-            hasScrollBody: false,
-            child: AppLoader(),
+          success: (AuctionsSuccess state) => AuctionsBody(
+            favoriteAuctions: state.favoriteAuctions,
+            allAuctions: state.allAuctions,
+            favoritesIds: state.favoritesIds,
+            isFavorites: isFavorites,
           ),
-          failure: (AuctionsFailure state) => SliverFillRemaining(
-            hasScrollBody: false,
-            child: AppError(
-              error: state.error,
-            ),
-          ),
+          loading: (_) => const AppLoader(),
+          failure: (AuctionsFailure state) => AppError(error: state.error),
         );
       },
     );

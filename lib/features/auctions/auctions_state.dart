@@ -9,6 +9,8 @@ class AuctionsState with _$AuctionsState {
 
   const factory AuctionsState.success({
     required List<AuctionModel> allAuctions,
+    required List<AuctionModel> favoriteAuctions,
+    required Set<String> favoritesIds,
   }) = AuctionsSuccess;
 
   const factory AuctionsState.failure(String error) = AuctionsFailure;

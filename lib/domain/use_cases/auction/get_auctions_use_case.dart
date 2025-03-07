@@ -1,5 +1,5 @@
 import 'package:mtg_helper/data/models/auction_model.dart';
-import 'package:mtg_helper/domain/repositories/auctions_repository.dart';
+import 'package:mtg_helper/domain/repositories/auctions/auctions_repository.dart';
 
 class GetAuctionsUseCase {
   GetAuctionsUseCase({required AuctionsRepository repository})

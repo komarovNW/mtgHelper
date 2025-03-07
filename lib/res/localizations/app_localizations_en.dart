@@ -151,6 +151,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get auctionEmptyList => 'По вашему запросу ничего не нашли';
 
   @override
+  String get auctionEmptyFavoritesList =>
+      'Вы еще не выбрали избранные аукционы. Не забывайте что максимум 5!';
+
+  @override
+  String get auctionTabAll => 'Все';
+
+  @override
+  String get auctionTabFavorites => 'Избранные';
+
+  @override
   String get auctionCardDescriptionLot => 'Лот: ';
 
   @override
