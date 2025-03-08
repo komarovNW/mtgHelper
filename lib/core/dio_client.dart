@@ -59,6 +59,35 @@ class DioService {
     }
   }
 
+  Future<Response<dynamic>> post(
+    String path, {
+    dynamic data,
+  }) async {
+    try {
+      return await _dio.post(
+        path,
+        data: data,
+        options: Options(
+          headers: <String, dynamic>{
+            'Content-Type': 'application/json',
+          },
+        ),
+      );
+    } on DioException catch (e, stackTrace) {
+      _logError(
+        e,
+        stackTrace,
+        CustomException(
+          message: 'Ошибка типа: ${e.type}',
+          errorDetails: e.message,
+          stackTrace: StackTrace.current,
+          requestUrl: e.requestOptions.uri.toString(),
+        ),
+      );
+      rethrow;
+    }
+  }
+
   void _handleError(DioException e, ErrorInterceptorHandler handler) {
     final CustomException customException = CustomException(
       message: 'Ошибка типа: ${e.type}',

@@ -19,17 +19,22 @@ class PriceAuctionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<PriceAuctionCubit, PriceAuctionState>(
-      listener: (BuildContext context, PriceAuctionState state) {},
-      builder: (BuildContext context, PriceAuctionState state) {
-        return state.map(
-          success: (PriceAuctionSuccess state) => _Body(item: state.item),
-          loading: (_) => const AppLoader(),
-          failure: (PriceAuctionFailure state) => AppError(
-            error: state.error,
-          ),
-        );
+    return RefreshIndicator(
+      onRefresh: () async {
+        context.read<PriceAuctionCubit>().loadPrice();
       },
+      child: BlocConsumer<PriceAuctionCubit, PriceAuctionState>(
+        listener: (BuildContext context, PriceAuctionState state) {},
+        builder: (BuildContext context, PriceAuctionState state) {
+          return state.map(
+            success: (PriceAuctionSuccess state) => _Body(item: state.item),
+            loading: (_) => const AppLoader(),
+            failure: (PriceAuctionFailure state) => AppError(
+              error: state.error,
+            ),
+          );
+        },
+      ),
     );
   }
 }

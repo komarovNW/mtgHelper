@@ -23,11 +23,15 @@ class AuctionsBody extends StatelessWidget {
     final List<AuctionModel> auctions =
         isFavorites ? favoriteAuctions : allAuctions;
     if (auctions.isEmpty) {
-      return Center(
-        child: Text(
-          isFavorites
-              ? context.l10n.auctionEmptyFavoritesList
-              : context.l10n.auctionEmptyList,
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+          child: Text(
+            isFavorites
+                ? context.l10n.auctionEmptyFavoritesList
+                : context.l10n.auctionEmptyList,
+            textAlign: TextAlign.center,
+          ),
         ),
       );
     }

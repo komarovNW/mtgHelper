@@ -55,6 +55,10 @@ class _AuctionsPageState extends State<AuctionsPage>
     _searchController.clear();
   }
 
+  Future<void> _refresh() async {
+    await context.read<AuctionsCubit>().initProcess();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,9 +90,15 @@ class _AuctionsPageState extends State<AuctionsPage>
         ],
         body: TabBarView(
           controller: _tabController,
-          children: const <Widget>[
-            _AuctionListView(isFavorites: false),
-            _AuctionListView(isFavorites: true),
+          children: <Widget>[
+            _AuctionListView(
+              isFavorites: false,
+              refresh: _refresh,
+            ),
+            _AuctionListView(
+              isFavorites: true,
+              refresh: _refresh,
+            ),
           ],
         ),
       ),
@@ -97,25 +107,32 @@ class _AuctionsPageState extends State<AuctionsPage>
 }
 
 class _AuctionListView extends StatelessWidget {
-  const _AuctionListView({required this.isFavorites});
+  const _AuctionListView({
+    required this.isFavorites,
+    required this.refresh,
+  });
   final bool isFavorites;
+  final Future<void> Function() refresh;
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuctionsCubit, AuctionsState>(
-      listener: (_, __) {},
-      builder: (BuildContext context, AuctionsState state) {
-        return state.map(
-          success: (AuctionsSuccess state) => AuctionsBody(
-            favoriteAuctions: state.favoriteAuctions,
-            allAuctions: state.allAuctions,
-            favoritesIds: state.favoritesIds,
-            isFavorites: isFavorites,
-          ),
-          loading: (_) => const AppLoader(),
-          failure: (AuctionsFailure state) => AppError(error: state.error),
-        );
-      },
+    return RefreshIndicator(
+      onRefresh: refresh,
+      child: BlocConsumer<AuctionsCubit, AuctionsState>(
+        listener: (_, __) {},
+        builder: (BuildContext context, AuctionsState state) {
+          return state.map(
+            success: (AuctionsSuccess state) => AuctionsBody(
+              favoriteAuctions: state.favoriteAuctions,
+              allAuctions: state.allAuctions,
+              favoritesIds: state.favoritesIds,
+              isFavorites: isFavorites,
+            ),
+            loading: (_) => const AppLoader(),
+            failure: (AuctionsFailure state) => AppError(error: state.error),
+          );
+        },
+      ),
     );
   }
 }

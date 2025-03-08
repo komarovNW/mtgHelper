@@ -14,20 +14,25 @@ class PriceTCGPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<PriceTCGCubit, PriceTCGState>(
-      listener: (BuildContext context, PriceTCGState state) {},
-      builder: (BuildContext context, PriceTCGState state) {
-        return state.map(
-          success: (PriceTCGSuccess state) => ListView.builder(
-            itemCount: state.list.length,
-            itemBuilder: (BuildContext context, int index) {
-              return PriceTCGCard(item: state.list[index]);
-            },
-          ),
-          loading: (_) => const AppLoader(),
-          failure: (PriceTCGFailure state) => AppError(error: state.error),
-        );
+    return RefreshIndicator(
+      onRefresh: () async {
+        await context.read<PriceTCGCubit>().loadPrice();
       },
+      child: BlocConsumer<PriceTCGCubit, PriceTCGState>(
+        listener: (BuildContext context, PriceTCGState state) {},
+        builder: (BuildContext context, PriceTCGState state) {
+          return state.map(
+            success: (PriceTCGSuccess state) => ListView.builder(
+              itemCount: state.list.length,
+              itemBuilder: (BuildContext context, int index) {
+                return PriceTCGCard(item: state.list[index]);
+              },
+            ),
+            loading: (_) => const AppLoader(),
+            failure: (PriceTCGFailure state) => AppError(error: state.error),
+          );
+        },
+      ),
     );
   }
 }
