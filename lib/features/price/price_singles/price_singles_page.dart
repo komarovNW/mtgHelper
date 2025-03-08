@@ -16,26 +16,32 @@ class PriceSinglesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<PriceSinglesCubit, PriceSinglesState>(
-      listener: (BuildContext context, PriceSinglesState state) {},
-      builder: (BuildContext context, PriceSinglesState state) {
-        return state.map(
-          success: (PriceSinglesSuccess state) {
-            return state.list.isEmpty
-                ? const Center(
-                    child: Text('Пусто'),
-                  )
-                : ListView.builder(
-                    itemCount: state.list.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return SingleCard(item: state.list[index]);
-                    },
-                  );
-          },
-          loading: (_) => const AppLoader(),
-          failure: (PriceSinglesFailure state) => AppError(error: state.error),
-        );
+    return RefreshIndicator(
+      onRefresh: () async {
+        context.read<PriceSinglesCubit>().loadPrice();
       },
+      child: BlocConsumer<PriceSinglesCubit, PriceSinglesState>(
+        listener: (BuildContext context, PriceSinglesState state) {},
+        builder: (BuildContext context, PriceSinglesState state) {
+          return state.map(
+            success: (PriceSinglesSuccess state) {
+              return state.list.isEmpty
+                  ? const Center(
+                      child: Text('Пусто'),
+                    )
+                  : ListView.builder(
+                      itemCount: state.list.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return SingleCard(item: state.list[index]);
+                      },
+                    );
+            },
+            loading: (_) => const AppLoader(),
+            failure: (PriceSinglesFailure state) =>
+                AppError(error: state.error),
+          );
+        },
+      ),
     );
   }
 }

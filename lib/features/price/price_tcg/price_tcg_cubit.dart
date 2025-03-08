@@ -18,7 +18,7 @@ class PriceTCGCubit extends Cubit<PriceTCGState> {
   final GetPriceTCGCardUseCase _getTCGPriceCardUseCase;
   final SearchCardModel _searchCard;
 
-  void loadPrice() async {
+  Future<void> loadPrice() async {
     try {
       final List<ScryfallCardModel> list =
           await _getTCGPriceCardUseCase(_searchCard.name);

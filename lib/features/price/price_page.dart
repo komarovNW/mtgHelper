@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mtg_helper/data/models/search_card_model.dart';
 import 'package:mtg_helper/extension/localization_extension.dart';
 import 'package:mtg_helper/features/price/price_auction/price_auction_page.dart';
+import 'package:mtg_helper/features/price/price_scg/price_scg_page.dart';
 import 'package:mtg_helper/features/price/price_singles/price_singles_page.dart';
 import 'package:mtg_helper/features/price/price_tcg/price_tcg_page.dart';
 import 'package:mtg_helper/widgets/app_bar.dart';
@@ -20,7 +21,7 @@ class _PricePageState extends State<PricePage>
   late TabController _tabController;
   @override
   void initState() {
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
     super.initState();
   }
 
@@ -52,7 +53,7 @@ class _PricePageState extends State<PricePage>
                 ),
                 tabs: <Widget>[
                   Tab(text: context.l10n.priceTabTCG),
-                  // Tab(text: context.l10n.priceTabSCG),
+                  Tab(text: context.l10n.priceTabSCG),
                   Tab(text: context.l10n.priceTabSingles),
                   Tab(text: context.l10n.priceTabAuctions),
                 ],
@@ -76,7 +77,7 @@ class _Body extends StatelessWidget {
       controller: tabController,
       children: const <Widget>[
         PriceTCGPage(),
-        // PriceSCGPage(),
+        PriceSCGPage(),
         PriceSinglesPage(),
         PriceAuctionPage(),
       ],
