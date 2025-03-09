@@ -1,72 +1,96 @@
-class SCGDataModel {
-  SCGDataModel({
-    required this.condition,
+class ScgCardsResponse {
+  ScgCardsResponse({required this.cards});
+
+  factory ScgCardsResponse.fromJson(Map<String, dynamic> json) {
+    return ScgCardsResponse(
+      cards: (json['Results'] as List<dynamic>)
+          .map((dynamic e) => ScgCardsModel.fromJson(e))
+          .toList(),
+    );
+  }
+
+  final List<ScgCardsModel> cards;
+}
+
+class ScgCardsModel {
+  ScgCardsModel({required this.card});
+
+  factory ScgCardsModel.fromJson(Map<String, dynamic> json) {
+    return ScgCardsModel(
+      card: ScgCardModel.fromJson(json['Document']),
+    );
+  }
+
+  final ScgCardModel card;
+}
+
+class ScgCardModel {
+  factory ScgCardModel.fromJson(Map<String, dynamic> json) {
+    return ScgCardModel(
+      imageUrl: _extractStringOrList(json['image']),
+      setName: _extractStringOrList(json['set']) as String,
+      attributes: (json['hawk_child_attributes'] as List<dynamic>)
+          .map((dynamic e) => ScgCardAttributes.fromJson(e))
+          .toList(),
+    );
+  }
+
+  ScgCardModel({
+    this.imageUrl,
+    required this.setName,
+    required this.attributes,
+  });
+
+  final String? imageUrl;
+  final String setName;
+  final List<ScgCardAttributes> attributes;
+}
+
+class ScgCard {
+  ScgCard({
+    this.imageUrl,
+    required this.attributes,
+    required this.setName,
+  });
+
+  final String? imageUrl;
+  final ScgCardAttributes attributes;
+  final String setName;
+}
+
+class ScgCardAttributes {
+  ScgCardAttributes({
     required this.price,
-    required this.stock,
-    required this.purchasingDisabled,
-    required this.language,
+    required this.quantity,
+    required this.isOnSale,
+    required this.priceSale,
   });
 
-  factory SCGDataModel.fromJson(Map<String, dynamic> json) {
-    return SCGDataModel(
-      condition: json['condition'],
-      price: (json['price'] as num).toDouble(),
-      stock: json['stock'],
-      purchasingDisabled: json['purchasing_disabled'],
-      language: json['language'],
+  factory ScgCardAttributes.fromJson(Map<String, dynamic> json) {
+    return ScgCardAttributes(
+      price: _extractStringOrList(json['price']) as String,
+      quantity: _extractIntOrList(json['qty']),
+      isOnSale: _extractStringOrList(json['is_on_sale']) as String,
+      priceSale: _extractStringOrList(json['price_sale']) as String,
     );
   }
-  final String condition;
-  final double price;
-  final int stock;
-  final bool purchasingDisabled;
-  final String language;
+
+  final String price;
+  final int quantity;
+  final String isOnSale;
+  final String priceSale;
 }
 
-class SCGCardModel {
-  SCGCardModel({
-    required this.id,
-    required this.name,
-    required this.set,
-    required this.url,
-    required this.cards,
-  });
-
-  factory SCGCardModel.fromJson(Map<String, dynamic> json) {
-    return SCGCardModel(
-      id: json['id'],
-      name: json['name'],
-      set: json['set'],
-      url: json['url'],
-      cards: (json['cards'] as List<dynamic>)
-          .map((dynamic card) => SCGDataModel.fromJson(card))
-          .toList(),
-    );
+dynamic _extractStringOrList(dynamic data) {
+  if (data is List && data.length == 1) {
+    return data.first;
   }
-  final int id;
-  final String name;
-  final String set;
-  final String url;
-  final List<SCGDataModel> cards;
+  return data;
 }
 
-class SCGDataModelResponse {
-  SCGDataModelResponse({
-    required this.rows,
-    required this.page,
-    required this.pageCount,
-  });
-
-  factory SCGDataModelResponse.fromJson(Map<String, dynamic> json) {
-    return SCGDataModelResponse(
-      rows: (json['rows'] as List<dynamic>)
-          .map((dynamic row) => SCGCardModel.fromJson(row))
-          .toList(),
-      page: json['page'],
-      pageCount: json['pageCount'],
-    );
+int _extractIntOrList(dynamic data) {
+  if (data is List && data.length == 1) {
+    return data.first as int;
   }
-  final List<SCGCardModel> rows;
-  final int page;
-  final int pageCount;
+  throw ArgumentError('Ожидался список с одним int');
 }

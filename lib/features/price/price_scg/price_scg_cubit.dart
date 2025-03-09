@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mtg_helper/data/models/scg_card_model.dart';
+
 import 'package:mtg_helper/data/models/search_card_model.dart';
 import 'package:mtg_helper/domain/use_cases/price/get_scg_price_card_use_case.dart';
 import 'package:mtg_helper/features/price/price_scg/price_scg_state.dart';
@@ -18,11 +19,11 @@ class PriceSCGCubit extends Cubit<PriceSCGState> {
 
   void loadPrice() async {
     try {
-      final List<SCGCardModel> list =
-          await _getPriceSCGCardUseCase(_searchCard.text);
+      final List<ScgCardsModel> list =
+          await _getPriceSCGCardUseCase(_searchCard.name);
       emit(
         PriceSCGState.success(
-          list: List<SCGCardModel>.of(list),
+          list: List<ScgCardsModel>.of(list),
         ),
       );
     } catch (e) {

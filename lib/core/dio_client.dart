@@ -3,18 +3,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-
 class DioService {
   DioService(this._dio) {
     _dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (RequestOptions options, RequestInterceptorHandler handler) {
-          final String userId = _getCurrentUserId();
-          final String email = _getCurrentUserEmail();
-          debugPrint(
-            '➡️ [$email - $userId] Request: ${options.method} ${options.uri}',
-          );
+          // final String userId = _getCurrentUserId();
+          // final String email = _getCurrentUserEmail();
+          // debugPrint(
+          //   '➡️ [$email - $userId] Request: ${options.method} ${options.uri}',
+          // );
           return handler.next(options);
         },
         onResponse:
@@ -67,11 +65,6 @@ class DioService {
       return await _dio.post(
         path,
         data: data,
-        options: Options(
-          headers: <String, dynamic>{
-            'Content-Type': 'application/json',
-          },
-        ),
       );
     } on DioException catch (e, stackTrace) {
       _logError(
@@ -179,10 +172,10 @@ class DioService {
     return user?.uid ?? 'Гость';
   }
 
-  String _getCurrentUserEmail() {
-    final String? email = FirebaseAuth.instance.currentUser?.email;
-    return email ?? 'Неопознанный ';
-  }
+  // String _getCurrentUserEmail() {
+  //   final String? email = FirebaseAuth.instance.currentUser?.email;
+  //   return email ?? 'Неопознанный ';
+  // }
 }
 
 class NetworkException implements Exception {

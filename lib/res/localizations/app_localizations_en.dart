@@ -43,6 +43,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get password => 'Пароль';
 
   @override
+  String get empty => 'Пусто';
+
+  @override
   String get repeatPassword => 'Повторите пароль';
 
   @override

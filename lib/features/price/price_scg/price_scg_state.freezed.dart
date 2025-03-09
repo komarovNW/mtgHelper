@@ -19,21 +19,21 @@ mixin _$PriceSCGState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<SCGCardModel> list) success,
+    required TResult Function(List<ScgCardsModel> list) success,
     required TResult Function(String error) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<SCGCardModel> list)? success,
+    TResult? Function(List<ScgCardsModel> list)? success,
     TResult? Function(String error)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<SCGCardModel> list)? success,
+    TResult Function(List<ScgCardsModel> list)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) =>
@@ -125,7 +125,7 @@ class _$PriceSCGLoadingImpl implements PriceSCGLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<SCGCardModel> list) success,
+    required TResult Function(List<ScgCardsModel> list) success,
     required TResult Function(String error) failure,
   }) {
     return loading();
@@ -135,7 +135,7 @@ class _$PriceSCGLoadingImpl implements PriceSCGLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<SCGCardModel> list)? success,
+    TResult? Function(List<ScgCardsModel> list)? success,
     TResult? Function(String error)? failure,
   }) {
     return loading?.call();
@@ -145,7 +145,7 @@ class _$PriceSCGLoadingImpl implements PriceSCGLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<SCGCardModel> list)? success,
+    TResult Function(List<ScgCardsModel> list)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
@@ -200,7 +200,7 @@ abstract class _$$PriceSCGSuccessImplCopyWith<$Res> {
           $Res Function(_$PriceSCGSuccessImpl) then) =
       __$$PriceSCGSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<SCGCardModel> list});
+  $Res call({List<ScgCardsModel> list});
 }
 
 /// @nodoc
@@ -222,7 +222,7 @@ class __$$PriceSCGSuccessImplCopyWithImpl<$Res>
       list: null == list
           ? _value._list
           : list // ignore: cast_nullable_to_non_nullable
-              as List<SCGCardModel>,
+              as List<ScgCardsModel>,
     ));
   }
 }
@@ -230,12 +230,12 @@ class __$$PriceSCGSuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$PriceSCGSuccessImpl implements PriceSCGSuccess {
-  const _$PriceSCGSuccessImpl({required final List<SCGCardModel> list})
+  const _$PriceSCGSuccessImpl({required final List<ScgCardsModel> list})
       : _list = list;
 
-  final List<SCGCardModel> _list;
+  final List<ScgCardsModel> _list;
   @override
-  List<SCGCardModel> get list {
+  List<ScgCardsModel> get list {
     if (_list is EqualUnmodifiableListView) return _list;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_list);
@@ -271,7 +271,7 @@ class _$PriceSCGSuccessImpl implements PriceSCGSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<SCGCardModel> list) success,
+    required TResult Function(List<ScgCardsModel> list) success,
     required TResult Function(String error) failure,
   }) {
     return success(list);
@@ -281,7 +281,7 @@ class _$PriceSCGSuccessImpl implements PriceSCGSuccess {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<SCGCardModel> list)? success,
+    TResult? Function(List<ScgCardsModel> list)? success,
     TResult? Function(String error)? failure,
   }) {
     return success?.call(list);
@@ -291,7 +291,7 @@ class _$PriceSCGSuccessImpl implements PriceSCGSuccess {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<SCGCardModel> list)? success,
+    TResult Function(List<ScgCardsModel> list)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
@@ -337,10 +337,10 @@ class _$PriceSCGSuccessImpl implements PriceSCGSuccess {
 }
 
 abstract class PriceSCGSuccess implements PriceSCGState {
-  const factory PriceSCGSuccess({required final List<SCGCardModel> list}) =
+  const factory PriceSCGSuccess({required final List<ScgCardsModel> list}) =
       _$PriceSCGSuccessImpl;
 
-  List<SCGCardModel> get list;
+  List<ScgCardsModel> get list;
 
   /// Create a copy of PriceSCGState
   /// with the given fields replaced by the non-null parameter values.
@@ -419,7 +419,7 @@ class _$PriceSCGFailureImpl implements PriceSCGFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<SCGCardModel> list) success,
+    required TResult Function(List<ScgCardsModel> list) success,
     required TResult Function(String error) failure,
   }) {
     return failure(error);
@@ -429,7 +429,7 @@ class _$PriceSCGFailureImpl implements PriceSCGFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<SCGCardModel> list)? success,
+    TResult? Function(List<ScgCardsModel> list)? success,
     TResult? Function(String error)? failure,
   }) {
     return failure?.call(error);
@@ -439,7 +439,7 @@ class _$PriceSCGFailureImpl implements PriceSCGFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<SCGCardModel> list)? success,
+    TResult Function(List<ScgCardsModel> list)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {

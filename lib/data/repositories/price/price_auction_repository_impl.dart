@@ -21,6 +21,7 @@ class PriceAuctionRepositoryImpl implements PriceAuctionRepository {
     try {
       final AllAuctionsModel allCards =
           await _auctionRemoteDataSource.getAuctions(name, localizationName);
+
       return AllAuctionsModel(
         currentAuctions: filterCardsByPartialMatch(
           allCards: allCards.currentAuctions,
