@@ -8,10 +8,21 @@ import 'package:mtg_helper/features/price/price_tcg/price_tcg_state.dart';
 import 'package:mtg_helper/widgets/app_error.dart';
 import 'package:mtg_helper/widgets/app_loader.dart';
 
-class PriceTCGPage extends StatelessWidget {
+class PriceTCGPage extends StatefulWidget {
   const PriceTCGPage({
     super.key,
   });
+
+  @override
+  State<PriceTCGPage> createState() => _PriceTCGPageState();
+}
+
+class _PriceTCGPageState extends State<PriceTCGPage> {
+  @override
+  void initState() {
+    context.read<PriceTCGCubit>().loadPrice();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

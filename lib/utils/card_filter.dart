@@ -1,19 +1,3 @@
-// List<T> filterCardsByPartialMatch<T>({
-//   required List<T> allCards,
-//   required String name,
-//   String? localizationName,
-//   required String Function(T card) modelKey,
-// }) {
-//   return allCards.where((T card) {
-//     final bool matchesName =
-//         modelKey(card).toLowerCase().contains(name.toLowerCase());
-//     final bool matchesLocalizationName = localizationName != null
-//         ? modelKey(card).toLowerCase().contains(localizationName.toLowerCase())
-//         : true;
-//     return matchesName || matchesLocalizationName;
-//   }).toList();
-// }
-
 List<T> filterCardsByPartialMatch<T>({
   required List<T> allCards,
   required String name,
@@ -49,6 +33,17 @@ List<T> filterCardsByExactMatch<T>({
     return matchesName && matchesLocalizationName;
   }).toList();
 }
+
+// List<T> filterCardsByExactMatchSCG<T>({
+//   required List<T> allCards,
+//   required String name,
+//   required String Function(T card) modelKey,
+// }) {
+//   return allCards.where((T card) {
+//     final bool matchesName = modelKey(card).trim().toLowerCase() == name.trim().toLowerCase();
+//     return matchesName;
+//   }).toList();
+// }
 
 List<T> filterCardsByExactOrLocalizedMatch<T>({
   required List<T> allCards,

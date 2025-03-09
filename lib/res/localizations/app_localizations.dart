@@ -482,6 +482,36 @@ abstract class AppLocalizations {
   /// **'Ауки'**
   String get priceTabAuctions;
 
+  /// No description provided for @priceTCGCardMarket.
+  ///
+  /// In ru, this message translates to:
+  /// **'CardMarket'**
+  String get priceTCGCardMarket;
+
+  /// No description provided for @priceTCGRegular.
+  ///
+  /// In ru, this message translates to:
+  /// **'regular'**
+  String get priceTCGRegular;
+
+  /// No description provided for @priceTCGFoil.
+  ///
+  /// In ru, this message translates to:
+  /// **'foil'**
+  String get priceTCGFoil;
+
+  /// No description provided for @priceTCGTCG.
+  ///
+  /// In ru, this message translates to:
+  /// **'TCG'**
+  String get priceTCGTCG;
+
+  /// No description provided for @priceTCGEtched.
+  ///
+  /// In ru, this message translates to:
+  /// **'etched'**
+  String get priceTCGEtched;
+
   /// No description provided for @priceAuctionCurrentTitle.
   ///
   /// In ru, this message translates to:

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mtg_helper/utils/auth_notifier.dart';
+import 'package:mtg_helper/utils/dollar_exchange_notifier.dart';
+import 'package:mtg_helper/utils/euro_exchange_notifier.dart';
 import 'package:mtg_helper/utils/localization_notifier.dart';
 import 'package:mtg_helper/core/router.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -11,11 +13,14 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<AuthNotifier, LocalizationNotifier>(
+    return Consumer4<AuthNotifier, LocalizationNotifier, DollarExchangeNotifier,
+        EuroExchangeNotifier>(
       builder: (
         BuildContext context,
         AuthNotifier authNotifier,
         LocalizationNotifier localizationNotifier,
+        DollarExchangeNotifier dollarExchangeNotifier,
+        EuroExchangeNotifier euroExchangeNotifier,
         Widget? child,
       ) {
         return MaterialApp.router(

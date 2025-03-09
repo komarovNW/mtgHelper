@@ -11,9 +11,7 @@ class PriceTCGCubit extends Cubit<PriceTCGState> {
     required SearchCardModel searchCard,
   })  : _getTCGPriceCardUseCase = getTCGPriceCardUseCase,
         _searchCard = searchCard,
-        super(const PriceTCGState.loading()) {
-    Future<void>.microtask(loadPrice);
-  }
+        super(const PriceTCGState.loading());
 
   final GetPriceTCGCardUseCase _getTCGPriceCardUseCase;
   final SearchCardModel _searchCard;

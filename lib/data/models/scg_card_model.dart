@@ -28,6 +28,7 @@ class ScgCardModel {
   factory ScgCardModel.fromJson(Map<String, dynamic> json) {
     return ScgCardModel(
       imageUrl: _extractStringOrList(json['image']),
+      cardName: _extractStringOrList(json['card_name']),
       setName: _extractStringOrList(json['set']) as String,
       attributes: (json['hawk_child_attributes'] as List<dynamic>)
           .map((dynamic e) => ScgCardAttributes.fromJson(e))
@@ -38,11 +39,13 @@ class ScgCardModel {
   ScgCardModel({
     this.imageUrl,
     required this.setName,
+    required this.cardName,
     required this.attributes,
   });
 
   final String? imageUrl;
   final String setName;
+  final String cardName;
   final List<ScgCardAttributes> attributes;
 }
 
@@ -51,11 +54,13 @@ class ScgCard {
     this.imageUrl,
     required this.attributes,
     required this.setName,
+    required this.cardName,
   });
 
   final String? imageUrl;
   final ScgCardAttributes attributes;
   final String setName;
+  final String cardName;
 }
 
 class ScgCardAttributes {
