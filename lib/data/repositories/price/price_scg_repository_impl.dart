@@ -11,7 +11,14 @@ class PriceSCGRepositoryImpl implements PriceSCGRepository {
   final SCGRemoteDataSource _scgRemoteDataSource;
 
   @override
-  Future<List<ScgCardsModel>> getSCGPrice(String query) {
-    return _scgRemoteDataSource.getSCG(query);
+  Future<List<ScgCardsModel>> getSCGPrice(String query) async {
+    /// TODO почесу то не приходит сам silence проверить почему
+    return await _scgRemoteDataSource.getSCG(query);
+    // final List<ScgCardsModel> allCards = await _scgRemoteDataSource.getSCG(query);
+    // return filterCardsByExactMatch(
+    //   allCards: allCards,
+    //   name: query,
+    //   modelKey: (ScgCardsModel card) => card.card.cardName,
+    // );
   }
 }

@@ -203,6 +203,21 @@ class AppLocalizationsRu extends AppLocalizations {
   String get priceTabAuctions => 'Ауки';
 
   @override
+  String get priceTCGCardMarket => 'CardMarket';
+
+  @override
+  String get priceTCGRegular => 'regular';
+
+  @override
+  String get priceTCGFoil => 'foil';
+
+  @override
+  String get priceTCGTCG => 'TCG';
+
+  @override
+  String get priceTCGEtched => 'etched';
+
+  @override
   String get priceAuctionCurrentTitle => 'Текущие аукционы';
 
   @override

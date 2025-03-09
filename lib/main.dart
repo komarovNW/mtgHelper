@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:mtg_helper/core/app.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:mtg_helper/core/di.dart';
+import 'package:mtg_helper/utils/dollar_exchange_notifier.dart';
+import 'package:mtg_helper/utils/euro_exchange_notifier.dart';
 import 'package:mtg_helper/utils/localization_notifier.dart';
 import 'package:mtg_helper/res/localizations/app_localizations.dart';
 import 'package:provider/provider.dart';
@@ -31,6 +33,12 @@ void main() {
           ),
           ChangeNotifierProvider<LocalizationNotifier>(
             create: (_) => LocalizationNotifier(),
+          ),
+          ChangeNotifierProvider<DollarExchangeNotifier>(
+            create: (_) => DollarExchangeNotifier(),
+          ),
+          ChangeNotifierProvider<EuroExchangeNotifier>(
+            create: (_) => EuroExchangeNotifier(),
           ),
         ],
         child: const App(),

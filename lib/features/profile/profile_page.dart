@@ -5,6 +5,7 @@ import 'package:mtg_helper/extension/localization_extension.dart';
 import 'package:mtg_helper/utils/auth_notifier.dart';
 import 'package:mtg_helper/widgets/app_bar.dart';
 import 'package:mtg_helper/widgets/app_drawer.dart';
+import 'package:mtg_helper/widgets/app_exchange_switcher.dart';
 import 'package:provider/provider.dart';
 import 'profile_cubit.dart';
 import 'profile_state.dart';
@@ -94,7 +95,6 @@ class _BodyState extends State<_Body> {
                         controller: _emailController,
                         keyboardType: TextInputType.text,
                         style: const TextStyle(color: Color(0xff474647)),
-                        // onChanged: (String query) => _onChange(query),
                         cursorColor: const Color(0xff474647),
                         decoration: InputDecoration(
                           contentPadding:
@@ -134,7 +134,6 @@ class _BodyState extends State<_Body> {
                         controller: _displayNameController,
                         keyboardType: TextInputType.text,
                         style: const TextStyle(color: Color(0xff474647)),
-                        // onChanged: (String query) => _onChange(query),
                         cursorColor: const Color(0xff474647),
                         decoration: InputDecoration(
                           contentPadding:
@@ -156,6 +155,10 @@ class _BodyState extends State<_Body> {
                             ),
                           ),
                         ),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: CustomRateSwitcher(),
                       ),
                     ],
                   ),

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mtg_helper/data/models/scryfall_card_model.dart';
+import 'package:mtg_helper/extension/exchange_extension.dart';
+import 'package:mtg_helper/extension/localization_extension.dart';
+import 'package:mtg_helper/utils/dollar_exchange_notifier.dart';
+import 'package:mtg_helper/utils/euro_exchange_notifier.dart';
 
 import 'package:mtg_helper/widgets/app_cached_network_image.dart';
 
@@ -54,11 +59,13 @@ class _CardMarketColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool useExchange =
+        context.watch<EuroExchangeNotifier>().useCustomExchange;
     return Column(
       children: <Widget>[
-        const Text(
-          'CardMarket',
-          style: TextStyle(
+        Text(
+          context.l10n.priceTCGCardMarket,
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
             color: Color(0xff474647),
@@ -67,29 +74,37 @@ class _CardMarketColumn extends StatelessWidget {
         if (item.prices.eur != '')
           Row(
             children: <Widget>[
-              const Text(
-                'regular',
-                style: TextStyle(
+              Text(
+                context.l10n.priceTCGRegular,
+                style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                   color: Color(0xff474647),
                 ),
               ),
-              Text(' - ${item.prices.eur} €'),
+              Text(' - ${item.prices.eur.withEuro}'),
+              if (useExchange)
+                Text(' / ${context.priceInRublesFromEuro(item.prices.eur)}'),
             ],
           ),
         if (item.prices.eurFoil != '')
           Row(
             children: <Widget>[
-              const Text(
-                'foil',
-                style: TextStyle(
+              Text(
+                context.l10n.priceTCGFoil,
+                style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                   color: Color(0xff474647),
                 ),
               ),
-              Text(' - ${item.prices.eurFoil} €'),
+
+              ///TODO придумать что делать когда не вмещается
+              Text(' - ${item.prices.eurFoil.withEuro}'),
+              if (useExchange)
+                Text(
+                  ' / ${context.priceInRublesFromEuro(item.prices.eurFoil)}',
+                ),
             ],
           ),
       ],
@@ -103,11 +118,13 @@ class _TCGColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool useExchange =
+        context.watch<DollarExchangeNotifier>().useCustomExchange;
     return Column(
       children: <Widget>[
-        const Text(
-          'TCG',
-          style: TextStyle(
+        Text(
+          context.l10n.priceTCGTCG,
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
             color: Color(0xff474647),
@@ -116,43 +133,53 @@ class _TCGColumn extends StatelessWidget {
         if (item.prices.usd != '')
           Row(
             children: <Widget>[
-              const Text(
-                'regular',
-                style: TextStyle(
+              Text(
+                context.l10n.priceTCGRegular,
+                style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                   color: Color(0xff474647),
                 ),
               ),
-              Text(' - ${item.prices.usd} \$'),
+              Text(' - ${item.prices.usd.withDollar}'),
+              if (useExchange)
+                Text(' / ${context.priceInRublesFromDollar(item.prices.usd)}'),
             ],
           ),
         if (item.prices.usdFoil != '')
           Row(
             children: <Widget>[
-              const Text(
-                'foil',
-                style: TextStyle(
+              Text(
+                context.l10n.priceTCGFoil,
+                style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                   color: Color(0xff474647),
                 ),
               ),
-              Text(' - ${item.prices.usdFoil} \$'),
+              Text(' - ${item.prices.usdFoil.withDollar}'),
+              if (useExchange)
+                Text(
+                  ' / ${context.priceInRublesFromDollar(item.prices.usdFoil)}',
+                ),
             ],
           ),
         if (item.prices.usdEtched != '')
           Row(
             children: <Widget>[
-              const Text(
-                'etched',
-                style: TextStyle(
+              Text(
+                context.l10n.priceTCGEtched,
+                style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                   color: Color(0xff474647),
                 ),
               ),
-              Text(' - ${item.prices.usdEtched} \$'),
+              Text(' - ${item.prices.usdEtched.withDollar}'),
+              if (useExchange)
+                Text(
+                  ' / ${context.priceInRublesFromDollar(item.prices.usdEtched)}',
+                ),
             ],
           ),
       ],
