@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mtg_helper/data/models/scryfall_card_model.dart';
 import 'package:mtg_helper/features/price/price_tcg/components/price_tcg_card.dart';
 import 'package:mtg_helper/features/price/price_tcg/price_tcg_cubit.dart';
 import 'package:mtg_helper/features/price/price_tcg/price_tcg_state.dart';
@@ -22,17 +23,29 @@ class PriceTCGPage extends StatelessWidget {
         listener: (BuildContext context, PriceTCGState state) {},
         builder: (BuildContext context, PriceTCGState state) {
           return state.map(
-            success: (PriceTCGSuccess state) => ListView.builder(
-              itemCount: state.list.length,
-              itemBuilder: (BuildContext context, int index) {
-                return PriceTCGCard(item: state.list[index]);
-              },
+            success: (PriceTCGSuccess state) => _Body(
+              list: state.list,
             ),
             loading: (_) => const AppLoader(),
             failure: (PriceTCGFailure state) => AppError(error: state.error),
           );
         },
       ),
+    );
+  }
+}
+
+class _Body extends StatelessWidget {
+  const _Body({required this.list});
+  final List<ScryfallCardModel> list;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: list.length,
+      itemBuilder: (BuildContext context, int index) {
+        return PriceTCGCard(item: list[index]);
+      },
     );
   }
 }

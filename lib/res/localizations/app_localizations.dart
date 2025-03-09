@@ -170,6 +170,12 @@ abstract class AppLocalizations {
   /// **'Пароль'**
   String get password;
 
+  /// No description provided for @empty.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пусто'**
+  String get empty;
+
   /// No description provided for @repeatPassword.
   ///
   /// In ru, this message translates to:

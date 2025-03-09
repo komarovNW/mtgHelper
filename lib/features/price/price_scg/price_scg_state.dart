@@ -7,7 +7,7 @@ part 'price_scg_state.freezed.dart';
 class PriceSCGState with _$PriceSCGState {
   const factory PriceSCGState.loading() = PriceSCGLoading;
   const factory PriceSCGState.success({
-    required List<SCGCardModel> list,
+    required List<ScgCardsModel> list,
   }) = PriceSCGSuccess;
   const factory PriceSCGState.failure(String error) = PriceSCGFailure;
 }

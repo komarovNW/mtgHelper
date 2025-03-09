@@ -12,6 +12,7 @@
   "email": "Почта",
   "login": "Логин",
   "password": "Пароль",
+  "empty": "Пусто",
   "repeatPassword": "Повторите пароль",
   "save": "Сохранить",
   "onboardingTitle1": "Аукционы",
