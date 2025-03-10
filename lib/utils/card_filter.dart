@@ -34,17 +34,6 @@ List<T> filterCardsByExactMatch<T>({
   }).toList();
 }
 
-// List<T> filterCardsByExactMatchSCG<T>({
-//   required List<T> allCards,
-//   required String name,
-//   required String Function(T card) modelKey,
-// }) {
-//   return allCards.where((T card) {
-//     final bool matchesName = modelKey(card).trim().toLowerCase() == name.trim().toLowerCase();
-//     return matchesName;
-//   }).toList();
-// }
-
 List<T> filterCardsByExactOrLocalizedMatch<T>({
   required List<T> allCards,
   required String name,
