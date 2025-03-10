@@ -17,8 +17,8 @@ class SCGRemoteDataSource {
         ApiConstants.hawkSearch,
         data: SCGRequest(
           keyword: query,
-          variant: Variant(maxPerPage: 32),
-          maxPerPage: 32,
+          variant: Variant(maxPerPage: 96),
+          maxPerPage: 96,
           facetSelections: FacetSelections(cardName: query),
           clientGuid: 'cc3be22005ef47d3969c3de28f09571b',
         ).toJson(),
