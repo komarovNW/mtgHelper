@@ -1,12 +1,23 @@
+import 'dart:developer';
+
 class ScgCardsResponse {
   ScgCardsResponse({required this.cards});
 
   factory ScgCardsResponse.fromJson(Map<String, dynamic> json) {
-    return ScgCardsResponse(
-      cards: (json['Results'] as List<dynamic>)
-          .map((dynamic e) => ScgCardsModel.fromJson(e))
-          .toList(),
-    );
+    try {
+      return ScgCardsResponse(
+        cards: (json['Results'] as List<dynamic>?)
+                ?.map((dynamic e) => ScgCardsModel.fromJson(e))
+                .toList() ??
+            <ScgCardsModel>[],
+      );
+    } catch (e, stackTrace) {
+      log(
+        'Ошибка при разборе ScgCardsResponse: $e, json: $json',
+        stackTrace: stackTrace,
+      );
+      rethrow;
+    }
   }
 
   final List<ScgCardsModel> cards;
@@ -16,9 +27,21 @@ class ScgCardsModel {
   ScgCardsModel({required this.card});
 
   factory ScgCardsModel.fromJson(Map<String, dynamic> json) {
-    return ScgCardsModel(
-      card: ScgCardModel.fromJson(json['Document']),
-    );
+    try {
+      final dynamic document = json['Document'];
+      if (document == null) {
+        throw ArgumentError('Поле "Document" отсутствует или равно null');
+      }
+      return ScgCardsModel(
+        card: ScgCardModel.fromJson(document),
+      );
+    } catch (e, stackTrace) {
+      log(
+        'Ошибка при разборе ScgCardsModel: $e, json: $json',
+        stackTrace: stackTrace,
+      );
+      rethrow;
+    }
   }
 
   final ScgCardModel card;
@@ -26,14 +49,23 @@ class ScgCardsModel {
 
 class ScgCardModel {
   factory ScgCardModel.fromJson(Map<String, dynamic> json) {
-    return ScgCardModel(
-      imageUrl: _extractStringOrList(json['image']),
-      cardName: _extractStringOrList(json['card_name']),
-      setName: _extractStringOrList(json['set']) as String,
-      attributes: (json['hawk_child_attributes'] as List<dynamic>)
-          .map((dynamic e) => ScgCardAttributes.fromJson(e))
-          .toList(),
-    );
+    try {
+      return ScgCardModel(
+        imageUrl: _extractStringOrList(json['image']),
+        cardName: _extractStringOrList(json['card_name']) ?? 'Unknown Card',
+        setName: _extractStringOrList(json['set']) as String? ?? 'Unknown Set',
+        attributes: (json['hawk_child_attributes'] as List<dynamic>?)
+                ?.map((dynamic e) => ScgCardAttributes.fromJson(e))
+                .toList() ??
+            <ScgCardAttributes>[],
+      );
+    } catch (e, stackTrace) {
+      log(
+        'Ошибка при разборе ScgCardModel: $e, json: $json',
+        stackTrace: stackTrace,
+      );
+      rethrow;
+    }
   }
 
   ScgCardModel({
@@ -49,20 +81,6 @@ class ScgCardModel {
   final List<ScgCardAttributes> attributes;
 }
 
-class ScgCard {
-  ScgCard({
-    this.imageUrl,
-    required this.attributes,
-    required this.setName,
-    required this.cardName,
-  });
-
-  final String? imageUrl;
-  final ScgCardAttributes attributes;
-  final String setName;
-  final String cardName;
-}
-
 class ScgCardAttributes {
   ScgCardAttributes({
     required this.price,
@@ -72,12 +90,22 @@ class ScgCardAttributes {
   });
 
   factory ScgCardAttributes.fromJson(Map<String, dynamic> json) {
-    return ScgCardAttributes(
-      price: _extractStringOrList(json['price']) as String,
-      quantity: _extractIntOrList(json['qty']),
-      isOnSale: _extractStringOrList(json['is_on_sale']) as String,
-      priceSale: _extractStringOrList(json['price_sale']) as String,
-    );
+    try {
+      return ScgCardAttributes(
+        price: _extractStringOrList(json['price']) as String? ?? '0.00',
+        quantity: _extractIntOrList(json['qty']),
+        isOnSale:
+            _extractStringOrList(json['is_on_sale']) as String? ?? 'false',
+        priceSale:
+            _extractStringOrList(json['price_sale']) as String? ?? '0.00',
+      );
+    } catch (e, stackTrace) {
+      log(
+        'Ошибка при разборе ScgCardAttributes: $e, json: $json',
+        stackTrace: stackTrace,
+      );
+      rethrow;
+    }
   }
 
   final String price;
@@ -87,15 +115,15 @@ class ScgCardAttributes {
 }
 
 dynamic _extractStringOrList(dynamic data) {
-  if (data is List && data.length == 1) {
+  if (data is List && data.isNotEmpty) {
     return data.first;
   }
   return data;
 }
 
 int _extractIntOrList(dynamic data) {
-  if (data is List && data.length == 1) {
-    return data.first as int;
+  if (data is List && data.isNotEmpty) {
+    return data.first as int? ?? 0;
   }
-  throw ArgumentError('Ожидался список с одним int');
+  return data as int? ?? 0;
 }
