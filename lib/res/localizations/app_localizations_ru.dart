@@ -52,6 +52,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get save => 'Сохранить';
 
   @override
+  String get mail => 'Почта';
+
+  @override
+  String get account => 'Аккаунт';
+
+  @override
   String get onboardingTitle1 => 'Аукционы';
 
   @override

@@ -5,162 +5,12 @@ import 'package:mtg_helper/utils/dollar_exchange_notifier.dart';
 import 'package:mtg_helper/utils/euro_exchange_notifier.dart';
 import 'package:provider/provider.dart';
 
-//
 class CustomRateSwitcher extends StatefulWidget {
   const CustomRateSwitcher({super.key});
 
   @override
   State<CustomRateSwitcher> createState() => _CustomRateSwitcherState();
 }
-//
-// class _CustomRateSwitcherState extends State<CustomRateSwitcher> {
-//   bool _useCustomDollarExchange = false;
-//   final ValueNotifier<int> _dollarExchange = ValueNotifier<int>(1);
-//   bool _useCustomEuroExchange = false;
-//   final ValueNotifier<int> _euroExchange = ValueNotifier<int>(1);
-//   // late int _dollar;
-//   // late int _euro;
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     _loadExchange();
-//   }
-//
-//   Future<void> _loadExchange() async {
-//     final Map<String, dynamic> data = await context.read<DollarExchangeNotifier>().getCurrentExchangeData();
-//
-//     _dollarExchange.value = data['exchange'];
-//     // _dollar = _dollarExchange.value;
-//     _useCustomDollarExchange = data['useCustomExchange'];
-//
-//     _euroExchange.value = await context.read<EuroExchangeNotifier>().getEuroExchange();
-//     // _euro = _euroExchange.value;
-//     _useCustomEuroExchange = await context.read<EuroExchangeNotifier>().getUseCustomExchange();
-//
-//     setState(() {});
-//   }
-//
-//   Future<void> _setCustomDollarExchange(int rate) async {
-//     setState(() => _useCustomDollarExchange = rate != 1);
-//     await context.read<DollarExchangeNotifier>().setUseCustomRate(_useCustomDollarExchange);
-//   }
-//
-//   Future<void> _setDollar(int number) async {
-//     // _dollar = number;
-//     await context.read<DollarExchangeNotifier>().setDollarExchange(number);
-//   }
-//
-//   Future<void> _setCustomEuroExchange(int rate) async {
-//     setState(() => _useCustomEuroExchange = rate != 1);
-//     await context.read<EuroExchangeNotifier>().setUseCustomRate(_useCustomEuroExchange);
-//   }
-//
-//   Future<void> _setEuro(int number) async {
-//     // _euro = number;
-//     await context.read<EuroExchangeNotifier>().setEuroExchange(number);
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: <Widget>[
-//         const Text(
-//           'Кастомный курс',
-//           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-//         ),
-//         const SizedBox(height: 16),
-//         Row(
-//           children: <Widget>[
-//             _SwitcherBox(
-//               title: 'Доллар',
-//               isActive: _useCustomDollarExchange,
-//               onChangeSwitch: _setCustomDollarExchange,
-//               value: _dollarExchange,
-//               onChangeNumber: _setDollar,
-//             ),
-//             const SizedBox(width: 16),
-//             _SwitcherBox(
-//               title: 'Евро',
-//               isActive: _useCustomEuroExchange,
-//               onChangeSwitch: _setCustomEuroExchange,
-//               value: _euroExchange,
-//               onChangeNumber: _setEuro,
-//             ),
-//           ],
-//         ),
-//       ],
-//     );
-//   }
-//
-//   @override
-//   void dispose() {
-//     _dollarExchange.dispose();
-//     _euroExchange.dispose();
-//     super.dispose();
-//   }
-// }
-//
-// class _SwitcherBox extends StatelessWidget {
-//   const _SwitcherBox({
-//     required this.title,
-//     required this.isActive,
-//     required this.onChangeSwitch,
-//     required this.onChangeNumber,
-//     required this.value,
-//   });
-//
-//   final String title;
-//   final bool isActive;
-//   final dynamic onChangeSwitch;
-//   final dynamic onChangeNumber;
-//   final ValueNotifier<int> value;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Expanded(
-//       child: Column(
-//         children: <Widget>[
-//           Text(
-//             title,
-//             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-//           ),
-//           Switch(
-//             value: isActive,
-//             onChanged: (bool value) {
-//               onChangeSwitch(value ? 0 : 1);
-//             },
-//           ),
-//           SizedBox(
-//             width: 50,
-//             child: ValueListenableBuilder<int>(
-//               valueListenable: value,
-//               builder: (BuildContext context, int rate, _) {
-//                 return TextField(
-//                   maxLength: 3,
-//                   inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
-//                   keyboardType: TextInputType.number,
-//                   decoration: const InputDecoration(
-//                     counterText: '',
-//                     border: OutlineInputBorder(),
-//                     contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-//                   ),
-//                   textAlign: TextAlign.center,
-//                   enabled: isActive,
-//                   controller: TextEditingController(text: rate.toString()),
-//                   onChanged: (String value) {
-//                     onChangeNumber(int.tryParse(value) ?? 0);
-//                   },
-//                 );
-//               },
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
 
 class _CustomRateSwitcherState extends State<CustomRateSwitcher> {
   bool _useCustomDollarExchange = false;
@@ -204,23 +54,6 @@ class _CustomRateSwitcherState extends State<CustomRateSwitcher> {
       setState(() {}); // Safe to call setState only if still mounted
     }
   }
-
-  // Future<void> _loadExchange() async {
-  //   final Map<String, dynamic> data =
-  //       await context.read<DollarExchangeNotifier>().getCurrentExchangeData();
-  //   _dollarExchange.value = data['exchange'];
-  //   _useCustomDollarExchange = data['useCustomExchange'];
-  //
-  //   _euroExchange.value =
-  //       await context.read<EuroExchangeNotifier>().getEuroExchange();
-  //   _useCustomEuroExchange =
-  //       await context.read<EuroExchangeNotifier>().getUseCustomExchange();
-  //
-  //   _dollarController.text = _dollarExchange.value.toString();
-  //   _euroController.text = _euroExchange.value.toString();
-  //
-  //   setState(() {});
-  // }
 
   Future<void> _setCustomDollarExchange(int rate) async {
     setState(() => _useCustomDollarExchange = rate != 1);

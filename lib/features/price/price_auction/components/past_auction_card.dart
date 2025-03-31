@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:mtg_helper/data/models/past_auctions_model.dart';
+import 'package:mtg_helper/extension/auction_extension.dart';
 import 'package:mtg_helper/extension/foil_check_extension.dart';
 import 'package:mtg_helper/widgets/app_box.dart';
 
@@ -47,7 +47,7 @@ class PastAuctionCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      '${item.winningBid} ₽',
+                      item.formattedCurrentBid,
                       style: const TextStyle(
                         color: Color(0xff474647),
                         fontWeight: FontWeight.bold,
@@ -55,7 +55,7 @@ class PastAuctionCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      DateFormat('dd.MM.yyyy').format(item.dateEnded),
+                      item.formattedDateEstimated,
                       style: const TextStyle(
                         color: Color(0xff474647),
                         fontWeight: FontWeight.bold,

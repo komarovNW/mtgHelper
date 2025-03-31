@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:mtg_helper/extension/localization_extension.dart';
 import 'package:mtg_helper/utils/auth_notifier.dart';
 import 'package:mtg_helper/widgets/app_bar.dart';
@@ -16,7 +15,9 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: AppDrawer(currentPage: context.l10n.drawerProfile),
+      drawer: AppDrawer(
+        currentPage: context.l10n.drawerProfile,
+      ),
       body: CustomScrollView(
         slivers: <Widget>[
           CustomAppBar(
@@ -77,14 +78,14 @@ class _BodyState extends State<_Body> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      const Padding(
-                        padding: EdgeInsets.symmetric(
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
                           vertical: 8.0,
                           horizontal: 8.0,
                         ),
                         child: Text(
-                          'Почта',
-                          style: TextStyle(
+                          context.l10n.mail,
+                          style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -117,14 +118,14 @@ class _BodyState extends State<_Body> {
                           ),
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
                           vertical: 8.0,
                           horizontal: 8.0,
                         ),
                         child: Text(
-                          'Аккаунт',
-                          style: TextStyle(
+                          context.l10n.account,
+                          style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -157,7 +158,7 @@ class _BodyState extends State<_Body> {
                         ),
                       ),
                       const Padding(
-                        padding: EdgeInsets.all(16.0),
+                        padding: EdgeInsets.all(8.0),
                         child: CustomRateSwitcher(),
                       ),
                     ],
@@ -180,9 +181,9 @@ class _BodyState extends State<_Body> {
                         ),
                       ),
                     ),
-                    child: const Text(
-                      'Сохранить',
-                      style: TextStyle(
+                    child: Text(
+                      context.l10n.save,
+                      style: const TextStyle(
                         color: Colors.white,
                       ),
                     ),
