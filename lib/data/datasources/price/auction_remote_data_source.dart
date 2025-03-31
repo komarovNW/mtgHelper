@@ -48,13 +48,16 @@ class PriceAuctionRemoteDataSource {
     String name,
     String? localizationName,
   ) async {
-    final List<String> queries = <String>[
-      name,
-      if (localizationName?.isNotEmpty ?? false) localizationName!,
-    ];
+    final List<String> queries = <String>[];
 
+    if (name.length > 3) {
+      queries.add(name);
+    }
+    if ((localizationName?.isNotEmpty ?? false) &&
+        localizationName!.length > 3) {
+      queries.add(localizationName);
+    }
     final List<PastAuctionModel> pastAuctions = <PastAuctionModel>[];
-
     for (final String query in queries) {
       final Response<dynamic> response = await _dioService.get(
         ApiConstants.topdeckAuctionSearch,

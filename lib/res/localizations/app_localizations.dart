@@ -188,6 +188,18 @@ abstract class AppLocalizations {
   /// **'Сохранить'**
   String get save;
 
+  /// No description provided for @mail.
+  ///
+  /// In ru, this message translates to:
+  /// **'Почта'**
+  String get mail;
+
+  /// No description provided for @account.
+  ///
+  /// In ru, this message translates to:
+  /// **'Аккаунт'**
+  String get account;
+
   /// No description provided for @onboardingTitle1.
   ///
   /// In ru, this message translates to:

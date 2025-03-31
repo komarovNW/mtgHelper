@@ -15,9 +15,7 @@ class PastAuctionModel extends LoggableModel {
       return PastAuctionModel(
         id: json['id']?.toString() ?? '',
         lot: json['lot']?.toString() ?? '',
-        dateEnded: DateTime.fromMillisecondsSinceEpoch(
-          int.tryParse(json['date_ended']?.toString() ?? '') ?? 0,
-        ),
+        dateEnded: _parseDate(json['date_ended']),
         winner: json['winner'] != null
             ? Winner.fromJson(json['winner'])
             : Winner.empty(),
@@ -49,6 +47,13 @@ class PastAuctionModel extends LoggableModel {
   final Winner winner;
   final Seller seller;
   final String winningBid;
+
+  static DateTime _parseDate(dynamic timestamp) {
+    if (timestamp == null) return DateTime.fromMillisecondsSinceEpoch(0);
+    final int? millis = int.tryParse(timestamp.toString());
+    if (millis == null) return DateTime.fromMillisecondsSinceEpoch(0);
+    return DateTime.fromMillisecondsSinceEpoch(millis * 1000);
+  }
 }
 
 class Winner extends LoggableModel {
