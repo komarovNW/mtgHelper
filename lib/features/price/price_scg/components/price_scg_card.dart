@@ -34,17 +34,6 @@ class SCGCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: Color(0xff474647),
                   ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Text(
-                item.setName,
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Color(0xff474647),
-                ),
               ),
             ),
             Padding(
