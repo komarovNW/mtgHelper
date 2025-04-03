@@ -30,18 +30,10 @@ class AppDrawer extends StatelessWidget {
         title: context.l10n.drawerAuctions,
         onTap: AppNavigator.goAuction,
       ),
-      // _DrawerItem(
-      //   title: context.l10n.drawerStatistic,
-      // ),
-      // _DrawerItem(
-      //   title: context.l10n.drawerTrades,
-      // ),
-      // _DrawerItem(
-      //   title: context.l10n.drawerCollection,
-      // ),
-      // _DrawerItem(
-      //   title: context.l10n.drawerCalendar,
-      // ),
+      _DrawerItem(
+        title: context.l10n.drawerMatches,
+        onTap: AppNavigator.goMatches,
+      ),
     ];
     return Drawer(
       child: ListView(
@@ -61,7 +53,6 @@ class AppDrawer extends StatelessWidget {
               ),
             ),
             currentAccountPicture: CircleAvatar(
-              // backgroundImage: const AssetImage('assets/kiki.jpg'),
               backgroundColor: const Color(0xffF45D01),
               child: Text(
                 authInfo.user?.displayName?.initials ?? '',

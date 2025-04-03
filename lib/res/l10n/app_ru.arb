@@ -45,6 +45,7 @@
   "drawerStatistic": "Статистика",
   "drawerScore": "Счетчик",
   "drawerCalendar": "Календарь",
+  "drawerMatches": "Матчи",
   "scoreTitle": "Счетчик",
   "scoreDialogText": "Вы точно хотите сбросить счетчик?",
   "auctionTitle": "Аукционы",
@@ -75,5 +76,38 @@
   "priceAuctionCurrentEmptyTitle": "На данный момент аукционов с этой картой нет",
   "priceAuctionPastTitle": "Завершенные аукционы",
   "priceAuctionPastEmptyTitle": "Аукционов с этой картой не было",
-  "profileTitle": "Профиль"
+  "profileTitle": "Профиль",
+  "matchesEmpty": "На данный момент у вас нет записанных матчей",
+  "matchesVS": "VS",
+  "matchesResult": "Результаты игр:",
+  "matchesOpponent": "Оппонент: {opponent}",
+  "@matchesOpponent": {
+    "placeholders": {
+      "opponent": {
+        "type": "String"
+      }
+    }
+  },
+  "matchesOnPlay": "Вы начинали первым",
+  "matchesOnDraw": "Оппонент начинал первым",
+  "matchRecord": "Дата игры: {date}",
+  "@matchRecord": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "matchGame": "Игра {number}:",
+  "@matchGame": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "matchFormat": "Вы начинали первым",
+  "matchDeckName": "Ваша колода",
+  "matchDeckNameOpponent": "Колода оппонента",
+  "matchNameOpponent": "Имя оппонента"
 }
