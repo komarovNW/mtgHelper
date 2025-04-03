@@ -146,6 +146,8 @@ class _SwitcherBox extends StatelessWidget {
           ),
           Switch(
             value: isActive,
+            activeColor: const Color(0xffF45D01),
+            activeTrackColor: const Color(0xff474647),
             onChanged: (bool value) {
               onChangeSwitch(value ? 0 : 1);
             },

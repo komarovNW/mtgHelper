@@ -7,6 +7,7 @@ import 'package:mtg_helper/features/registration/registration_cubit.dart';
 import 'package:mtg_helper/features/registration/registration_state.dart';
 import 'package:mtg_helper/utils/app_navigator.dart';
 import 'package:mtg_helper/utils/auth_notifier.dart';
+import 'package:mtg_helper/widgets/text_form_fields/app_text_form_field.dart';
 
 class RegistrationPage extends StatelessWidget {
   const RegistrationPage({super.key});
@@ -74,58 +75,79 @@ class _BodyState extends State<_Body> {
                 const SizedBox(
                   height: 70,
                 ),
-                _TextFormField(
-                  label: context.l10n.email,
+                AppTextFormField(
+                  text: context.l10n.email,
                   controller: _emailController,
                   errorText: state.validationErrors.emailError,
                 ),
-                _TextFormField(
-                  label: context.l10n.login,
+                // _TextFormField(
+                //   label: context.l10n.email,
+                //   controller: _emailController,
+                //   errorText: state.validationErrors.emailError,
+                // ),
+                AppTextFormField(
+                  text: context.l10n.login,
                   controller: _displayNameController,
                 ),
-                _TextFormField(
-                  label: context.l10n.password,
+                // _TextFormField(
+                //   label: context.l10n.login,
+                //   controller: _displayNameController,
+                // ),
+                AppTextFormField(
+                  text: context.l10n.password,
                   controller: _passwordController,
                   obscureText: true,
                   errorText: state.validationErrors.passwordError,
                 ),
-                _TextFormField(
-                  label: context.l10n.repeatPassword,
+                // _TextFormField(
+                //   label: context.l10n.password,
+                //   controller: _passwordController,
+                //   obscureText: true,
+                //   errorText: state.validationErrors.passwordError,
+                // ),
+                AppTextFormField(
+                  text: context.l10n.repeatPassword,
                   controller: _repeatPasswordController,
                   obscureText: true,
                   errorText: state.validationErrors.repeatPasswordError,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        context.read<RegistrationCubit>().validateForm(
-                              email: _emailController.text,
-                              password: _passwordController.text,
-                              repeatPassword: _repeatPasswordController.text,
-                              displayName: _repeatPasswordController.text,
-                            );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xffF45D01),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4),
-                          side: const BorderSide(
-                            color: Color(0xffF45D01),
-                          ),
-                        ),
-                      ),
-                      child: Text(
-                        context.l10n.save,
-                        style: const TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                // _TextFormField(
+                //   label: context.l10n.repeatPassword,
+                //   controller: _repeatPasswordController,
+                //   obscureText: true,
+                //   errorText: state.validationErrors.repeatPasswordError,
+                // ),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(vertical: 20),
+                //   child: SizedBox(
+                //     width: double.infinity,
+                //     child: ElevatedButton(
+                //       onPressed: () {
+                //         context.read<RegistrationCubit>().validateForm(
+                //               email: _emailController.text,
+                //               password: _passwordController.text,
+                //               repeatPassword: _repeatPasswordController.text,
+                //               displayName: _repeatPasswordController.text,
+                //             );
+                //       },
+                //       style: ElevatedButton.styleFrom(
+                //         backgroundColor: const Color(0xffF45D01),
+                //         shape: RoundedRectangleBorder(
+                //           borderRadius: BorderRadius.circular(4),
+                //           side: const BorderSide(
+                //             color: Color(0xffF45D01),
+                //           ),
+                //         ),
+                //       ),
+                //       child: Text(
+                //         context.l10n.save,
+                //         style: const TextStyle(
+                //           color: Colors.white,
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -135,89 +157,88 @@ class _BodyState extends State<_Body> {
   }
 }
 
-class _TextFormField extends StatelessWidget {
-  const _TextFormField({
-    required this.label,
-    required this.controller,
-    this.obscureText = false,
-    this.errorText,
-  });
-
-  final String label;
-  final TextEditingController controller;
-  final bool obscureText;
-  final String? errorText;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            label,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Color(0xff474647),
-            ),
-          ),
-          const SizedBox(
-            height: 6,
-          ),
-          AppTextFormField(
-            controller: controller,
-            obscureText: obscureText,
-            errorText: errorText,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class AppTextFormField extends StatelessWidget {
-  const AppTextFormField({
-    super.key,
-    required this.controller,
-    this.obscureText = false,
-    this.errorText,
-  });
-
-  final TextEditingController controller;
-  final bool obscureText;
-  final String? errorText;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      obscureText: obscureText,
-      keyboardType: TextInputType.text,
-      style: const TextStyle(color: Color(0xff474647)),
-      cursorColor: const Color(0xffF45D01),
-      decoration: InputDecoration(
-        errorText: errorText,
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
-        hintStyle: const TextStyle(
-          fontSize: 14,
-          color: Color(0xffF45D01),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(
-            color: Color(0xffF45D01),
-          ),
-        ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(
-            color: Color(0xffF45D01),
-          ),
-        ),
-      ),
-    );
-  }
-}
+// class _TextFormField extends StatelessWidget {
+//   const _TextFormField({
+//     required this.label,
+//     required this.controller,
+//     this.obscureText = false,
+//     this.errorText,
+//   });
+//
+//   final String label;
+//   final TextEditingController controller;
+//   final bool obscureText;
+//   final String? errorText;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.symmetric(vertical: 8.0),
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: <Widget>[
+//           Text(
+//             label,
+//             style: const TextStyle(
+//               fontSize: 16,
+//               fontWeight: FontWeight.bold,
+//               color: Color(0xff474647),
+//             ),
+//           ),
+//           const SizedBox(
+//             height: 6,
+//           ),
+//           AppTextFormField(
+//             controller: controller,
+//             obscureText: obscureText,
+//             errorText: errorText,
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+//
+// class AppTextFormField extends StatelessWidget {
+//   const AppTextFormField({
+//     super.key,
+//     required this.controller,
+//     this.obscureText = false,
+//     this.errorText,
+//   });
+//
+//   final TextEditingController controller;
+//   final bool obscureText;
+//   final String? errorText;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return TextFormField(
+//       controller: controller,
+//       obscureText: obscureText,
+//       keyboardType: TextInputType.text,
+//       style: const TextStyle(color: Color(0xff474647)),
+//       cursorColor: const Color(0xffF45D01),
+//       decoration: InputDecoration(
+//         errorText: errorText,
+//         contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+//         hintStyle: const TextStyle(
+//           fontSize: 14,
+//           color: Color(0xffF45D01),
+//         ),
+//         focusedBorder: OutlineInputBorder(
+//           borderRadius: BorderRadius.circular(10),
+//           borderSide: const BorderSide(
+//             color: Color(0xffF45D01),
+//           ),
+//         ),
+//         border: OutlineInputBorder(
+//           borderRadius: BorderRadius.circular(10),
+//           borderSide: const BorderSide(
+//             color: Color(0xffF45D01),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }

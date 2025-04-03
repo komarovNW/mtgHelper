@@ -368,6 +368,12 @@ abstract class AppLocalizations {
   /// **'Календарь'**
   String get drawerCalendar;
 
+  /// No description provided for @drawerMatches.
+  ///
+  /// In ru, this message translates to:
+  /// **'Матчи'**
+  String get drawerMatches;
+
   /// No description provided for @scoreTitle.
   ///
   /// In ru, this message translates to:
@@ -553,6 +559,78 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Профиль'**
   String get profileTitle;
+
+  /// No description provided for @matchesEmpty.
+  ///
+  /// In ru, this message translates to:
+  /// **'На данный момент у вас нет записанных матчей'**
+  String get matchesEmpty;
+
+  /// No description provided for @matchesVS.
+  ///
+  /// In ru, this message translates to:
+  /// **'VS'**
+  String get matchesVS;
+
+  /// No description provided for @matchesResult.
+  ///
+  /// In ru, this message translates to:
+  /// **'Результаты игр:'**
+  String get matchesResult;
+
+  /// No description provided for @matchesOpponent.
+  ///
+  /// In ru, this message translates to:
+  /// **'Оппонент: {opponent}'**
+  String matchesOpponent(String opponent);
+
+  /// No description provided for @matchesOnPlay.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вы начинали первым'**
+  String get matchesOnPlay;
+
+  /// No description provided for @matchesOnDraw.
+  ///
+  /// In ru, this message translates to:
+  /// **'Оппонент начинал первым'**
+  String get matchesOnDraw;
+
+  /// No description provided for @matchRecord.
+  ///
+  /// In ru, this message translates to:
+  /// **'Дата игры: {date}'**
+  String matchRecord(String date);
+
+  /// No description provided for @matchGame.
+  ///
+  /// In ru, this message translates to:
+  /// **'Игра {number}:'**
+  String matchGame(int number);
+
+  /// No description provided for @matchFormat.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вы начинали первым'**
+  String get matchFormat;
+
+  /// No description provided for @matchDeckName.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ваша колода'**
+  String get matchDeckName;
+
+  /// No description provided for @matchDeckNameOpponent.
+  ///
+  /// In ru, this message translates to:
+  /// **'Колода оппонента'**
+  String get matchDeckNameOpponent;
+
+  /// No description provided for @matchNameOpponent.
+  ///
+  /// In ru, this message translates to:
+  /// **'Имя оппонента'**
+  String get matchNameOpponent;
 }
 
 class _AppLocalizationsDelegate

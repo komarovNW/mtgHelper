@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mtg_helper/extension/localization_extension.dart';
 
-class AppTextFormField extends StatelessWidget {
-  const AppTextFormField({
+class AppSearchTextFormField extends StatelessWidget {
+  const AppSearchTextFormField({
     super.key,
     required TextEditingController searchController,
     required VoidCallback onTapIcon,

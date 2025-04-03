@@ -1,13 +1,16 @@
 import 'package:go_router/go_router.dart';
 import 'package:mtg_helper/features/auctions/auctions_router.dart';
 import 'package:mtg_helper/features/auth/auth_router.dart';
+import 'package:mtg_helper/features/matches/match_record/match_record_router.dart';
+import 'package:mtg_helper/features/matches/matches/matches_router.dart';
+
 import 'package:mtg_helper/features/onboarding/onboarding_router.dart';
 import 'package:mtg_helper/features/price/price_router.dart';
 import 'package:mtg_helper/features/profile/profile_router.dart';
 import 'package:mtg_helper/features/registration/registration_router.dart';
 import 'package:mtg_helper/features/score/score_router.dart';
 import 'package:mtg_helper/features/search/search_router.dart';
-import '../utils/auth_notifier.dart';
+import 'package:mtg_helper/utils/auth_notifier.dart';
 
 final AuthNotifier _authNotifier = AuthNotifier();
 
@@ -38,5 +41,7 @@ final GoRouter goRouter = GoRouter(
     SearchRoutes.route,
     PriceRoutes.route,
     ProfileRoutes.route,
+    MatchesRoutes.route,
+    MatchRecordRoutes.route,
   ],
 );

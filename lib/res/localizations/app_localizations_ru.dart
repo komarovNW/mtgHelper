@@ -144,6 +144,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get drawerCalendar => 'Календарь';
 
   @override
+  String get drawerMatches => 'Матчи';
+
+  @override
   String get scoreTitle => 'Счетчик';
 
   @override
@@ -238,4 +241,46 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get profileTitle => 'Профиль';
+
+  @override
+  String get matchesEmpty => 'На данный момент у вас нет записанных матчей';
+
+  @override
+  String get matchesVS => 'VS';
+
+  @override
+  String get matchesResult => 'Результаты игр:';
+
+  @override
+  String matchesOpponent(String opponent) {
+    return 'Оппонент: $opponent';
+  }
+
+  @override
+  String get matchesOnPlay => 'Вы начинали первым';
+
+  @override
+  String get matchesOnDraw => 'Оппонент начинал первым';
+
+  @override
+  String matchRecord(String date) {
+    return 'Дата игры: $date';
+  }
+
+  @override
+  String matchGame(int number) {
+    return 'Игра $number:';
+  }
+
+  @override
+  String get matchFormat => 'Вы начинали первым';
+
+  @override
+  String get matchDeckName => 'Ваша колода';
+
+  @override
+  String get matchDeckNameOpponent => 'Колода оппонента';
+
+  @override
+  String get matchNameOpponent => 'Имя оппонента';
 }

@@ -3,9 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mtg_helper/extension/localization_extension.dart';
 import 'package:mtg_helper/utils/auth_notifier.dart';
 import 'package:mtg_helper/widgets/app_bar.dart';
+import 'package:mtg_helper/widgets/app_box.dart';
+import 'package:mtg_helper/widgets/app_button.dart';
 import 'package:mtg_helper/widgets/app_drawer.dart';
 import 'package:mtg_helper/widgets/app_exchange_switcher.dart';
 import 'package:provider/provider.dart';
+import '../../widgets/text_form_fields/app_text_form_field.dart';
 import 'profile_cubit.dart';
 import 'profile_state.dart';
 
@@ -78,84 +81,15 @@ class _BodyState extends State<_Body> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 8.0,
-                          horizontal: 8.0,
-                        ),
-                        child: Text(
-                          context.l10n.mail,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      TextFormField(
-                        readOnly: true,
+                      AppTextFormField(
+                        text: context.l10n.mail,
                         controller: _emailController,
-                        keyboardType: TextInputType.text,
-                        style: const TextStyle(color: Color(0xff474647)),
-                        cursorColor: const Color(0xff474647),
-                        decoration: InputDecoration(
-                          contentPadding:
-                              const EdgeInsets.symmetric(horizontal: 16.0),
-                          hintStyle: const TextStyle(
-                            fontSize: 14,
-                            color: Color(0xff474647),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(
-                              color: Color(0xff474647),
-                            ),
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(
-                              color: Color(0xffF45D01),
-                            ),
-                          ),
-                        ),
+                        readOnly: true,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 8.0,
-                          horizontal: 8.0,
-                        ),
-                        child: Text(
-                          context.l10n.account,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      TextFormField(
+                      const HBox(8),
+                      AppTextFormField(
+                        text: context.l10n.account,
                         controller: _displayNameController,
-                        keyboardType: TextInputType.text,
-                        style: const TextStyle(color: Color(0xff474647)),
-                        cursorColor: const Color(0xff474647),
-                        decoration: InputDecoration(
-                          contentPadding:
-                              const EdgeInsets.symmetric(horizontal: 16.0),
-                          hintStyle: const TextStyle(
-                            fontSize: 14,
-                            color: Color(0xffF45D01),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(
-                              color: Color(0xffF45D01),
-                            ),
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(
-                              color: Color(0xffF45D01),
-                            ),
-                          ),
-                        ),
                       ),
                       const Padding(
                         padding: EdgeInsets.all(8.0),
@@ -164,30 +98,13 @@ class _BodyState extends State<_Body> {
                     ],
                   ),
                 ),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      context
-                          .read<AuthNotifier>()
-                          .updateDisplayName(_displayNameController.text);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xffF45D01),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4),
-                        side: const BorderSide(
-                          color: Color(0xffF45D01),
-                        ),
-                      ),
-                    ),
-                    child: Text(
-                      context.l10n.save,
-                      style: const TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
+                AppButton(
+                  text: context.l10n.save,
+                  onTap: () {
+                    context
+                        .read<AuthNotifier>()
+                        .updateDisplayName(_displayNameController.text);
+                  },
                 ),
               ],
             ),
