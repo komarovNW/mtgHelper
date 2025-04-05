@@ -30,7 +30,7 @@ class MatchesFactory {
     );
   }
 
-  BlocProvider<MatchesCubit> createMatchesBlocProvider() {
+  BlocProvider<MatchesCubit> createMatchesPage() {
     return BlocProvider<MatchesCubit>(
       create: (_) => createMatchesCubit(),
       child: const MatchesPage(),

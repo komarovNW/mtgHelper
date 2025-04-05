@@ -4,7 +4,7 @@ import 'package:mtg_helper/core/di.dart';
 import 'package:mtg_helper/data/models/search_card_model.dart';
 
 abstract class PriceRoutes {
-  static const String pricePath = '/price';
+  static const String pricePath = 'price';
   static final GoRoute route = GoRoute(
     path: pricePath,
     builder: (BuildContext context, GoRouterState state) {
