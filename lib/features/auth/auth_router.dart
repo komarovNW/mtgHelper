@@ -10,7 +10,6 @@ abstract class AuthRoutes {
   static final GoRoute route = GoRoute(
     path: authPath,
     builder: (BuildContext context, GoRouterState state) {
-      ///TODO вынести в factory
       return BlocProvider<AuthCubit>.value(
         value: DependencyInjectionContainer.authFactory.createAuthCubit(),
         child: const AuthPage(),

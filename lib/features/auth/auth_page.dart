@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mtg_helper/utils/app_navigator.dart';
 import 'package:mtg_helper/extension/localization_extension.dart';
 import 'package:mtg_helper/widgets/app_box.dart';
-import 'package:mtg_helper/features/auth/components/button.dart';
 import 'package:mtg_helper/features/auth/components/login_text_form_field.dart';
 import 'package:mtg_helper/features/auth/components/password_text_form_field.dart';
+import 'package:mtg_helper/widgets/app_button.dart';
 
 import 'auth_cubit.dart';
 import 'auth_state.dart';
@@ -95,17 +95,19 @@ class _BodyState extends State<_Body> {
                 const HBox(12),
                 PasswordTextField(passwordController: _passwordController),
                 const HBox(12),
-                Button(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      context.read<AuthCubit>().login(
-                            email: _loginController.text,
-                            password: _passwordController.text,
-                          );
-                    }
-                  },
+                AppButton(
                   isLoading: state is AuthLoading,
-                  isValid: _isFormValid,
+                  text: context.l10n.authButton,
+                  onTap: _isFormValid
+                      ? () {
+                          if (_formKey.currentState!.validate()) {
+                            context.read<AuthCubit>().login(
+                                  email: _loginController.text,
+                                  password: _passwordController.text,
+                                );
+                          }
+                        }
+                      : null,
                 ),
               ],
             ),

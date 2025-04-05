@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mtg_helper/extension/registration_exception.dart';
 
 class RegistrationRemoteDataSource {
   RegistrationRemoteDataSource({FirebaseAuth? firebaseAuth})
@@ -11,35 +12,20 @@ class RegistrationRemoteDataSource {
     String displayName,
   ) async {
     try {
-      final UserCredential userCredential =
+      final UserCredential credential =
           await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      await userCredential.user?.updateDisplayName(displayName);
-      return userCredential.user!;
+      final User? user = credential.user;
+      if (user == null) {
+        throw const RegistrationException('Не удалось создать пользователя.');
+      }
+      await user.updateDisplayName(displayName);
+      return user;
     } on FirebaseAuthException catch (e) {
       throw RegistrationException.fromFirebaseException(e);
     }
   }
-}
-
-class RegistrationException implements Exception {
-  RegistrationException(this.message);
-
-  /// TODO надо бы в локаль добавить
-  factory RegistrationException.fromFirebaseException(FirebaseAuthException e) {
-    switch (e.code) {
-      case 'email-already-in-use':
-        return RegistrationException('Этот email уже используется.');
-      case 'weak-password':
-        return RegistrationException('Слишком слабый пароль.');
-      case 'invalid-email':
-        return RegistrationException('Неправильный формат email.');
-      default:
-        return RegistrationException('Ошибка регистрации: ${e.message}');
-    }
-  }
-  final String message;
 }

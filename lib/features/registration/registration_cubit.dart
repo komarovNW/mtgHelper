@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mtg_helper/data/datasources/registration_remote_data_source.dart';
 import 'package:mtg_helper/domain/use_cases/registration/registration_use_case.dart';
+import 'package:mtg_helper/extension/registration_exception.dart';
 import 'registration_state.dart';
 
 class RegistrationCubit extends Cubit<RegistrationState> {
@@ -18,19 +18,28 @@ class RegistrationCubit extends Cubit<RegistrationState> {
   }) async {
     final ValidationErrors errors =
         _validateInputs(email, password, repeatPassword);
-
     if (errors.hasErrors) {
-      emit(state.copyWith(validationErrors: errors));
+      _resetStatus(validationErrors: errors);
       return;
     }
-
+    _resetStatus();
     emit(state.copyWith(isSubmitting: true));
-
     try {
       await _registrationUseCase(email, password, displayName);
-      emit(state.copyWith(isSubmitting: true));
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          isSuccess: true,
+        ),
+      );
     } on RegistrationException catch (e) {
-      emit(state.copyWith(isSubmitting: false, firebaseError: e.message));
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          firebaseError: e.message,
+          isSuccess: false,
+        ),
+      );
     }
   }
 
@@ -53,20 +62,15 @@ class RegistrationCubit extends Cubit<RegistrationState> {
     final RegExp regex = RegExp(r'^[^@]+@[^@]+\.[a-zA-Z]{2,}$');
     return regex.hasMatch(email);
   }
-}
 
-class ValidationErrors {
-  const ValidationErrors({
-    this.emailError,
-    this.passwordError,
-    this.repeatPasswordError,
-  });
-  final String? emailError;
-  final String? passwordError;
-  final String? repeatPasswordError;
-
-  bool get hasErrors =>
-      emailError != null ||
-      passwordError != null ||
-      repeatPasswordError != null;
+  void _resetStatus({ValidationErrors? validationErrors}) {
+    emit(
+      state.copyWith(
+        isSubmitting: false,
+        firebaseError: null,
+        isSuccess: false,
+        validationErrors: validationErrors ?? const ValidationErrors(),
+      ),
+    );
+  }
 }
