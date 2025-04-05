@@ -23,22 +23,15 @@ class _MatchRecordPageState extends State<MatchRecordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar(
+        title: 'Создать матч',
+        needBackButton: true,
+        isMatch: true,
+      ),
       drawer: const AppDrawer(
         currentPage: '',
       ),
-      body: Container(
-        color: Colors.white,
-        child: const CustomScrollView(
-          slivers: <Widget>[
-            CustomAppBar(
-              title: 'Создать матч',
-              needBackButton: true,
-              isMatch: true,
-            ),
-            _Body(),
-          ],
-        ),
-      ),
+      body: const _Body(),
     );
   }
 }
@@ -77,77 +70,75 @@ class _BodyState extends State<_Body> {
 
   @override
   Widget build(BuildContext context) {
-    return SliverPadding(
+    return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16),
-      sliver: SliverFillRemaining(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8,
-                  vertical: 2,
-                ),
-                child: AppTextFormField(
-                  text: context.l10n.matchDeckName,
-                  controller: _playerDeckController,
-                ),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8,
+                vertical: 2,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8.0,
-                  vertical: 2,
-                ),
-                child: AppTextFormField(
-                  text: context.l10n.matchDeckNameOpponent,
-                  controller: _opponentDeckController,
-                ),
+              child: AppTextFormField(
+                text: context.l10n.matchDeckName,
+                controller: _playerDeckController,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8,
-                  vertical: 2,
-                ),
-                child: AppTextFormField(
-                  text: context.l10n.matchNameOpponent,
-                  controller: _opponentNameController,
-                ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8.0,
+                vertical: 2,
               ),
-              DatePicker(
-                selectedDate: _selectedDate,
-                onTap: () => _selectDate(context),
+              child: AppTextFormField(
+                text: context.l10n.matchDeckNameOpponent,
+                controller: _opponentDeckController,
               ),
-              PlayFirstSwitch(
-                isOnPlay: _isOnPlay,
-                onChanged: (bool value) => setState(() => _isOnPlay = value),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8,
+                vertical: 2,
               ),
-              const HBox(8),
-              FormatDropdown(
-                selectedFormat: _selectedFormat,
-                onFormatSelected: (Format format) {
-                  setState(() => _selectedFormat = format);
-                },
+              child: AppTextFormField(
+                text: context.l10n.matchNameOpponent,
+                controller: _opponentNameController,
               ),
-              const HBox(8),
-              DismissibleGamesList(
-                games: _games,
-                onRemove: _removeGame,
+            ),
+            DatePicker(
+              selectedDate: _selectedDate,
+              onTap: () => _selectDate(context),
+            ),
+            PlayFirstSwitch(
+              isOnPlay: _isOnPlay,
+              onChanged: (bool value) => setState(() => _isOnPlay = value),
+            ),
+            const HBox(8),
+            FormatDropdown(
+              selectedFormat: _selectedFormat,
+              onFormatSelected: (Format format) {
+                setState(() => _selectedFormat = format);
+              },
+            ),
+            const HBox(8),
+            DismissibleGamesList(
+              games: _games,
+              onRemove: _removeGame,
+            ),
+            const HBox(8),
+            AddNewGameButton(
+              onTap: _addGame,
+            ),
+            const HBox(16),
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: AppButton(
+                text: context.l10n.save,
+                onTap: () {},
               ),
-              const HBox(8),
-              AddNewGameButton(
-                onTap: _addGame,
-              ),
-              const HBox(16),
-              Padding(
-                padding: const EdgeInsets.all(8),
-                child: AppButton(
-                  text: context.l10n.save,
-                  onTap: () {},
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

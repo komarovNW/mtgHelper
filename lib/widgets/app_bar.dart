@@ -4,14 +4,14 @@ import 'package:go_router/go_router.dart';
 import 'package:mtg_helper/features/matches/match_record/match_record_router.dart';
 import 'package:mtg_helper/features/matches/matches/matches_router.dart';
 import 'package:mtg_helper/features/search/search_router.dart';
-import 'package:mtg_helper/utils/auth_notifier.dart';
+import 'package:mtg_helper/utils/auth_change_notifier.dart';
 import 'package:mtg_helper/widgets/text_form_fields/app_search_text_form_field.dart';
 
 const Color _iconColor = Color(0xffF45D01);
 const Color _backgroundColor = Color(0xff474647);
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({
+  CustomAppBar({
     super.key,
     this.searchController,
     this.onTapIcon,
@@ -22,7 +22,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.needExitButton = false,
     this.needAddButton = false,
     this.isMatch = false,
-  }) : preferredSize = const Size.fromHeight(kToolbarHeight);
+    this.height = kToolbarHeight * 1.2,
+  }) : preferredSize = Size.fromHeight(height);
 
   final TextEditingController? searchController;
   final VoidCallback? onTapIcon;
@@ -34,17 +35,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool needAddButton;
   final bool isMatch;
 
+  final double height;
+
   @override
   final Size preferredSize;
 
   @override
   Widget build(BuildContext context) {
-    return SliverAppBar(
+    return AppBar(
       bottom: bottom,
-      expandedHeight: 65.0,
       titleSpacing: 0,
-      floating: true,
-      snap: true,
       leading: needBackButton
           ? BackButtonWidget(isMatch: isMatch)
           : const DrawerIcon(),
@@ -143,7 +143,7 @@ class ExitButton extends StatelessWidget {
       padding: const EdgeInsets.only(top: 12.0),
       child: IconButton(
         icon: const Icon(Icons.exit_to_app),
-        onPressed: () => context.read<AuthNotifier>().signOut(),
+        onPressed: () => context.read<AuthChangeNotifier>().signOut(),
       ),
     );
   }

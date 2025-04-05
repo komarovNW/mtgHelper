@@ -55,7 +55,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mail => 'Почта';
 
   @override
-  String get account => 'Аккаунт';
+  String get account => 'Логин';
 
   @override
   String get onboardingTitle1 => 'test';
@@ -281,4 +281,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get matchNameOpponent => 'Имя оппонента';
+
+  @override
+  String get dollar => 'Доллар';
+
+  @override
+  String get euro => 'Евро';
+
+  @override
+  String get customCourse => 'Кастомный курс';
 }

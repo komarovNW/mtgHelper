@@ -40,6 +40,14 @@ class RegistrationCubit extends Cubit<RegistrationState> {
           isSuccess: false,
         ),
       );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          firebaseError: 'Произошла ошибка. Попробуйте позже.',
+          isSuccess: false,
+        ),
+      );
     }
   }
 

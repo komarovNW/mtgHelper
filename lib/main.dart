@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:mtg_helper/core/app.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:mtg_helper/core/di.dart';
-import 'package:mtg_helper/utils/dollar_exchange_notifier.dart';
-import 'package:mtg_helper/utils/euro_exchange_notifier.dart';
-import 'package:mtg_helper/utils/localization_notifier.dart';
+import 'package:mtg_helper/utils/dollar_exchange_change_notifier.dart';
+import 'package:mtg_helper/utils/euro_exchange_change_notifier.dart';
+import 'package:mtg_helper/utils/localization_change_notifier.dart';
 import 'package:mtg_helper/res/localizations/app_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:mtg_helper/utils/auth_notifier.dart';
+import 'package:mtg_helper/utils/auth_change_notifier.dart';
 import 'package:provider/single_child_widget.dart';
 import 'firebase_options.dart';
 import 'dart:async';
@@ -28,17 +28,17 @@ void main() {
     runApp(
       MultiProvider(
         providers: <SingleChildWidget>[
-          ChangeNotifierProvider<AuthNotifier>(
-            create: (_) => AuthNotifier(),
+          ChangeNotifierProvider<AuthChangeNotifier>(
+            create: (_) => AuthChangeNotifier(),
           ),
-          ChangeNotifierProvider<LocalizationNotifier>(
-            create: (_) => LocalizationNotifier(),
+          ChangeNotifierProvider<LocalizationChangeNotifier>(
+            create: (_) => LocalizationChangeNotifier(),
           ),
-          ChangeNotifierProvider<DollarExchangeNotifier>(
-            create: (_) => DollarExchangeNotifier(),
+          ChangeNotifierProvider<DollarExchangeChangeNotifier>(
+            create: (_) => DollarExchangeChangeNotifier(),
           ),
-          ChangeNotifierProvider<EuroExchangeNotifier>(
-            create: (_) => EuroExchangeNotifier(),
+          ChangeNotifierProvider<EuroExchangeChangeNotifier>(
+            create: (_) => EuroExchangeChangeNotifier(),
           ),
         ],
         child: const App(),

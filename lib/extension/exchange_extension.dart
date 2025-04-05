@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mtg_helper/utils/dollar_exchange_notifier.dart';
-import 'package:mtg_helper/utils/euro_exchange_notifier.dart';
+import 'package:mtg_helper/utils/dollar_exchange_change_notifier.dart';
+import 'package:mtg_helper/utils/euro_exchange_change_notifier.dart';
 
 extension ExchangeRates on BuildContext {
-  int get dollarRate => watch<DollarExchangeNotifier>().exchange;
-  int get euroRate => watch<EuroExchangeNotifier>().exchange;
+  int get dollarRate => watch<DollarExchangeChangeNotifier>().exchange;
+  int get euroRate => watch<EuroExchangeChangeNotifier>().exchange;
 
   String priceInRublesFromDollar(String price) {
     final double parsedPrice = double.tryParse(price) ?? 0.0;

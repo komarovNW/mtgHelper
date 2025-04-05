@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mtg_helper/utils/auth_notifier.dart';
-import 'package:mtg_helper/utils/dollar_exchange_notifier.dart';
-import 'package:mtg_helper/utils/euro_exchange_notifier.dart';
-import 'package:mtg_helper/utils/localization_notifier.dart';
+import 'package:mtg_helper/utils/auth_change_notifier.dart';
+import 'package:mtg_helper/utils/dollar_exchange_change_notifier.dart';
+import 'package:mtg_helper/utils/euro_exchange_change_notifier.dart';
+import 'package:mtg_helper/utils/localization_change_notifier.dart';
 import 'package:mtg_helper/core/router.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mtg_helper/res/localizations/app_localizations.dart';
@@ -13,14 +13,14 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer4<AuthNotifier, LocalizationNotifier, DollarExchangeNotifier,
-        EuroExchangeNotifier>(
+    return Consumer4<AuthChangeNotifier, LocalizationChangeNotifier,
+        DollarExchangeChangeNotifier, EuroExchangeChangeNotifier>(
       builder: (
         BuildContext context,
-        AuthNotifier authNotifier,
-        LocalizationNotifier localizationNotifier,
-        DollarExchangeNotifier dollarExchangeNotifier,
-        EuroExchangeNotifier euroExchangeNotifier,
+        AuthChangeNotifier authNotifier,
+        LocalizationChangeNotifier localizationNotifier,
+        DollarExchangeChangeNotifier dollarExchangeNotifier,
+        EuroExchangeChangeNotifier euroExchangeNotifier,
         Widget? child,
       ) {
         return MaterialApp.router(

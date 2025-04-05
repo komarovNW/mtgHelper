@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mtg_helper/extension/auth_extension.dart';
+import 'package:mtg_helper/extension/auth_exception.dart';
 import 'package:mtg_helper/domain/use_cases/auth/sign_in_use_case.dart';
 import 'auth_state.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mtg_helper/extension/localization_extension.dart';
-import 'package:mtg_helper/utils/auth_notifier.dart';
+import 'package:mtg_helper/utils/auth_change_notifier.dart';
 import 'package:mtg_helper/widgets/app_bar.dart';
 import 'package:mtg_helper/widgets/app_box.dart';
 import 'package:mtg_helper/widgets/app_button.dart';
@@ -18,18 +18,14 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar(
+        title: context.l10n.profileTitle,
+        needExitButton: true,
+      ),
       drawer: AppDrawer(
         currentPage: context.l10n.drawerProfile,
       ),
-      body: CustomScrollView(
-        slivers: <Widget>[
-          CustomAppBar(
-            title: context.l10n.profileTitle,
-            needExitButton: true,
-          ),
-          const _Body(),
-        ],
-      ),
+      body: const _Body(),
     );
   }
 }
@@ -42,19 +38,14 @@ class _Body extends StatefulWidget {
 }
 
 class _BodyState extends State<_Body> {
-  late AuthNotifier userInfo;
+  late AuthChangeNotifier userInfo;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _displayNameController = TextEditingController();
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
-    userInfo = Provider.of<AuthNotifier>(context);
+    userInfo = Provider.of<AuthChangeNotifier>(context);
     _emailController.text = userInfo.user?.email ?? '';
     _displayNameController.text = userInfo.user?.displayName ?? '';
   }
@@ -66,51 +57,46 @@ class _BodyState extends State<_Body> {
 
   @override
   Widget build(BuildContext context) {
-    return SliverFillRemaining(
-      hasScrollBody: false,
-      child: BlocConsumer<ProfileCubit, ProfileState>(
-        listener: (BuildContext context, ProfileState state) {},
-        builder: (BuildContext context, ProfileState state) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                SizedBox(
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      AppTextFormField(
-                        text: context.l10n.mail,
-                        controller: _emailController,
-                        readOnly: true,
-                      ),
-                      const HBox(8),
-                      AppTextFormField(
-                        text: context.l10n.account,
-                        controller: _displayNameController,
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: CustomRateSwitcher(),
-                      ),
-                    ],
-                  ),
+    return BlocConsumer<ProfileCubit, ProfileState>(
+      listener: (BuildContext context, ProfileState state) {},
+      builder: (BuildContext context, ProfileState state) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              SizedBox(
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    AppTextFormField(
+                      text: context.l10n.mail,
+                      controller: _emailController,
+                      readOnly: true,
+                    ),
+                    const HBox(8),
+                    AppTextFormField(
+                      text: context.l10n.account,
+                      controller: _displayNameController,
+                    ),
+                    const HBox(16),
+                    const CustomRateSwitcher(),
+                  ],
                 ),
-                AppButton(
-                  text: context.l10n.save,
-                  onTap: () {
-                    context
-                        .read<AuthNotifier>()
-                        .updateDisplayName(_displayNameController.text);
-                  },
-                ),
-              ],
-            ),
-          );
-        },
-      ),
+              ),
+              AppButton(
+                text: context.l10n.save,
+                onTap: () {
+                  context
+                      .read<AuthChangeNotifier>()
+                      .updateDisplayName(_displayNameController.text);
+                },
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

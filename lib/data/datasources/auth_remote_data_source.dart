@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mtg_helper/extension/auth_extension.dart';
+import 'package:mtg_helper/extension/auth_exception.dart';
 
 class AuthRemoteDataSource {
   AuthRemoteDataSource({

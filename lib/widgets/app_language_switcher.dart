@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mtg_helper/utils/localization_notifier.dart';
+import 'package:mtg_helper/utils/localization_change_notifier.dart';
 import 'package:provider/provider.dart';
 
 class AppLanguageSwitcher extends StatelessWidget {
@@ -7,8 +7,8 @@ class AppLanguageSwitcher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LocalizationNotifier localizationNotifier =
-        Provider.of<LocalizationNotifier>(context);
+    final LocalizationChangeNotifier localizationNotifier =
+        Provider.of<LocalizationChangeNotifier>(context);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,

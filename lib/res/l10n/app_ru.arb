@@ -16,7 +16,7 @@
   "repeatPassword": "Повторите пароль",
   "save": "Сохранить",
   "mail": "Почта",
-  "account": "Аккаунт",
+  "account": "Логин",
   "onboardingTitle1": "Аукционы",
   "onboardingText1": "Следи и сохраняй интересные тебе аукционы",
   "onboardingTitle2": "Счетчик",
@@ -109,5 +109,8 @@
   "matchFormat": "Вы начинали первым",
   "matchDeckName": "Ваша колода",
   "matchDeckNameOpponent": "Колода оппонента",
-  "matchNameOpponent": "Имя оппонента"
+  "matchNameOpponent": "Имя оппонента",
+  "dollar": "Доллар",
+  "euro": "Евро",
+  "customCourse": "Кастомный курс"
 }
