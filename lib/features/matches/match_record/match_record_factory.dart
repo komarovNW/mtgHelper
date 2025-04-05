@@ -9,7 +9,7 @@ class MatchRecordFactory {
     return MatchRecordCubit();
   }
 
-  BlocProvider<MatchRecordCubit> createMatchRecordBlocProvider() {
+  BlocProvider<MatchRecordCubit> createMatchRecordPage() {
     return BlocProvider<MatchRecordCubit>(
       create: (_) => createMatchRecordCubit(),
       child: const MatchRecordPage(),

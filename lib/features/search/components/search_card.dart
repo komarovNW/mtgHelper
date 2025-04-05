@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mtg_helper/data/models/search_card_model.dart';
 import 'package:mtg_helper/extension/scryfall_image_extension.dart';
-import 'package:mtg_helper/utils/app_navigator.dart';
+import 'package:mtg_helper/features/price/price_router.dart';
+import 'package:mtg_helper/features/search/search_router.dart';
 import 'package:mtg_helper/widgets/app_cached_network_image.dart';
 
 class SearchCard extends StatelessWidget {
@@ -12,7 +14,11 @@ class SearchCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => AppNavigator.goPrice(context, _item),
+      onTap: () => context.go(
+        '${SearchRoutes.searchPath}/${PriceRoutes.pricePath}',
+        extra: _item,
+      ),
+      // AppNavigator.goPrice(context, _item),
       child: Column(
         children: <Widget>[
           AppCachedNetworkImage(

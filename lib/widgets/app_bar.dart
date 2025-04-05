@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtg_helper/features/matches/match_record/match_record_router.dart';
 import 'package:mtg_helper/features/matches/matches/matches_router.dart';
-import 'package:mtg_helper/features/search/search_router.dart';
 import 'package:mtg_helper/utils/auth_change_notifier.dart';
 import 'package:mtg_helper/widgets/text_form_fields/app_search_text_form_field.dart';
 
@@ -21,7 +20,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.needBackButton = false,
     this.needExitButton = false,
     this.needAddButton = false,
-    this.isMatch = false,
     this.height = kToolbarHeight * 1.2,
   }) : preferredSize = Size.fromHeight(height);
 
@@ -33,7 +31,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool needBackButton;
   final bool needExitButton;
   final bool needAddButton;
-  final bool isMatch;
 
   final double height;
 
@@ -45,9 +42,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       bottom: bottom,
       titleSpacing: 0,
-      leading: needBackButton
-          ? BackButtonWidget(isMatch: isMatch)
-          : const DrawerIcon(),
+      leading: needBackButton ? const BackButtonWidget() : const DrawerIcon(),
       iconTheme: const IconThemeData(color: _iconColor),
       backgroundColor: _backgroundColor,
       title: title != null
@@ -72,9 +67,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 }
 
 class BackButtonWidget extends StatelessWidget {
-  const BackButtonWidget({super.key, required this.isMatch});
-
-  final bool isMatch;
+  const BackButtonWidget({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -83,13 +78,7 @@ class BackButtonWidget extends StatelessWidget {
       child: IconButton(
         icon: const Icon(Icons.arrow_back_ios_new),
         onPressed: () {
-          if (context.canPop()) {
-            context.pop();
-          } else {
-            isMatch
-                ? context.go(MatchesRoutes.matchesPath)
-                : context.go(SearchRoutes.searchPath);
-          }
+          GoRouter.of(context).pop();
         },
       ),
     );
@@ -158,7 +147,9 @@ class AddButton extends StatelessWidget {
       padding: const EdgeInsets.only(top: 12.0),
       child: IconButton(
         icon: const Icon(Icons.add),
-        onPressed: () => context.go(MatchRecordRoutes.matchRecordPath),
+        onPressed: () => context.go(
+          '${MatchesRoutes.matchesPath}/${MatchRecordRoutes.matchRecordPath}',
+        ),
       ),
     );
   }

@@ -1,7 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:mtg_helper/features/auctions/auctions_router.dart';
 import 'package:mtg_helper/features/auth/auth_router.dart';
-import 'package:mtg_helper/features/matches/match_record/match_record_router.dart';
 import 'package:mtg_helper/features/matches/matches/matches_router.dart';
 
 import 'package:mtg_helper/features/onboarding/onboarding_router.dart';
@@ -35,13 +34,12 @@ final GoRouter goRouter = GoRouter(
     OnboardingRoutes.route,
     AuthRoutes.route,
     RegistrationRoutes.route,
-    // HomeRoutes.route,
     ScoreRoutes.route,
     AuctionsRoutes.route,
     SearchRoutes.route,
     PriceRoutes.route,
     ProfileRoutes.route,
     MatchesRoutes.route,
-    MatchRecordRoutes.route,
+    // MatchRecordRoutes.route,
   ],
 );

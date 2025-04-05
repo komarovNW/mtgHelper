@@ -26,7 +26,6 @@ class _MatchRecordPageState extends State<MatchRecordPage> {
       appBar: CustomAppBar(
         title: 'Создать матч',
         needBackButton: true,
-        isMatch: true,
       ),
       drawer: const AppDrawer(
         currentPage: '',
