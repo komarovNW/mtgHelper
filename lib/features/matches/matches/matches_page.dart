@@ -16,21 +16,14 @@ class MatchesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar(
+        needAddButton: true,
+        title: context.l10n.drawerMatches,
+      ),
       drawer: AppDrawer(
         currentPage: context.l10n.drawerMatches,
       ),
-      body: Container(
-        color: Colors.white,
-        child: CustomScrollView(
-          slivers: <Widget>[
-            CustomAppBar(
-              needAddButton: true,
-              title: context.l10n.drawerMatches,
-            ),
-            const _Body(),
-          ],
-        ),
-      ),
+      body: const _Body(),
     );
   }
 }
@@ -58,14 +51,8 @@ class _BodyState extends State<_Body> {
           return state.map(
             success: (MatchesSuccess state) =>
                 SearchSuccessBody(allMatches: state.allMatches),
-            loading: (_) => const SliverFillRemaining(
-              hasScrollBody: false,
-              child: AppLoader(),
-            ),
-            failure: (MatchesFailure state) => SliverFillRemaining(
-              hasScrollBody: false,
-              child: AppError(error: state.error),
-            ),
+            loading: (_) => const AppLoader(),
+            failure: (MatchesFailure state) => AppError(error: state.error),
           );
         },
       ),
@@ -85,16 +72,15 @@ class SearchSuccessBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (!allMatches.isNotEmpty) {
-      return SliverPadding(
+      return Padding(
         padding: const EdgeInsets.all(8),
-        sliver: SliverList.builder(
+        child: ListView.builder(
           // itemCount: allMatches.length,
           itemCount: 10,
           itemBuilder: (BuildContext context, int index) {
             return MatchCard(
               match:
                   // allMatches[index]
-
                   MatchModel(
                 playerDeck: 'allMatches[index].playerDeck',
                 opponentDeck: 'allMatches[index].opponentDeck',
@@ -109,15 +95,12 @@ class SearchSuccessBody extends StatelessWidget {
         ),
       );
     } else {
-      return SliverPadding(
+      return Padding(
         padding: const EdgeInsets.all(8),
-        sliver: SliverFillRemaining(
-          hasScrollBody: false,
-          child: Center(
-            child: Text(
-              context.l10n.matchesEmpty,
-              textAlign: TextAlign.center,
-            ),
+        child: Center(
+          child: Text(
+            context.l10n.matchesEmpty,
+            textAlign: TextAlign.center,
           ),
         ),
       );

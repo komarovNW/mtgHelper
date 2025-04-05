@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mtg_helper/data/models/scryfall_card_model.dart';
 import 'package:mtg_helper/extension/exchange_extension.dart';
 import 'package:mtg_helper/extension/localization_extension.dart';
-import 'package:mtg_helper/utils/dollar_exchange_notifier.dart';
-import 'package:mtg_helper/utils/euro_exchange_notifier.dart';
+import 'package:mtg_helper/utils/dollar_exchange_change_notifier.dart';
+import 'package:mtg_helper/utils/euro_exchange_change_notifier.dart';
 
 import 'package:mtg_helper/widgets/app_cached_network_image.dart';
 
@@ -60,7 +60,7 @@ class _CardMarketColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool useExchange =
-        context.watch<EuroExchangeNotifier>().useCustomExchange;
+        context.watch<EuroExchangeChangeNotifier>().useCustomExchange;
     return Column(
       children: <Widget>[
         Text(
@@ -119,7 +119,7 @@ class _TCGColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool useExchange =
-        context.watch<DollarExchangeNotifier>().useCustomExchange;
+        context.watch<DollarExchangeChangeNotifier>().useCustomExchange;
     return Column(
       children: <Widget>[
         Text(

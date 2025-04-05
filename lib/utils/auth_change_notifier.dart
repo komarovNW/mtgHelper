@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
-class AuthNotifier extends ChangeNotifier {
-  AuthNotifier() {
+class AuthChangeNotifier extends ChangeNotifier {
+  AuthChangeNotifier() {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       _user = user;
       notifyListeners();

@@ -10,9 +10,9 @@ import 'package:mtg_helper/features/profile/profile_router.dart';
 import 'package:mtg_helper/features/registration/registration_router.dart';
 import 'package:mtg_helper/features/score/score_router.dart';
 import 'package:mtg_helper/features/search/search_router.dart';
-import 'package:mtg_helper/utils/auth_notifier.dart';
+import 'package:mtg_helper/utils/auth_change_notifier.dart';
 
-final AuthNotifier _authNotifier = AuthNotifier();
+final AuthChangeNotifier _authNotifier = AuthChangeNotifier();
 
 final GoRouter goRouter = GoRouter(
   debugLogDiagnostics: true,

@@ -63,20 +63,12 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: AppDrawer(currentPage: context.l10n.drawerSearch),
-      body: Container(
-        color: Colors.white,
-        child: CustomScrollView(
-          controller: _scrollController,
-          slivers: <Widget>[
-            CustomAppBar(
-              searchController: _searchController,
-              onChange: _onSearchChanged,
-              onTapIcon: _onTapIcon,
-            ),
-            const _Body(),
-          ],
-        ),
+      appBar: CustomAppBar(
+        searchController: _searchController,
+        onChange: _onSearchChanged,
+        onTapIcon: _onTapIcon,
       ),
+      body: const _Body(),
     );
   }
 }
@@ -98,14 +90,8 @@ class _BodyState extends State<_Body> {
           success: (SearchSuccess state) =>
               SearchSuccessBody(allCards: state.allCards),
           initial: (_) => const SearchInitialBody(),
-          loading: (_) => const SliverFillRemaining(
-            hasScrollBody: false,
-            child: AppLoader(),
-          ),
-          failure: (SearchFailure state) => SliverFillRemaining(
-            hasScrollBody: false,
-            child: AppError(error: state.error),
-          ),
+          loading: (_) => const AppLoader(),
+          failure: (SearchFailure state) => AppError(error: state.error),
         );
       },
     );
@@ -117,15 +103,12 @@ class SearchInitialBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverPadding(
+    return Padding(
       padding: const EdgeInsets.all(8),
-      sliver: SliverFillRemaining(
-        hasScrollBody: false,
-        child: Center(
-          child: Text(
-            context.l10n.searchBodyInitial,
-            textAlign: TextAlign.center,
-          ),
+      child: Center(
+        child: Text(
+          context.l10n.searchBodyInitial,
+          textAlign: TextAlign.center,
         ),
       ),
     );
@@ -139,32 +122,28 @@ class SearchSuccessBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (allCards.isEmpty) {
-      return SliverPadding(
+      return Padding(
         padding: const EdgeInsets.all(8),
-        sliver: SliverFillRemaining(
-          hasScrollBody: false,
-          child: Center(
-            child: Text(
-              context.l10n.searchBodyEmpty,
-              textAlign: TextAlign.center,
-            ),
+        child: Center(
+          child: Text(
+            context.l10n.searchBodyEmpty,
+            textAlign: TextAlign.center,
           ),
         ),
       );
     } else {
-      return SliverPadding(
+      return Padding(
         padding: const EdgeInsets.all(14),
-        sliver: SliverGrid(
-          delegate: SliverChildBuilderDelegate(
-            childCount: allCards.length,
-            (BuildContext context, int index) =>
-                SearchCard(item: allCards[index]),
-          ),
+        child: GridView.builder(
+          itemCount: allCards.length,
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
             maxCrossAxisExtent: 200,
             crossAxisSpacing: 5,
             childAspectRatio: 0.6,
           ),
+          itemBuilder: (BuildContext context, int index) {
+            return SearchCard(item: allCards[index]);
+          },
         ),
       );
     }

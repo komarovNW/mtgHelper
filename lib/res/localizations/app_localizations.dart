@@ -197,7 +197,7 @@ abstract class AppLocalizations {
   /// No description provided for @account.
   ///
   /// In ru, this message translates to:
-  /// **'Аккаунт'**
+  /// **'Логин'**
   String get account;
 
   /// No description provided for @onboardingTitle1.
@@ -631,6 +631,24 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Имя оппонента'**
   String get matchNameOpponent;
+
+  /// No description provided for @dollar.
+  ///
+  /// In ru, this message translates to:
+  /// **'Доллар'**
+  String get dollar;
+
+  /// No description provided for @euro.
+  ///
+  /// In ru, this message translates to:
+  /// **'Евро'**
+  String get euro;
+
+  /// No description provided for @customCourse.
+  ///
+  /// In ru, this message translates to:
+  /// **'Кастомный курс'**
+  String get customCourse;
 }
 
 class _AppLocalizationsDelegate

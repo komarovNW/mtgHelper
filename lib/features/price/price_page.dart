@@ -29,40 +29,32 @@ class _PricePageState extends State<PricePage>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffF6F6F6),
-      body: NestedScrollView(
-        headerSliverBuilder: (
-          BuildContext context,
-          bool innerBoxIsScrolled,
-        ) {
-          return <Widget>[
-            CustomAppBar(
-              needBackButton: true,
-              title: widget.searchCard.localizedName ?? widget.searchCard.name,
-              bottom: TabBar(
-                indicatorSize: TabBarIndicatorSize.tab,
-                controller: _tabController,
-                labelColor: Colors.white,
-                unselectedLabelColor: Colors.grey,
-                indicator: const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      color: Color(0xffF45D01),
-                      width: 3,
-                    ),
-                  ),
-                ),
-                tabs: <Widget>[
-                  Tab(text: context.l10n.priceTabTCG),
-                  Tab(text: context.l10n.priceTabSCG),
-                  Tab(text: context.l10n.priceTabSingles),
-                  Tab(text: context.l10n.priceTabAuctions),
-                ],
+      appBar: CustomAppBar(
+        height: 100,
+        needBackButton: true,
+        title: widget.searchCard.localizedName ?? widget.searchCard.name,
+        bottom: TabBar(
+          indicatorSize: TabBarIndicatorSize.tab,
+          controller: _tabController,
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.grey,
+          indicator: const BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: Color(0xffF45D01),
+                width: 3,
               ),
             ),
-          ];
-        },
-        body: _Body(tabController: _tabController),
+          ),
+          tabs: <Widget>[
+            Tab(text: context.l10n.priceTabTCG),
+            Tab(text: context.l10n.priceTabSCG),
+            Tab(text: context.l10n.priceTabSingles),
+            Tab(text: context.l10n.priceTabAuctions),
+          ],
+        ),
       ),
+      body: _Body(tabController: _tabController),
     );
   }
 }

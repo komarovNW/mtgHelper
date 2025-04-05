@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mtg_helper/data/models/singles_card_model.dart';
-import 'package:mtg_helper/extension/clear_line.dart';
+import 'package:mtg_helper/extension/clear_line_extension.dart';
 import 'package:mtg_helper/widgets/app_box.dart';
 
 class SingleCard extends StatelessWidget {

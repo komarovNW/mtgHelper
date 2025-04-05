@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:mtg_helper/utils/auth_notifier.dart';
+import 'package:mtg_helper/utils/auth_change_notifier.dart';
 import 'package:mtg_helper/widgets/app_drawer.dart';
 import 'package:mtg_helper/extension/localization_extension.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +20,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final AuthNotifier authNotifier = Provider.of<AuthNotifier>(context);
+    final AuthChangeNotifier authNotifier =
+        Provider.of<AuthChangeNotifier>(context);
     return Scaffold(
       drawer: const AppDrawer(
         currentPage: '',

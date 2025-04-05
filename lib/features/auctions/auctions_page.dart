@@ -64,30 +64,30 @@ class _AuctionsPageState extends State<AuctionsPage>
     return Scaffold(
       backgroundColor: const Color(0xffF6F6F6),
       drawer: AppDrawer(currentPage: context.l10n.drawerAuctions),
-      body: NestedScrollView(
-        controller: _scrollController,
-        headerSliverBuilder: (_, __) => <Widget>[
-          CustomAppBar(
-            searchController: _searchController,
-            onChange: _onSearchChanged,
-            onTapIcon: _onTapIcon,
-            bottom: TabBar(
-              controller: _tabController,
-              indicatorSize: TabBarIndicatorSize.tab,
-              labelColor: Colors.white,
-              unselectedLabelColor: Colors.grey,
-              indicator: const BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(color: Color(0xffF45D01), width: 3),
-                ),
-              ),
-              tabs: <Widget>[
-                Tab(text: context.l10n.auctionTabAll),
-                Tab(text: context.l10n.auctionTabFavorites),
-              ],
+      appBar: CustomAppBar(
+        height: 110,
+        searchController: _searchController,
+        onChange: _onSearchChanged,
+        onTapIcon: _onTapIcon,
+        bottom: TabBar(
+          controller: _tabController,
+          indicatorSize: TabBarIndicatorSize.tab,
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.grey,
+          indicator: const BoxDecoration(
+            border: Border(
+              bottom: BorderSide(color: Color(0xffF45D01), width: 3),
             ),
           ),
-        ],
+          tabs: <Widget>[
+            Tab(text: context.l10n.auctionTabAll),
+            Tab(text: context.l10n.auctionTabFavorites),
+          ],
+        ),
+      ),
+      body: NestedScrollView(
+        controller: _scrollController,
+        headerSliverBuilder: (_, __) => <Widget>[],
         body: TabBarView(
           controller: _tabController,
           children: <Widget>[
