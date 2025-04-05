@@ -8,6 +8,7 @@ import 'package:mtg_helper/widgets/app_drawer.dart';
 import 'package:mtg_helper/widgets/app_error.dart';
 import 'package:mtg_helper/widgets/app_loader.dart';
 import 'package:mtg_helper/utils/debouncer.dart';
+import 'package:mtg_helper/widgets/text_form_fields/app_search_text_form_field.dart';
 
 import 'auctions_cubit.dart';
 import 'auctions_state.dart';
@@ -66,9 +67,14 @@ class _AuctionsPageState extends State<AuctionsPage>
       drawer: AppDrawer(currentPage: context.l10n.drawerAuctions),
       appBar: CustomAppBar(
         height: 110,
-        searchController: _searchController,
-        onChange: _onSearchChanged,
-        onTapIcon: _onTapIcon,
+        title: Padding(
+          padding: const EdgeInsets.only(top: 8.0, right: 16.0),
+          child: AppSearchTextFormField(
+            searchController: _searchController,
+            onChange: _onSearchChanged,
+            onTapIcon: _onTapIcon,
+          ),
+        ),
         bottom: TabBar(
           controller: _tabController,
           indicatorSize: TabBarIndicatorSize.tab,

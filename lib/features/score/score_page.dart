@@ -16,7 +16,11 @@ class ScorePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: AppDrawer(currentPage: context.l10n.drawerScore),
-      appBar: CustomAppBar(title: context.l10n.scoreTitle),
+      appBar: CustomAppBar(
+        title: TitleWidget(
+          title: context.l10n.scoreTitle,
+        ),
+      ),
       body: const _Body(),
     );
   }

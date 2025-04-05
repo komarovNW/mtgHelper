@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mtg_helper/features/matches/match_record/match_record_router.dart';
-import 'package:mtg_helper/features/matches/matches/matches_router.dart';
 import 'package:mtg_helper/utils/auth_change_notifier.dart';
-import 'package:mtg_helper/widgets/text_form_fields/app_search_text_form_field.dart';
 
 const Color _iconColor = Color(0xffF45D01);
 const Color _backgroundColor = Color(0xff474647);
@@ -12,27 +9,18 @@ const Color _backgroundColor = Color(0xff474647);
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   CustomAppBar({
     super.key,
-    this.searchController,
-    this.onTapIcon,
-    this.onChange,
-    this.title,
     this.bottom,
-    this.needBackButton = false,
-    this.needExitButton = false,
-    this.needAddButton = false,
+    this.title,
+    this.isDrawerButton = true,
+    this.actions,
     this.height = kToolbarHeight * 1.2,
   }) : preferredSize = Size.fromHeight(height);
 
-  final TextEditingController? searchController;
-  final VoidCallback? onTapIcon;
-  final Function(String)? onChange;
-  final String? title;
-  final PreferredSizeWidget? bottom;
-  final bool needBackButton;
-  final bool needExitButton;
-  final bool needAddButton;
-
   final double height;
+  final Widget? title;
+  final bool isDrawerButton;
+  final PreferredSizeWidget? bottom;
+  final List<Widget>? actions;
 
   @override
   final Size preferredSize;
@@ -42,26 +30,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       bottom: bottom,
       titleSpacing: 0,
-      leading: needBackButton ? const BackButtonWidget() : const DrawerIcon(),
+      leading: isDrawerButton ? const DrawerIcon() : const BackButtonWidget(),
       iconTheme: const IconThemeData(color: _iconColor),
       backgroundColor: _backgroundColor,
-      title: title != null
-          ? TitleWidget(title: title!)
-          : searchController != null && onChange != null && onTapIcon != null
-              ? Padding(
-                  padding: const EdgeInsets.only(top: 8.0, right: 16.0),
-                  child: AppSearchTextFormField(
-                    searchController: searchController!,
-                    onChange: onChange!,
-                    onTapIcon: onTapIcon!,
-                  ),
-                )
-              : null,
-      actions: needExitButton
-          ? const <Widget>[ExitButton()]
-          : needAddButton
-              ? const <Widget>[AddButton()]
-              : null,
+      title: title,
+      actions: actions,
     );
   }
 }
@@ -133,23 +106,6 @@ class ExitButton extends StatelessWidget {
       child: IconButton(
         icon: const Icon(Icons.exit_to_app),
         onPressed: () => context.read<AuthChangeNotifier>().signOut(),
-      ),
-    );
-  }
-}
-
-class AddButton extends StatelessWidget {
-  const AddButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 12.0),
-      child: IconButton(
-        icon: const Icon(Icons.add),
-        onPressed: () => context.go(
-          '${MatchesRoutes.matchesPath}/${MatchRecordRoutes.matchRecordPath}',
-        ),
       ),
     );
   }

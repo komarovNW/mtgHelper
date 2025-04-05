@@ -560,6 +560,12 @@ abstract class AppLocalizations {
   /// **'Профиль'**
   String get profileTitle;
 
+  /// No description provided for @match.
+  ///
+  /// In ru, this message translates to:
+  /// **'Матч'**
+  String get match;
+
   /// No description provided for @matchesEmpty.
   ///
   /// In ru, this message translates to:

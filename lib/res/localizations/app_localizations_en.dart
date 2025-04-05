@@ -241,6 +241,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profileTitle => 'Профиль';
 
   @override
+  String get match => 'Матч';
+
+  @override
   String get matchesEmpty => 'На данный момент у вас нет записанных матчей';
 
   @override

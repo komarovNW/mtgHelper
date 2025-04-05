@@ -23,9 +23,7 @@ class _HomePageState extends State<HomePage> {
     final AuthChangeNotifier authNotifier =
         Provider.of<AuthChangeNotifier>(context);
     return Scaffold(
-      drawer: const AppDrawer(
-        currentPage: '',
-      ),
+      drawer: const AppDrawer(),
 
       appBar: AppBar(
         centerTitle: true,

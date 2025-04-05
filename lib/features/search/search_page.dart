@@ -8,6 +8,7 @@ import 'package:mtg_helper/widgets/app_bar.dart';
 import 'package:mtg_helper/widgets/app_drawer.dart';
 import 'package:mtg_helper/widgets/app_error.dart';
 import 'package:mtg_helper/widgets/app_loader.dart';
+import 'package:mtg_helper/widgets/text_form_fields/app_search_text_form_field.dart';
 
 import 'search_cubit.dart';
 import 'search_state.dart';
@@ -64,9 +65,14 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
       drawer: AppDrawer(currentPage: context.l10n.drawerSearch),
       appBar: CustomAppBar(
-        searchController: _searchController,
-        onChange: _onSearchChanged,
-        onTapIcon: _onTapIcon,
+        title: Padding(
+          padding: const EdgeInsets.only(top: 8.0, right: 16.0),
+          child: AppSearchTextFormField(
+            searchController: _searchController,
+            onChange: _onSearchChanged,
+            onTapIcon: _onTapIcon,
+          ),
+        ),
       ),
       body: const _Body(),
     );
