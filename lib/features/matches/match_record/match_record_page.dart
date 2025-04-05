@@ -24,12 +24,12 @@ class _MatchRecordPageState extends State<MatchRecordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Создать матч',
-        needBackButton: true,
+        isDrawerButton: false,
+        title: TitleWidget(
+          title: context.l10n.match,
+        ),
       ),
-      drawer: const AppDrawer(
-        currentPage: '',
-      ),
+      drawer: const AppDrawer(),
       body: const _Body(),
     );
   }

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mtg_helper/data/models/match.dart';
 import 'package:mtg_helper/extension/localization_extension.dart';
+import 'package:mtg_helper/features/matches/match_record/match_record_router.dart';
 import 'package:mtg_helper/features/matches/matches/components/match_card.dart';
 import 'package:mtg_helper/features/matches/matches/matches_cubit.dart';
+import 'package:mtg_helper/features/matches/matches/matches_router.dart';
 import 'package:mtg_helper/features/matches/matches/matches_state.dart';
 import 'package:mtg_helper/widgets/app_bar.dart';
 import 'package:mtg_helper/widgets/app_drawer.dart';
@@ -17,8 +20,20 @@ class MatchesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        needAddButton: true,
-        title: context.l10n.drawerMatches,
+        title: TitleWidget(
+          title: context.l10n.drawerMatches,
+        ),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(top: 12.0),
+            child: IconButton(
+              icon: const Icon(Icons.add),
+              onPressed: () => context.go(
+                '${MatchesRoutes.matchesPath}/${MatchRecordRoutes.matchRecordPath}',
+              ),
+            ),
+          ),
+        ],
       ),
       drawer: AppDrawer(
         currentPage: context.l10n.drawerMatches,

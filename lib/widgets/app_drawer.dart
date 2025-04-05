@@ -6,7 +6,7 @@ import 'package:mtg_helper/extension/localization_extension.dart';
 import 'package:provider/provider.dart';
 
 class AppDrawer extends StatelessWidget {
-  const AppDrawer({super.key, required this.currentPage});
+  const AppDrawer({super.key, this.currentPage = ''});
 
   final String currentPage;
 

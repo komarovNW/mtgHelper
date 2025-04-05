@@ -30,9 +30,11 @@ class _PricePageState extends State<PricePage>
     return Scaffold(
       backgroundColor: const Color(0xffF6F6F6),
       appBar: CustomAppBar(
+        isDrawerButton: false,
         height: 100,
-        needBackButton: true,
-        title: widget.searchCard.localizedName ?? widget.searchCard.name,
+        title: TitleWidget(
+          title: widget.searchCard.localizedName ?? widget.searchCard.name,
+        ),
         bottom: TabBar(
           indicatorSize: TabBarIndicatorSize.tab,
           controller: _tabController,

@@ -19,8 +19,9 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: context.l10n.profileTitle,
-        needExitButton: true,
+        title: TitleWidget(
+          title: context.l10n.profileTitle,
+        ),
       ),
       drawer: AppDrawer(
         currentPage: context.l10n.drawerProfile,
