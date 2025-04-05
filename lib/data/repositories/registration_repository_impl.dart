@@ -10,10 +10,6 @@ class RegistrationRepositoryImpl implements RegistrationRepository {
 
   @override
   Future<User> registration(String email, String password, String displayName) {
-    try {
-      return _remoteDataSource.registration(email, password, displayName);
-    } on RegistrationException {
-      rethrow;
-    }
+    return _remoteDataSource.registration(email, password, displayName);
   }
 }
