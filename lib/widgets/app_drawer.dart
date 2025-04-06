@@ -35,6 +35,10 @@ class AppDrawer extends StatelessWidget {
         title: context.l10n.drawerMatches,
         onTap: AppNavigator.goMatches,
       ),
+      _DrawerItem(
+        title: 'Календарь',
+        onTap: AppNavigator.goCalendar,
+      ),
     ];
     return Drawer(
       child: ListView(

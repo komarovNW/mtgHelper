@@ -9,8 +9,9 @@ import 'package:mtg_helper/widgets/app_box.dart';
 import 'package:mtg_helper/widgets/app_button.dart';
 import 'package:mtg_helper/widgets/app_drawer.dart';
 import 'package:mtg_helper/widgets/switchers/app_custom_course_switcher.dart';
+import 'package:mtg_helper/widgets/text_form_fields/app_text_form_field.dart';
 import 'package:provider/provider.dart';
-import '../../widgets/text_form_fields/app_text_form_field.dart';
+
 import 'profile_cubit.dart';
 import 'profile_state.dart';
 

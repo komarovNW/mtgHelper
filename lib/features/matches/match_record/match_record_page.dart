@@ -6,6 +6,7 @@ import 'package:mtg_helper/features/matches/match_record/components/date_picker.
 import 'package:mtg_helper/features/matches/match_record/components/dismissble_game_list.dart';
 import 'package:mtg_helper/features/matches/match_record/components/first_player_switch.dart';
 import 'package:mtg_helper/features/matches/match_record/components/format_dropdown.dart';
+import 'package:mtg_helper/utils/enums/format.dart';
 import 'package:mtg_helper/widgets/app_bar.dart';
 import 'package:mtg_helper/widgets/app_box.dart';
 import 'package:mtg_helper/widgets/app_button.dart';

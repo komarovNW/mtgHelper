@@ -17,6 +17,7 @@
   "save": "Сохранить",
   "mail": "Почта",
   "account": "Логин",
+  "month": "Месяц",
   "onboardingTitle1": "Аукционы",
   "onboardingText1": "Следи и сохраняй интересные тебе аукционы",
   "onboardingTitle2": "Счетчик",
@@ -116,5 +117,15 @@
   "matchNameOpponent": "Имя оппонента",
   "dollar": "Доллар",
   "euro": "Евро",
-  "customCourse": "Кастомный курс"
+  "customCourse": "Кастомный курс",
+  "calendar": "Календарь",
+  "calendarFormatTournament": "Форматы турниров",
+  "calendarChooseCity": "Выберите город",
+  "calendarAllCites": "Все города",
+  "calendarChooseDate": "Выберите дату",
+  "calendarNoTournaments": "Нет турниров",
+  "calendarCity": "Город: ",
+  "calendarTime": "Время: ",
+  "calendarPrice": "Стоимость: ",
+  "calendarCommit": "Комментарий: "
 }

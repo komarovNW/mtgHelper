@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:mtg_helper/features/auctions/auctions_router.dart';
 import 'package:mtg_helper/features/auth/auth_router.dart';
+import 'package:mtg_helper/features/calendar/calendar_router.dart';
 import 'package:mtg_helper/features/matches/matches/matches_router.dart';
 
 import 'package:mtg_helper/features/onboarding/onboarding_router.dart';
@@ -40,6 +41,7 @@ final GoRouter goRouter = GoRouter(
     PriceRoutes.route,
     ProfileRoutes.route,
     MatchesRoutes.route,
+    CalendarRoutes.route,
     // MatchRecordRoutes.route,
   ],
 );

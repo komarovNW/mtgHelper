@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mtg_helper/core/dio_client.dart';
 import 'package:mtg_helper/features/auctions/auctions_factory.dart';
 import 'package:mtg_helper/features/auth/auth_factory.dart';
+import 'package:mtg_helper/features/calendar/calendar_factory.dart';
 import 'package:mtg_helper/features/matches/match_record/match_record_factory.dart';
 import 'package:mtg_helper/features/matches/matches/matches_factory.dart';
 import 'package:mtg_helper/features/price/price_factory.dart';
@@ -20,6 +21,7 @@ class DependencyInjectionContainer {
   static late AuctionsFactory auctionsFactory;
   static late SearchFactory searchFactory;
   static late PriceFactory priceFactory;
+  static late CalendarFactory calendarFactory;
   static late ProfileFactory profileFactory;
   static late MatchesFactory matchesFactory;
   static late MatchRecordFactory matchRecordFactory;
@@ -34,6 +36,7 @@ class DependencyInjectionContainer {
     searchFactory = SearchFactory(dioService: _dioService);
     priceFactory = PriceFactory(dioService: _dioService);
     profileFactory = ProfileFactory();
+    calendarFactory = CalendarFactory();
     matchesFactory = MatchesFactory(dioService: _dioService);
     matchRecordFactory = MatchRecordFactory();
   }
