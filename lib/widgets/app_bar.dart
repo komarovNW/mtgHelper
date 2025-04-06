@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mtg_helper/utils/auth_change_notifier.dart';
+import 'package:mtg_helper/utils/notifier/auth_change_notifier.dart';
 
 const Color _iconColor = Color(0xffF45D01);
 const Color _backgroundColor = Color(0xff474647);

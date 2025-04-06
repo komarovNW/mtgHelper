@@ -9,7 +9,7 @@ import 'package:mtg_helper/features/profile/profile_router.dart';
 import 'package:mtg_helper/features/registration/registration_router.dart';
 import 'package:mtg_helper/features/score/score_router.dart';
 import 'package:mtg_helper/features/search/search_router.dart';
-import 'package:mtg_helper/utils/auth_change_notifier.dart';
+import 'package:mtg_helper/utils/notifier/auth_change_notifier.dart';
 
 final AuthChangeNotifier _authNotifier = AuthChangeNotifier();
 

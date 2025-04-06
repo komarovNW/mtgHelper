@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mtg_helper/data/models/scg_card_model.dart';
 import 'package:mtg_helper/extension/scg_price_extension.dart';
-import 'package:mtg_helper/utils/dollar_exchange_change_notifier.dart';
+import 'package:mtg_helper/utils/notifier/dollar_exchange_change_notifier.dart';
 import 'package:mtg_helper/widgets/app_cached_network_image.dart';
 
 class SCGCard extends StatelessWidget {

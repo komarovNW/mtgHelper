@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mtg_helper/extension/localization_extension.dart';
-import 'package:mtg_helper/utils/auth_change_notifier.dart';
-import 'package:mtg_helper/widgets/app_auction_card_switcher.dart';
+import 'package:mtg_helper/utils/notifier/auth_change_notifier.dart';
+import 'package:mtg_helper/widgets/switchers/app_auction_card_switcher.dart';
+import 'package:mtg_helper/widgets/switchers/app_player_count_switcher.dart';
 import 'package:mtg_helper/widgets/app_bar.dart';
 import 'package:mtg_helper/widgets/app_box.dart';
 import 'package:mtg_helper/widgets/app_button.dart';
 import 'package:mtg_helper/widgets/app_drawer.dart';
-import 'package:mtg_helper/widgets/app_custom_course_switcher.dart';
+import 'package:mtg_helper/widgets/switchers/app_custom_course_switcher.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/text_form_fields/app_text_form_field.dart';
 import 'profile_cubit.dart';
@@ -86,6 +87,8 @@ class _BodyState extends State<_Body> {
                     const AppCustomCourseSwitcher(),
                     const HBox(16),
                     const AppAuctionCardSwitcher(),
+                    const HBox(16),
+                    const AppPlayerCountSwitcher(),
                   ],
                 ),
               ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mtg_helper/data/models/auction_model.dart';
 import 'package:mtg_helper/extension/localization_extension.dart';
 import 'package:mtg_helper/features/auctions/auctions_cubit.dart';
-import 'package:mtg_helper/utils/auction_card_size_change_notifier.dart';
+import 'package:mtg_helper/utils/notifier/auction_card_size_change_notifier.dart';
 import 'package:mtg_helper/widgets/auction_card/big_auction_card.dart';
 import 'package:mtg_helper/widgets/auction_card/small_auction_card.dart';
 import 'package:provider/provider.dart';

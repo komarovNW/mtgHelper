@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:mtg_helper/utils/auction_card_size_change_notifier.dart';
-import 'package:mtg_helper/utils/auth_change_notifier.dart';
-import 'package:mtg_helper/utils/dollar_exchange_change_notifier.dart';
-import 'package:mtg_helper/utils/euro_exchange_change_notifier.dart';
-import 'package:mtg_helper/utils/localization_change_notifier.dart';
+import 'package:mtg_helper/utils/notifier/auction_card_size_change_notifier.dart';
+import 'package:mtg_helper/utils/notifier/auth_change_notifier.dart';
+import 'package:mtg_helper/utils/notifier/dollar_exchange_change_notifier.dart';
+import 'package:mtg_helper/utils/notifier/euro_exchange_change_notifier.dart';
+import 'package:mtg_helper/utils/notifier/localization_change_notifier.dart';
 import 'package:mtg_helper/core/router.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mtg_helper/res/localizations/app_localizations.dart';
+import 'package:mtg_helper/utils/notifier/player_count_notifier.dart';
 import 'package:provider/provider.dart';
 
 class App extends StatelessWidget {
@@ -14,12 +15,13 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer5<
+    return Consumer6<
         AuthChangeNotifier,
         LocalizationChangeNotifier,
         DollarExchangeChangeNotifier,
         EuroExchangeChangeNotifier,
-        AuctionCardSizeNotifier>(
+        AuctionCardSizeNotifier,
+        PlayerCountNotifier>(
       builder: (
         BuildContext context,
         AuthChangeNotifier authNotifier,
@@ -27,6 +29,7 @@ class App extends StatelessWidget {
         DollarExchangeChangeNotifier dollarExchangeNotifier,
         EuroExchangeChangeNotifier euroExchangeNotifier,
         AuctionCardSizeNotifier auctionCardSizeNotifier,
+        PlayerCountNotifier playerCountNotifier,
         Widget? child,
       ) {
         return MaterialApp.router(

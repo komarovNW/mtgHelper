@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mtg_helper/utils/app_navigator.dart';
-import 'package:mtg_helper/utils/auth_change_notifier.dart';
+import 'package:mtg_helper/utils/notifier/auth_change_notifier.dart';
 import 'package:mtg_helper/extension/initials_extension.dart';
 import 'package:mtg_helper/extension/localization_extension.dart';
 import 'package:provider/provider.dart';

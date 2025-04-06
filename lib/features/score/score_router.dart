@@ -7,6 +7,9 @@ abstract class ScoreRoutes {
   static final GoRoute route = GoRoute(
     path: scorePath,
     builder: (BuildContext context, GoRouterState state) {
+      // final PlayerCount playerCount = context.watch<PlayerCountNotifier>().playerCount;
+      //
+      // return DependencyInjectionContainer.scoreFactory.createScorePage(playerCount);
       return DependencyInjectionContainer.scoreFactory.createScorePage();
     },
   );
