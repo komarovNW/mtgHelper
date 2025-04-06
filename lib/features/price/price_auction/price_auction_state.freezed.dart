@@ -19,21 +19,22 @@ mixin _$PriceAuctionState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(AllAuctionsModel item) success,
+    required TResult Function(AllAuctionsModel item, Set<String> favoritesIds)
+        success,
     required TResult Function(String error) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(AllAuctionsModel item)? success,
+    TResult? Function(AllAuctionsModel item, Set<String> favoritesIds)? success,
     TResult? Function(String error)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(AllAuctionsModel item)? success,
+    TResult Function(AllAuctionsModel item, Set<String> favoritesIds)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) =>
@@ -126,7 +127,8 @@ class _$PriceAuctionLoadingImpl implements PriceAuctionLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(AllAuctionsModel item) success,
+    required TResult Function(AllAuctionsModel item, Set<String> favoritesIds)
+        success,
     required TResult Function(String error) failure,
   }) {
     return loading();
@@ -136,7 +138,7 @@ class _$PriceAuctionLoadingImpl implements PriceAuctionLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(AllAuctionsModel item)? success,
+    TResult? Function(AllAuctionsModel item, Set<String> favoritesIds)? success,
     TResult? Function(String error)? failure,
   }) {
     return loading?.call();
@@ -146,7 +148,7 @@ class _$PriceAuctionLoadingImpl implements PriceAuctionLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(AllAuctionsModel item)? success,
+    TResult Function(AllAuctionsModel item, Set<String> favoritesIds)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
@@ -201,7 +203,7 @@ abstract class _$$PriceAuctionSuccessImplCopyWith<$Res> {
           $Res Function(_$PriceAuctionSuccessImpl) then) =
       __$$PriceAuctionSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({AllAuctionsModel item});
+  $Res call({AllAuctionsModel item, Set<String> favoritesIds});
 }
 
 /// @nodoc
@@ -218,12 +220,17 @@ class __$$PriceAuctionSuccessImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? item = null,
+    Object? favoritesIds = null,
   }) {
     return _then(_$PriceAuctionSuccessImpl(
       item: null == item
           ? _value.item
           : item // ignore: cast_nullable_to_non_nullable
               as AllAuctionsModel,
+      favoritesIds: null == favoritesIds
+          ? _value._favoritesIds
+          : favoritesIds // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
     ));
   }
 }
@@ -231,14 +238,23 @@ class __$$PriceAuctionSuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$PriceAuctionSuccessImpl implements PriceAuctionSuccess {
-  const _$PriceAuctionSuccessImpl({required this.item});
+  const _$PriceAuctionSuccessImpl(
+      {required this.item, required final Set<String> favoritesIds})
+      : _favoritesIds = favoritesIds;
 
   @override
   final AllAuctionsModel item;
+  final Set<String> _favoritesIds;
+  @override
+  Set<String> get favoritesIds {
+    if (_favoritesIds is EqualUnmodifiableSetView) return _favoritesIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_favoritesIds);
+  }
 
   @override
   String toString() {
-    return 'PriceAuctionState.success(item: $item)';
+    return 'PriceAuctionState.success(item: $item, favoritesIds: $favoritesIds)';
   }
 
   @override
@@ -246,11 +262,14 @@ class _$PriceAuctionSuccessImpl implements PriceAuctionSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PriceAuctionSuccessImpl &&
-            (identical(other.item, item) || other.item == item));
+            (identical(other.item, item) || other.item == item) &&
+            const DeepCollectionEquality()
+                .equals(other._favoritesIds, _favoritesIds));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, item);
+  int get hashCode => Object.hash(
+      runtimeType, item, const DeepCollectionEquality().hash(_favoritesIds));
 
   /// Create a copy of PriceAuctionState
   /// with the given fields replaced by the non-null parameter values.
@@ -265,32 +284,33 @@ class _$PriceAuctionSuccessImpl implements PriceAuctionSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(AllAuctionsModel item) success,
+    required TResult Function(AllAuctionsModel item, Set<String> favoritesIds)
+        success,
     required TResult Function(String error) failure,
   }) {
-    return success(item);
+    return success(item, favoritesIds);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(AllAuctionsModel item)? success,
+    TResult? Function(AllAuctionsModel item, Set<String> favoritesIds)? success,
     TResult? Function(String error)? failure,
   }) {
-    return success?.call(item);
+    return success?.call(item, favoritesIds);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(AllAuctionsModel item)? success,
+    TResult Function(AllAuctionsModel item, Set<String> favoritesIds)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(item);
+      return success(item, favoritesIds);
     }
     return orElse();
   }
@@ -331,10 +351,12 @@ class _$PriceAuctionSuccessImpl implements PriceAuctionSuccess {
 }
 
 abstract class PriceAuctionSuccess implements PriceAuctionState {
-  const factory PriceAuctionSuccess({required final AllAuctionsModel item}) =
-      _$PriceAuctionSuccessImpl;
+  const factory PriceAuctionSuccess(
+      {required final AllAuctionsModel item,
+      required final Set<String> favoritesIds}) = _$PriceAuctionSuccessImpl;
 
   AllAuctionsModel get item;
+  Set<String> get favoritesIds;
 
   /// Create a copy of PriceAuctionState
   /// with the given fields replaced by the non-null parameter values.
@@ -413,7 +435,8 @@ class _$PriceAuctionFailureImpl implements PriceAuctionFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(AllAuctionsModel item) success,
+    required TResult Function(AllAuctionsModel item, Set<String> favoritesIds)
+        success,
     required TResult Function(String error) failure,
   }) {
     return failure(error);
@@ -423,7 +446,7 @@ class _$PriceAuctionFailureImpl implements PriceAuctionFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(AllAuctionsModel item)? success,
+    TResult? Function(AllAuctionsModel item, Set<String> favoritesIds)? success,
     TResult? Function(String error)? failure,
   }) {
     return failure?.call(error);
@@ -433,7 +456,7 @@ class _$PriceAuctionFailureImpl implements PriceAuctionFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(AllAuctionsModel item)? success,
+    TResult Function(AllAuctionsModel item, Set<String> favoritesIds)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {

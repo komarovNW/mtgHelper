@@ -61,6 +61,7 @@ class _CardMarketColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool useExchange =
         context.watch<EuroExchangeChangeNotifier>().useCustomExchange;
+
     return Column(
       children: <Widget>[
         Text(

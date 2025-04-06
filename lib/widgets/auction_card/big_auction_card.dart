@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-
 import 'package:mtg_helper/data/models/auction_model.dart';
+import 'package:mtg_helper/extension/exchange_extension.dart';
 import 'package:mtg_helper/extension/localization_extension.dart';
+import 'package:mtg_helper/utils/api_constants.dart';
 import 'package:mtg_helper/widgets/app_box.dart';
 import 'package:mtg_helper/extension/auction_extension.dart';
 import 'package:mtg_helper/widgets/app_cached_network_image.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
-class AuctionCard extends StatelessWidget {
-  const AuctionCard({
+class BigAuctionCard extends StatelessWidget {
+  const BigAuctionCard({
     super.key,
     required this.item,
     this.needFavoriteIcon = false,
@@ -92,7 +93,7 @@ class AuctionCardDescription extends StatelessWidget {
         ),
         AuctionTextItem(
           title: context.l10n.auctionCardDescriptionCurrentBid,
-          text: '$_currentBid ₽',
+          text: _currentBid.withRub,
         ),
         AuctionTextItem(
           title: context.l10n.auctionCardDescriptionBidAmount,
@@ -113,7 +114,7 @@ class AuctionCardButton extends StatelessWidget {
 
   void _launchURL() async {
     final Uri url =
-        Uri.parse('https://topdeck.ru/apps/toptrade/auctions/${item.id}');
+        Uri.parse('${ApiConstants.topdeckCurrentAuction}${item.id}');
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {

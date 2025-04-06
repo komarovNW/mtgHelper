@@ -184,6 +184,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get auctionCardDescriptionCurrentBid => 'Максимальная ставка: ';
 
   @override
+  String get auctionCardDescriptionCurrentBidMin => 'Макс: ';
+
+  @override
   String get auctionCardDescriptionBidAmount => 'Кол-во ставок: ';
 
   @override
@@ -191,6 +194,13 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get auctionCardButtonText => 'Перейти на TopDeck';
+
+  @override
+  String get auctionCardDialogConfirmation => 'Подтверждение';
+
+  @override
+  String get auctionCardDialogGoToSelectedAuc =>
+      'Хотите перейти на выбранный аукцион?';
 
   @override
   String get searchBodyEmpty => 'Ничего не найдено';
