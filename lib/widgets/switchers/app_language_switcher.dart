@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mtg_helper/utils/localization_change_notifier.dart';
+import 'package:mtg_helper/utils/notifier/localization_change_notifier.dart';
 import 'package:provider/provider.dart';
 
 class AppLanguageSwitcher extends StatelessWidget {

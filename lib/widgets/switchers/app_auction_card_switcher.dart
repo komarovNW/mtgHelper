@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mtg_helper/utils/auction_card_size_change_notifier.dart';
+import 'package:mtg_helper/utils/notifier/auction_card_size_change_notifier.dart';
 import 'package:provider/provider.dart';
 
 class AppAuctionCardSwitcher extends StatefulWidget {

@@ -18,6 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ScoreState {
   int get player1Health => throw _privateConstructorUsedError;
   int get player2Health => throw _privateConstructorUsedError;
+  int get player3Health => throw _privateConstructorUsedError;
+  int get player4Health => throw _privateConstructorUsedError;
+  PlayerCount? get playerCount => throw _privateConstructorUsedError;
   bool get showResetDialog => throw _privateConstructorUsedError;
 
   /// Create a copy of ScoreState
@@ -33,7 +36,13 @@ abstract class $ScoreStateCopyWith<$Res> {
           ScoreState value, $Res Function(ScoreState) then) =
       _$ScoreStateCopyWithImpl<$Res, ScoreState>;
   @useResult
-  $Res call({int player1Health, int player2Health, bool showResetDialog});
+  $Res call(
+      {int player1Health,
+      int player2Health,
+      int player3Health,
+      int player4Health,
+      PlayerCount? playerCount,
+      bool showResetDialog});
 }
 
 /// @nodoc
@@ -53,6 +62,9 @@ class _$ScoreStateCopyWithImpl<$Res, $Val extends ScoreState>
   $Res call({
     Object? player1Health = null,
     Object? player2Health = null,
+    Object? player3Health = null,
+    Object? player4Health = null,
+    Object? playerCount = freezed,
     Object? showResetDialog = null,
   }) {
     return _then(_value.copyWith(
@@ -64,6 +76,18 @@ class _$ScoreStateCopyWithImpl<$Res, $Val extends ScoreState>
           ? _value.player2Health
           : player2Health // ignore: cast_nullable_to_non_nullable
               as int,
+      player3Health: null == player3Health
+          ? _value.player3Health
+          : player3Health // ignore: cast_nullable_to_non_nullable
+              as int,
+      player4Health: null == player4Health
+          ? _value.player4Health
+          : player4Health // ignore: cast_nullable_to_non_nullable
+              as int,
+      playerCount: freezed == playerCount
+          ? _value.playerCount
+          : playerCount // ignore: cast_nullable_to_non_nullable
+              as PlayerCount?,
       showResetDialog: null == showResetDialog
           ? _value.showResetDialog
           : showResetDialog // ignore: cast_nullable_to_non_nullable
@@ -80,7 +104,13 @@ abstract class _$$ScoreStateImplCopyWith<$Res>
       __$$ScoreStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int player1Health, int player2Health, bool showResetDialog});
+  $Res call(
+      {int player1Health,
+      int player2Health,
+      int player3Health,
+      int player4Health,
+      PlayerCount? playerCount,
+      bool showResetDialog});
 }
 
 /// @nodoc
@@ -98,6 +128,9 @@ class __$$ScoreStateImplCopyWithImpl<$Res>
   $Res call({
     Object? player1Health = null,
     Object? player2Health = null,
+    Object? player3Health = null,
+    Object? player4Health = null,
+    Object? playerCount = freezed,
     Object? showResetDialog = null,
   }) {
     return _then(_$ScoreStateImpl(
@@ -109,6 +142,18 @@ class __$$ScoreStateImplCopyWithImpl<$Res>
           ? _value.player2Health
           : player2Health // ignore: cast_nullable_to_non_nullable
               as int,
+      player3Health: null == player3Health
+          ? _value.player3Health
+          : player3Health // ignore: cast_nullable_to_non_nullable
+              as int,
+      player4Health: null == player4Health
+          ? _value.player4Health
+          : player4Health // ignore: cast_nullable_to_non_nullable
+              as int,
+      playerCount: freezed == playerCount
+          ? _value.playerCount
+          : playerCount // ignore: cast_nullable_to_non_nullable
+              as PlayerCount?,
       showResetDialog: null == showResetDialog
           ? _value.showResetDialog
           : showResetDialog // ignore: cast_nullable_to_non_nullable
@@ -123,6 +168,9 @@ class _$ScoreStateImpl implements _ScoreState {
   const _$ScoreStateImpl(
       {required this.player1Health,
       required this.player2Health,
+      required this.player3Health,
+      required this.player4Health,
+      this.playerCount,
       this.showResetDialog = false});
 
   @override
@@ -130,12 +178,18 @@ class _$ScoreStateImpl implements _ScoreState {
   @override
   final int player2Health;
   @override
+  final int player3Health;
+  @override
+  final int player4Health;
+  @override
+  final PlayerCount? playerCount;
+  @override
   @JsonKey()
   final bool showResetDialog;
 
   @override
   String toString() {
-    return 'ScoreState(player1Health: $player1Health, player2Health: $player2Health, showResetDialog: $showResetDialog)';
+    return 'ScoreState(player1Health: $player1Health, player2Health: $player2Health, player3Health: $player3Health, player4Health: $player4Health, playerCount: $playerCount, showResetDialog: $showResetDialog)';
   }
 
   @override
@@ -147,13 +201,19 @@ class _$ScoreStateImpl implements _ScoreState {
                 other.player1Health == player1Health) &&
             (identical(other.player2Health, player2Health) ||
                 other.player2Health == player2Health) &&
+            (identical(other.player3Health, player3Health) ||
+                other.player3Health == player3Health) &&
+            (identical(other.player4Health, player4Health) ||
+                other.player4Health == player4Health) &&
+            (identical(other.playerCount, playerCount) ||
+                other.playerCount == playerCount) &&
             (identical(other.showResetDialog, showResetDialog) ||
                 other.showResetDialog == showResetDialog));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, player1Health, player2Health, showResetDialog);
+  int get hashCode => Object.hash(runtimeType, player1Health, player2Health,
+      player3Health, player4Health, playerCount, showResetDialog);
 
   /// Create a copy of ScoreState
   /// with the given fields replaced by the non-null parameter values.
@@ -168,12 +228,21 @@ abstract class _ScoreState implements ScoreState {
   const factory _ScoreState(
       {required final int player1Health,
       required final int player2Health,
+      required final int player3Health,
+      required final int player4Health,
+      final PlayerCount? playerCount,
       final bool showResetDialog}) = _$ScoreStateImpl;
 
   @override
   int get player1Health;
   @override
   int get player2Health;
+  @override
+  int get player3Health;
+  @override
+  int get player4Health;
+  @override
+  PlayerCount? get playerCount;
   @override
   bool get showResetDialog;
 

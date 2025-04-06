@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:mtg_helper/core/app.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:mtg_helper/core/di.dart';
-import 'package:mtg_helper/utils/auction_card_size_change_notifier.dart';
-import 'package:mtg_helper/utils/dollar_exchange_change_notifier.dart';
-import 'package:mtg_helper/utils/euro_exchange_change_notifier.dart';
-import 'package:mtg_helper/utils/localization_change_notifier.dart';
+import 'package:mtg_helper/utils/notifier/auction_card_size_change_notifier.dart';
+import 'package:mtg_helper/utils/notifier/dollar_exchange_change_notifier.dart';
+import 'package:mtg_helper/utils/notifier/euro_exchange_change_notifier.dart';
+import 'package:mtg_helper/utils/notifier/localization_change_notifier.dart';
 import 'package:mtg_helper/res/localizations/app_localizations.dart';
+import 'package:mtg_helper/utils/notifier/player_count_notifier.dart';
 import 'package:provider/provider.dart';
-import 'package:mtg_helper/utils/auth_change_notifier.dart';
+import 'package:mtg_helper/utils/notifier/auth_change_notifier.dart';
 import 'package:provider/single_child_widget.dart';
 import 'firebase_options.dart';
 import 'dart:async';
@@ -46,6 +47,9 @@ void main() {
           ),
           ChangeNotifierProvider<AuctionCardSizeNotifier>(
             create: (_) => AuctionCardSizeNotifier(),
+          ),
+          ChangeNotifierProvider<PlayerCountNotifier>(
+            create: (_) => PlayerCountNotifier(),
           ),
         ],
         child: const App(),
