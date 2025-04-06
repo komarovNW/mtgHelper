@@ -446,6 +446,12 @@ abstract class AppLocalizations {
   /// **'Максимальная ставка: '**
   String get auctionCardDescriptionCurrentBid;
 
+  /// No description provided for @auctionCardDescriptionCurrentBidMin.
+  ///
+  /// In ru, this message translates to:
+  /// **'Макс: '**
+  String get auctionCardDescriptionCurrentBidMin;
+
   /// No description provided for @auctionCardDescriptionBidAmount.
   ///
   /// In ru, this message translates to:
@@ -463,6 +469,18 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Перейти на TopDeck'**
   String get auctionCardButtonText;
+
+  /// No description provided for @auctionCardDialogConfirmation.
+  ///
+  /// In ru, this message translates to:
+  /// **'Подтверждение'**
+  String get auctionCardDialogConfirmation;
+
+  /// No description provided for @auctionCardDialogGoToSelectedAuc.
+  ///
+  /// In ru, this message translates to:
+  /// **'Хотите перейти на выбранный аукцион?'**
+  String get auctionCardDialogGoToSelectedAuc;
 
   /// No description provided for @searchBodyEmpty.
   ///

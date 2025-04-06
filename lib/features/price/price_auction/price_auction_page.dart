@@ -4,13 +4,13 @@ import 'package:mtg_helper/data/models/all_auctions_model.dart';
 import 'package:mtg_helper/data/models/auction_model.dart';
 import 'package:mtg_helper/data/models/past_auctions_model.dart';
 import 'package:mtg_helper/extension/localization_extension.dart';
-import 'package:mtg_helper/features/price/price_auction/components/current_auction_card.dart';
 import 'package:mtg_helper/features/price/price_auction/components/past_auction_card.dart';
 import 'package:mtg_helper/features/price/price_auction/price_auction_cubit.dart';
 import 'package:mtg_helper/features/price/price_auction/price_auction_state.dart';
 import 'package:mtg_helper/widgets/app_box.dart';
 import 'package:mtg_helper/widgets/app_error.dart';
 import 'package:mtg_helper/widgets/app_loader.dart';
+import 'package:mtg_helper/widgets/auction_card/small_auction_card.dart';
 
 class PriceAuctionPage extends StatelessWidget {
   const PriceAuctionPage({
@@ -27,7 +27,10 @@ class PriceAuctionPage extends StatelessWidget {
         listener: (BuildContext context, PriceAuctionState state) {},
         builder: (BuildContext context, PriceAuctionState state) {
           return state.map(
-            success: (PriceAuctionSuccess state) => _Body(item: state.item),
+            success: (PriceAuctionSuccess state) => _Body(
+              item: state.item,
+              favoritesIds: state.favoritesIds,
+            ),
             loading: (_) => const AppLoader(),
             failure: (PriceAuctionFailure state) => AppError(
               error: state.error,
@@ -40,8 +43,9 @@ class PriceAuctionPage extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-  const _Body({required this.item});
+  const _Body({required this.item, required this.favoritesIds});
   final AllAuctionsModel item;
+  final Set<String> favoritesIds;
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +57,13 @@ class _Body extends StatelessWidget {
             title: context.l10n.priceAuctionCurrentTitle,
             emptyTitle: context.l10n.priceAuctionCurrentEmptyTitle,
             auctions: item.currentAuctions,
-            buildCard: (AuctionModel auction) =>
-                CurrentAuctionCard(item: auction),
+            buildCard: (AuctionModel auction) => SmallAuctionCard(
+              item: auction,
+              isFavoriteIcon: favoritesIds.contains(auction.id),
+              needFavoriteIcon: true,
+              onPressedFavoriteIcon: () =>
+                  context.read<PriceAuctionCubit>().toggleFavorite(auction.id),
+            ),
           ),
           AuctionSection<PastAuctionModel>(
             title: context.l10n.priceAuctionPastTitle,

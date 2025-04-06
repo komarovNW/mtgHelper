@@ -1,6 +1,8 @@
 class ApiConstants {
   static const String topdeckAuctions =
       'https://topdeck.ru/apps/toptrade/api-v1/auctions';
+  static const String topdeckCurrentAuction =
+      'https://topdeck.ru/apps/toptrade/auctions/';
   static const String topdeckSingles =
       'https://topdeck.ru/apps/toptrade/api-v1/singles/search';
   static const String topdeckAuctionSearch =

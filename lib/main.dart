@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mtg_helper/core/app.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:mtg_helper/core/di.dart';
+import 'package:mtg_helper/utils/auction_card_size_change_notifier.dart';
 import 'package:mtg_helper/utils/dollar_exchange_change_notifier.dart';
 import 'package:mtg_helper/utils/euro_exchange_change_notifier.dart';
 import 'package:mtg_helper/utils/localization_change_notifier.dart';
@@ -39,6 +40,12 @@ void main() {
           ),
           ChangeNotifierProvider<EuroExchangeChangeNotifier>(
             create: (_) => EuroExchangeChangeNotifier(),
+          ),
+          ChangeNotifierProvider<EuroExchangeChangeNotifier>(
+            create: (_) => EuroExchangeChangeNotifier(),
+          ),
+          ChangeNotifierProvider<AuctionCardSizeNotifier>(
+            create: (_) => AuctionCardSizeNotifier(),
           ),
         ],
         child: const App(),

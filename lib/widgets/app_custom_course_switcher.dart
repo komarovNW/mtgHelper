@@ -7,14 +7,15 @@ import 'package:mtg_helper/utils/euro_exchange_change_notifier.dart';
 import 'package:mtg_helper/widgets/app_box.dart';
 import 'package:provider/provider.dart';
 
-class CustomRateSwitcher extends StatefulWidget {
-  const CustomRateSwitcher({super.key});
+class AppCustomCourseSwitcher extends StatefulWidget {
+  const AppCustomCourseSwitcher({super.key});
 
   @override
-  State<CustomRateSwitcher> createState() => _CustomRateSwitcherState();
+  State<AppCustomCourseSwitcher> createState() =>
+      _AppCustomCourseSwitcherState();
 }
 
-class _CustomRateSwitcherState extends State<CustomRateSwitcher> {
+class _AppCustomCourseSwitcherState extends State<AppCustomCourseSwitcher> {
   bool _useCustomDollarExchange = false;
   final ValueNotifier<int> _dollarExchange = ValueNotifier<int>(1);
   bool _useCustomEuroExchange = false;

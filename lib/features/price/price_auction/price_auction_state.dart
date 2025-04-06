@@ -8,6 +8,7 @@ class PriceAuctionState with _$PriceAuctionState {
   const factory PriceAuctionState.loading() = PriceAuctionLoading;
   const factory PriceAuctionState.success({
     required AllAuctionsModel item,
+    required Set<String> favoritesIds,
   }) = PriceAuctionSuccess;
   const factory PriceAuctionState.failure(String error) = PriceAuctionFailure;
 }
