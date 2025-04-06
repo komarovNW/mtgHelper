@@ -8,6 +8,7 @@ import 'package:mtg_helper/features/matches/matches/components/match_card.dart';
 import 'package:mtg_helper/features/matches/matches/matches_cubit.dart';
 import 'package:mtg_helper/features/matches/matches/matches_router.dart';
 import 'package:mtg_helper/features/matches/matches/matches_state.dart';
+import 'package:mtg_helper/utils/enums/format.dart';
 import 'package:mtg_helper/widgets/app_bar.dart';
 import 'package:mtg_helper/widgets/app_drawer.dart';
 import 'package:mtg_helper/widgets/app_error.dart';

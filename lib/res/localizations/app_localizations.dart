@@ -200,6 +200,12 @@ abstract class AppLocalizations {
   /// **'Логин'**
   String get account;
 
+  /// No description provided for @month.
+  ///
+  /// In ru, this message translates to:
+  /// **'Месяц'**
+  String get month;
+
   /// No description provided for @onboardingTitle1.
   ///
   /// In ru, this message translates to:
@@ -673,6 +679,66 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Кастомный курс'**
   String get customCourse;
+
+  /// No description provided for @calendar.
+  ///
+  /// In ru, this message translates to:
+  /// **'Календарь'**
+  String get calendar;
+
+  /// No description provided for @calendarFormatTournament.
+  ///
+  /// In ru, this message translates to:
+  /// **'Форматы турниров'**
+  String get calendarFormatTournament;
+
+  /// No description provided for @calendarChooseCity.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выберите город'**
+  String get calendarChooseCity;
+
+  /// No description provided for @calendarAllCites.
+  ///
+  /// In ru, this message translates to:
+  /// **'Все города'**
+  String get calendarAllCites;
+
+  /// No description provided for @calendarChooseDate.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выберите дату'**
+  String get calendarChooseDate;
+
+  /// No description provided for @calendarNoTournaments.
+  ///
+  /// In ru, this message translates to:
+  /// **'Нет турниров'**
+  String get calendarNoTournaments;
+
+  /// No description provided for @calendarCity.
+  ///
+  /// In ru, this message translates to:
+  /// **'Город: '**
+  String get calendarCity;
+
+  /// No description provided for @calendarTime.
+  ///
+  /// In ru, this message translates to:
+  /// **'Время: '**
+  String get calendarTime;
+
+  /// No description provided for @calendarPrice.
+  ///
+  /// In ru, this message translates to:
+  /// **'Стоимость: '**
+  String get calendarPrice;
+
+  /// No description provided for @calendarCommit.
+  ///
+  /// In ru, this message translates to:
+  /// **'Комментарий: '**
+  String get calendarCommit;
 }
 
 class _AppLocalizationsDelegate

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mtg_helper/data/models/match.dart';
 import 'package:mtg_helper/extension/localization_extension.dart';
+import 'package:mtg_helper/utils/enums/format.dart';
 
 class FormatDropdown extends StatelessWidget {
   const FormatDropdown({

@@ -58,6 +58,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get account => 'Логин';
 
   @override
+  String get month => 'Месяц';
+
+  @override
   String get onboardingTitle1 => 'test';
 
   @override
@@ -303,4 +306,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get customCourse => 'Кастомный курс';
+
+  @override
+  String get calendar => 'Календарь';
+
+  @override
+  String get calendarFormatTournament => 'Форматы турниров';
+
+  @override
+  String get calendarChooseCity => 'Выберите город';
+
+  @override
+  String get calendarAllCites => 'Все города';
+
+  @override
+  String get calendarChooseDate => 'Выберите дату';
+
+  @override
+  String get calendarNoTournaments => 'Нет турниров';
+
+  @override
+  String get calendarCity => 'Город: ';
+
+  @override
+  String get calendarTime => 'Время: ';
+
+  @override
+  String get calendarPrice => 'Стоимость: ';
+
+  @override
+  String get calendarCommit => 'Комментарий: ';
 }

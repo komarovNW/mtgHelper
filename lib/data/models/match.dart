@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mtg_helper/utils/enums/format.dart';
 
 class MatchModel {
   MatchModel({
@@ -41,14 +42,6 @@ class MatchModel {
 }
 
 enum MatchResult { win, loss, draw }
-
-enum Format {
-  pioneer,
-  standart,
-  modern,
-  legacy,
-  other,
-}
 
 enum Game {
   win('🏆 Победа'),

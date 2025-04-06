@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mtg_helper/data/models/search_card_model.dart';
 import 'package:mtg_helper/features/auctions/auctions_router.dart';
 import 'package:mtg_helper/features/auth/auth_router.dart';
+import 'package:mtg_helper/features/calendar/calendar_router.dart';
 import 'package:mtg_helper/features/home/home_router.dart';
 import 'package:mtg_helper/features/matches/match_record/match_record_router.dart';
 import 'package:mtg_helper/features/matches/matches/matches_router.dart';
@@ -31,4 +32,6 @@ class AppNavigator {
       context.go(MatchesRoutes.matchesPath);
   static void goMatchRecord(BuildContext context) =>
       context.go(MatchRecordRoutes.matchRecordPath);
+  static void goCalendar(BuildContext context) =>
+      context.go(CalendarRoutes.calendarPath);
 }
