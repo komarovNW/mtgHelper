@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CalendarState {
-  List<Tournament> get allTournaments => throw _privateConstructorUsedError;
+  List<Events> get allTournaments => throw _privateConstructorUsedError;
   Set<Format> get selectedFormats => throw _privateConstructorUsedError;
   String? get selectedCity => throw _privateConstructorUsedError;
 
@@ -34,7 +34,7 @@ abstract class $CalendarStateCopyWith<$Res> {
       _$CalendarStateCopyWithImpl<$Res, CalendarState>;
   @useResult
   $Res call(
-      {List<Tournament> allTournaments,
+      {List<Events> allTournaments,
       Set<Format> selectedFormats,
       String? selectedCity});
 }
@@ -62,7 +62,7 @@ class _$CalendarStateCopyWithImpl<$Res, $Val extends CalendarState>
       allTournaments: null == allTournaments
           ? _value.allTournaments
           : allTournaments // ignore: cast_nullable_to_non_nullable
-              as List<Tournament>,
+              as List<Events>,
       selectedFormats: null == selectedFormats
           ? _value.selectedFormats
           : selectedFormats // ignore: cast_nullable_to_non_nullable
@@ -84,7 +84,7 @@ abstract class _$$CalendarStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<Tournament> allTournaments,
+      {List<Events> allTournaments,
       Set<Format> selectedFormats,
       String? selectedCity});
 }
@@ -110,7 +110,7 @@ class __$$CalendarStateImplCopyWithImpl<$Res>
       allTournaments: null == allTournaments
           ? _value._allTournaments
           : allTournaments // ignore: cast_nullable_to_non_nullable
-              as List<Tournament>,
+              as List<Events>,
       selectedFormats: null == selectedFormats
           ? _value._selectedFormats
           : selectedFormats // ignore: cast_nullable_to_non_nullable
@@ -127,16 +127,16 @@ class __$$CalendarStateImplCopyWithImpl<$Res>
 
 class _$CalendarStateImpl implements _CalendarState {
   const _$CalendarStateImpl(
-      {final List<Tournament> allTournaments = const <Tournament>[],
+      {final List<Events> allTournaments = const <Events>[],
       final Set<Format> selectedFormats = const <Format>{},
       this.selectedCity})
       : _allTournaments = allTournaments,
         _selectedFormats = selectedFormats;
 
-  final List<Tournament> _allTournaments;
+  final List<Events> _allTournaments;
   @override
   @JsonKey()
-  List<Tournament> get allTournaments {
+  List<Events> get allTournaments {
     if (_allTournaments is EqualUnmodifiableListView) return _allTournaments;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_allTournaments);
@@ -190,12 +190,12 @@ class _$CalendarStateImpl implements _CalendarState {
 
 abstract class _CalendarState implements CalendarState {
   const factory _CalendarState(
-      {final List<Tournament> allTournaments,
+      {final List<Events> allTournaments,
       final Set<Format> selectedFormats,
       final String? selectedCity}) = _$CalendarStateImpl;
 
   @override
-  List<Tournament> get allTournaments;
+  List<Events> get allTournaments;
   @override
   Set<Format> get selectedFormats;
   @override

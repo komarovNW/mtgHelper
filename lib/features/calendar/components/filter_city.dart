@@ -26,12 +26,12 @@ class FilterCity extends StatelessWidget {
           DropdownMenuItem<String>(
             child: Text(context.l10n.calendarAllCites),
           ),
-          ...cubit.availableCities.map(
-            (String city) => DropdownMenuItem<String>(
-              value: city,
-              child: Text(city),
-            ),
-          ),
+          // ...cubit.availableCities.map(
+          //   (String city) => DropdownMenuItem<String>(
+          //     value: city,
+          //     child: Text(city),
+          //   ),
+          // ),
         ],
       ),
     );
