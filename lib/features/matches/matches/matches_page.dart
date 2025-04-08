@@ -8,14 +8,28 @@ import 'package:mtg_helper/features/matches/matches/components/match_card.dart';
 import 'package:mtg_helper/features/matches/matches/matches_cubit.dart';
 import 'package:mtg_helper/features/matches/matches/matches_router.dart';
 import 'package:mtg_helper/features/matches/matches/matches_state.dart';
-import 'package:mtg_helper/utils/enums/format.dart';
+import 'package:mtg_helper/utils/notifier/auth_change_notifier.dart';
 import 'package:mtg_helper/widgets/app_bar.dart';
 import 'package:mtg_helper/widgets/app_drawer.dart';
 import 'package:mtg_helper/widgets/app_error.dart';
 import 'package:mtg_helper/widgets/app_loader.dart';
 
-class MatchesPage extends StatelessWidget {
+class MatchesPage extends StatefulWidget {
   const MatchesPage({super.key});
+
+  @override
+  State<MatchesPage> createState() => _MatchesPageState();
+}
+
+class _MatchesPageState extends State<MatchesPage> {
+  Future<void> _onPressed() async {
+    final bool? result = await context.push<bool>(
+      '${MatchesRoutes.matchesPath}/${MatchRecordRoutes.matchRecordPath}',
+    );
+    if (mounted && result == true) {
+      await context.read<MatchesCubit>().initProcess();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +43,7 @@ class MatchesPage extends StatelessWidget {
             padding: const EdgeInsets.only(top: 12.0),
             child: IconButton(
               icon: const Icon(Icons.add),
-              onPressed: () => context.go(
-                '${MatchesRoutes.matchesPath}/${MatchRecordRoutes.matchRecordPath}',
-              ),
+              onPressed: _onPressed,
             ),
           ),
         ],
@@ -52,10 +64,19 @@ class _Body extends StatefulWidget {
 }
 
 class _BodyState extends State<_Body> {
+  late AuthChangeNotifier userInfo;
+
   @override
   void initState() {
     super.initState();
-    // context.read<MatchesCubit>().initProcess();
+    context.read<MatchesCubit>().initProcess();
+  }
+
+  void _removeGame(String index) {
+    setState(() {
+      // _games.removeAt(index);
+      context.read<MatchesCubit>().deleteMatch(index);
+    });
   }
 
   @override
@@ -65,8 +86,10 @@ class _BodyState extends State<_Body> {
       child: BlocBuilder<MatchesCubit, MatchesState>(
         builder: (BuildContext context, MatchesState state) {
           return state.map(
-            success: (MatchesSuccess state) =>
-                SearchSuccessBody(allMatches: state.allMatches),
+            success: (MatchesSuccess state) => SearchSuccessBody(
+              allMatches: state.allMatches,
+              onRemove: _removeGame,
+            ),
             loading: (_) => const AppLoader(),
             failure: (MatchesFailure state) => AppError(error: state.error),
           );
@@ -82,30 +105,26 @@ class _BodyState extends State<_Body> {
 }
 
 class SearchSuccessBody extends StatelessWidget {
-  const SearchSuccessBody({super.key, required this.allMatches});
+  const SearchSuccessBody({
+    super.key,
+    required this.allMatches,
+    required this.onRemove,
+  });
   final List<MatchModel> allMatches;
+  final void Function(String) onRemove;
 
   @override
   Widget build(BuildContext context) {
-    if (!allMatches.isNotEmpty) {
+    if (allMatches.isNotEmpty) {
       return Padding(
         padding: const EdgeInsets.all(8),
         child: ListView.builder(
-          // itemCount: allMatches.length,
-          itemCount: 10,
+          itemCount: allMatches.length,
           itemBuilder: (BuildContext context, int index) {
             return MatchCard(
-              match:
-                  // allMatches[index]
-                  MatchModel(
-                playerDeck: 'allMatches[index].playerDeck',
-                opponentDeck: 'allMatches[index].opponentDeck',
-                date: DateTime.now(),
-                isOnPlay: true,
-                format: Format.pioneer,
-                opponentName: 'allMatches[index].opponentName',
-                games: <Game>[],
-              ),
+              match: allMatches[index],
+              onRemove: onRemove,
+              index: index,
             );
           },
         ),

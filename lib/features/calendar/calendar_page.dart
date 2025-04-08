@@ -115,7 +115,7 @@ class FormatLegendButton extends StatelessWidget {
         padding: EdgeInsets.only(top: 15.0, right: 20),
         child: Icon(
           Icons.info_outline,
-          color: Colors.white,
+          color: Color(0xffF45D01),
           size: 22,
         ),
       ),

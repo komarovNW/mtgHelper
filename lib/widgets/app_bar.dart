@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mtg_helper/utils/notifier/auth_change_notifier.dart';
 
 const Color _iconColor = Color(0xffF45D01);
 const Color _backgroundColor = Color(0xff474647);
@@ -91,21 +89,6 @@ class TitleWidget extends StatelessWidget {
       child: Text(
         title,
         style: const TextStyle(color: Colors.white),
-      ),
-    );
-  }
-}
-
-class ExitButton extends StatelessWidget {
-  const ExitButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 12.0),
-      child: IconButton(
-        icon: const Icon(Icons.exit_to_app),
-        onPressed: () => context.read<AuthChangeNotifier>().signOut(),
       ),
     );
   }

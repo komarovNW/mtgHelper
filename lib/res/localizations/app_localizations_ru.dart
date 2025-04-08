@@ -289,16 +289,19 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get matchFormat => 'Вы начинали первым';
+  String get matchFormat => 'Формат';
 
   @override
-  String get matchDeckName => 'Ваша колода';
+  String get matchDeckName => 'Колода';
 
   @override
   String get matchDeckNameOpponent => 'Колода оппонента';
 
   @override
   String get matchNameOpponent => 'Имя оппонента';
+
+  @override
+  String get matchComment => 'Комментарий';
 
   @override
   String get dollar => 'Доллар';

@@ -641,13 +641,13 @@ abstract class AppLocalizations {
   /// No description provided for @matchFormat.
   ///
   /// In ru, this message translates to:
-  /// **'Вы начинали первым'**
+  /// **'Формат'**
   String get matchFormat;
 
   /// No description provided for @matchDeckName.
   ///
   /// In ru, this message translates to:
-  /// **'Ваша колода'**
+  /// **'Колода'**
   String get matchDeckName;
 
   /// No description provided for @matchDeckNameOpponent.
@@ -661,6 +661,12 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Имя оппонента'**
   String get matchNameOpponent;
+
+  /// No description provided for @matchComment.
+  ///
+  /// In ru, this message translates to:
+  /// **'Комментарий'**
+  String get matchComment;
 
   /// No description provided for @dollar.
   ///

@@ -7,9 +7,11 @@ class DismissibleGamesList extends StatelessWidget {
     super.key,
     required this.games,
     required this.onRemove,
+    required this.onUpdate,
   });
   final List<Game> games;
   final void Function(int) onRemove;
+  final void Function(int index, Game newGame) onUpdate;
 
   @override
   Widget build(BuildContext context) {
@@ -29,17 +31,17 @@ class DismissibleGamesList extends StatelessWidget {
             ),
           ),
         ),
-        Column(
-          children: List<DismissibleCard>.generate(
-            games.length,
-            (int index) {
-              return DismissibleCard(
-                index: index,
-                games: games,
-                onRemove: onRemove,
-              );
-            },
-          ),
+        ListView.builder(
+          shrinkWrap: true,
+          itemCount: games.length,
+          itemBuilder: (BuildContext context, int index) {
+            return DismissibleCard(
+              index: index,
+              game: games[index],
+              onRemove: onRemove,
+              onUpdate: onUpdate,
+            );
+          },
         ),
       ],
     );
@@ -50,22 +52,23 @@ class DismissibleCard extends StatelessWidget {
   const DismissibleCard({
     super.key,
     required this.index,
-    required this.games,
+    required this.game,
     required this.onRemove,
+    required this.onUpdate,
   });
   final int index;
-  final List<Game> games;
+  final Game game;
   final void Function(int) onRemove;
+  final void Function(int index, Game newGame) onUpdate;
 
   @override
   Widget build(BuildContext context) {
-    final ValueKey<int> gameKey = ValueKey<int>(index);
     return Padding(
       padding: const EdgeInsets.symmetric(
         vertical: 4.0,
       ),
       child: Dismissible(
-        key: gameKey,
+        key: UniqueKey(),
         direction: DismissDirection.endToStart,
         onDismissed: (DismissDirection direction) {
           onRemove(index);
@@ -83,10 +86,10 @@ class DismissibleCard extends StatelessWidget {
             children: <Widget>[
               Text(context.l10n.matchGame(index + 1)),
               DropdownButton<Game>(
-                value: games[index],
+                value: game,
                 onChanged: (Game? value) {
                   if (value != null) {
-                    games[index] = value;
+                    onUpdate(index, value);
                   }
                 },
                 items: Game.values.map((Game game) {

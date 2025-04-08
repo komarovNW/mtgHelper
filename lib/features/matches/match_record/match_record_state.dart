@@ -4,8 +4,21 @@ part 'match_record_state.freezed.dart';
 
 @freezed
 class MatchRecordState with _$MatchRecordState {
-  const factory MatchRecordState.initial() = MatchRecordInitial;
-  const factory MatchRecordState.loading() = MatchRecordLoading;
-  const factory MatchRecordState.success() = MatchRecordSuccess;
-  const factory MatchRecordState.failure(String error) = MatchRecordhFailure;
+  const factory MatchRecordState({
+    @Default(false) bool isSubmitting,
+    @Default(false) bool isSuccess,
+    @Default(ValidationErrors()) ValidationErrors validationErrors,
+  }) = _MatchRecordState;
+}
+
+@freezed
+class ValidationErrors with _$ValidationErrors {
+  const factory ValidationErrors({
+    String? deckNameError,
+    String? deckNameOpponentError,
+  }) = _ValidationErrors;
+
+  const ValidationErrors._();
+
+  bool get hasErrors => deckNameError != null || deckNameOpponentError != null;
 }

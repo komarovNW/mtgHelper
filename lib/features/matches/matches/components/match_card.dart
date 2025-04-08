@@ -5,8 +5,15 @@ import 'package:mtg_helper/extension/localization_extension.dart';
 import 'package:collection/collection.dart';
 
 class MatchCard extends StatefulWidget {
-  const MatchCard({super.key, required this.match});
+  const MatchCard({
+    super.key,
+    required this.match,
+    required this.onRemove,
+    required this.index,
+  });
   final MatchModel match;
+  final int index;
+  final void Function(String) onRemove;
 
   @override
   State<MatchCard> createState() => _MatchCardState();
@@ -17,33 +24,47 @@ class _MatchCardState extends State<MatchCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        decoration: BoxDecoration(
-          color: widget.match.backgroundColor,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: InkWell(
-          onTap: () => setState(() => _isExpanded = !_isExpanded),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                MatchHeader(match: widget.match),
-                const SizedBox(height: 8),
-                MatchDetails(match: widget.match),
-                AnimatedCrossFade(
-                  firstChild: const SizedBox.shrink(),
-                  secondChild: MatchGamesList(match: widget.match),
-                  crossFadeState: _isExpanded
-                      ? CrossFadeState.showSecond
-                      : CrossFadeState.showFirst,
-                  duration: const Duration(milliseconds: 300),
-                ),
-              ],
+    return Dismissible(
+      key: UniqueKey(),
+      direction: DismissDirection.endToStart,
+      onDismissed: (DismissDirection direction) {
+        // widget.onRemove(widget.index);
+        widget.onRemove(widget.match.id!);
+      },
+      background: Container(
+        color: Colors.red,
+        alignment: Alignment.centerRight,
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: const Icon(Icons.delete, color: Colors.white),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          decoration: BoxDecoration(
+            color: widget.match.backgroundColor,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: InkWell(
+            onTap: () => setState(() => _isExpanded = !_isExpanded),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  MatchHeader(match: widget.match),
+                  const SizedBox(height: 8),
+                  MatchDetails(match: widget.match),
+                  AnimatedCrossFade(
+                    firstChild: const SizedBox.shrink(),
+                    secondChild: MatchGamesList(match: widget.match),
+                    crossFadeState: _isExpanded
+                        ? CrossFadeState.showSecond
+                        : CrossFadeState.showFirst,
+                    duration: const Duration(milliseconds: 300),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -74,12 +95,34 @@ class MatchHeader extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Text(
-            context.l10n.matchesVS,
-            style: const TextStyle(
-              color: Colors.white70,
-              fontSize: 14,
-            ),
+          child: Row(
+            children: <Widget>[
+              Text(
+                match.winScore,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text(
+                  context.l10n.matchesVS,
+                  style: const TextStyle(
+                    color: Colors.white70,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Text(
+                match.lossScore,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                ),
+              ),
+            ],
           ),
         ),
         Expanded(
@@ -118,6 +161,7 @@ class MatchGamesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         const SizedBox(height: 8),
         const Divider(color: Colors.white54),
@@ -155,6 +199,17 @@ class MatchGamesList extends StatelessWidget {
             fontSize: 14,
           ),
         ),
+        if (match.comment!.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.only(top: 4.0),
+            child: Text(
+              '${context.l10n.matchComment}: ${match.comment!}',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+              ),
+            ),
+          ),
       ],
     );
   }
