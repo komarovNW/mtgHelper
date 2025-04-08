@@ -75,42 +75,44 @@ class _BodyState extends State<_Body> {
       builder: (BuildContext context, ProfileState state) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              SizedBox(
-                width: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    AppTextFormField(
-                      text: context.l10n.mail,
-                      controller: _emailController,
-                      readOnly: true,
-                    ),
-                    const HBox(8),
-                    AppTextFormField(
-                      text: context.l10n.account,
-                      controller: _displayNameController,
-                    ),
-                    const HBox(16),
-                    const AppCustomCourseSwitcher(),
-                    const HBox(16),
-                    const AppAuctionCardSwitcher(),
-                    const HBox(16),
-                    const AppPlayerCountSwitcher(),
-                  ],
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      AppTextFormField(
+                        text: context.l10n.mail,
+                        controller: _emailController,
+                        readOnly: true,
+                      ),
+                      const HBox(8),
+                      AppTextFormField(
+                        text: context.l10n.account,
+                        controller: _displayNameController,
+                      ),
+                      const HBox(16),
+                      const AppCustomCourseSwitcher(),
+                      const HBox(16),
+                      const AppAuctionCardSwitcher(),
+                      const HBox(16),
+                      const AppPlayerCountSwitcher(),
+                    ],
+                  ),
                 ),
-              ),
-              AppButton(
-                text: context.l10n.save,
-                onTap: () {
-                  context
-                      .read<AuthChangeNotifier>()
-                      .updateDisplayName(_displayNameController.text);
-                },
-              ),
-            ],
+                AppButton(
+                  text: context.l10n.save,
+                  onTap: () {
+                    context
+                        .read<AuthChangeNotifier>()
+                        .updateDisplayName(_displayNameController.text);
+                  },
+                ),
+              ],
+            ),
           ),
         );
       },

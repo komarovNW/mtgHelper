@@ -7,7 +7,7 @@ part 'calendar_state.freezed.dart';
 @freezed
 class CalendarState with _$CalendarState {
   const factory CalendarState({
-    @Default(<Tournament>[]) List<Tournament> allTournaments,
+    @Default(<Events>[]) List<Events> allTournaments,
     @Default(<Format>{}) Set<Format> selectedFormats,
     String? selectedCity,
   }) = _CalendarState;

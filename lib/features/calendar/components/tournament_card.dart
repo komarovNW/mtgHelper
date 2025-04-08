@@ -21,7 +21,7 @@ class TournamentCards extends StatelessWidget {
           if (selectedDay == null) {
             return Center(child: Text(context.l10n.calendarChooseDate));
           }
-          final List<Tournament> tournaments =
+          final List<Events> tournaments =
               context.read<CalendarCubit>().getTournamentsForDay(selectedDay!);
           if (tournaments.isEmpty) {
             return Center(child: Text(context.l10n.calendarNoTournaments));
@@ -29,18 +29,20 @@ class TournamentCards extends StatelessWidget {
           return ListView.builder(
             itemCount: tournaments.length,
             itemBuilder: (BuildContext context, int index) {
-              final Tournament tournament = tournaments[index];
+              final Events tournament = tournaments[index];
               return Card(
                 margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: ListTile(
                   title: Text(
-                    '${tournament.format.formatName} — ${tournament.club.clubName}',
+                    // '${tournament.format.formatName} — ${tournament.club.clubName}',
+                    '${tournament.format.formatName} — ${tournament.club}',
                   ),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Text>[
                       Text(
-                        '${context.l10n.calendarCity}${tournament.city.cityName}',
+                        // '${context.l10n.calendarCity}${tournament.city.cityName}',
+                        '${context.l10n.calendarCity}${tournament.city}',
                       ),
                       Text(
                         '${context.l10n.calendarTime}${tournament.time.format(context)}',

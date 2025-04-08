@@ -36,7 +36,7 @@ class DependencyInjectionContainer {
     searchFactory = SearchFactory(dioService: _dioService);
     priceFactory = PriceFactory(dioService: _dioService);
     profileFactory = ProfileFactory();
-    calendarFactory = CalendarFactory();
+    calendarFactory = CalendarFactory(dioService: _dioService);
     matchesFactory = MatchesFactory(dioService: _dioService);
     matchRecordFactory = MatchRecordFactory(dioService: _dioService);
   }

@@ -123,8 +123,26 @@ class FormatLegendButton extends StatelessWidget {
   }
 }
 
-class Tournament {
-  Tournament({
+class Events {
+  factory Events.fromJson(Map<String, dynamic> json) {
+    return Events(
+      format: Format.values.firstWhere((Format f) => f.name == json['format']),
+      // club: Club.values.firstWhere((Club c) => c.name == json['club']),
+      club: json['club'],
+      // city: City.values.firstWhere((City c) => c.name == json['city']),
+      city: json['city'],
+      time: _parseTime(json['time']),
+      price: (json['price'] as num).toDouble(),
+      weekday: json['weekday'] != null
+          ? Weekday.values.firstWhere((Weekday w) => w.name == json['weekday'])
+          : null,
+      specialTournamentDate: json['specialTournamentDate'] != null
+          ? DateTime.parse(json['specialTournamentDate'])
+          : null,
+      comment: json['comment'],
+    );
+  }
+  Events({
     required this.format,
     required this.club,
     required this.city,
@@ -135,13 +153,23 @@ class Tournament {
     this.comment,
   });
   final Format format;
-  final Club club;
-  final City city;
+  // final Club club;
+  final String club;
+  // final City city;
+  final String city;
   final TimeOfDay time;
   final double price;
   final Weekday? weekday;
   final DateTime? specialTournamentDate;
   final String? comment;
+
+  static TimeOfDay _parseTime(String timeString) {
+    final List<String> parts = timeString.split(':');
+    return TimeOfDay(
+      hour: int.parse(parts[0]),
+      minute: int.parse(parts[1]),
+    );
+  }
 }
 
 enum City {

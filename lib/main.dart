@@ -23,9 +23,7 @@ void main() {
     );
     await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
-
     DependencyInjectionContainer.init();
-
     await AppLocalizations.delegate.load(const Locale('ru'));
     runApp(
       MultiProvider(

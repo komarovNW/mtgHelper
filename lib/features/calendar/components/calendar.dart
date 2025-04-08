@@ -41,7 +41,7 @@ class Calendar extends StatelessWidget {
       },
       calendarBuilders: CalendarBuilders<Object?>(
         markerBuilder: (BuildContext context, DateTime date, _) {
-          final List<Tournament> tournaments =
+          final List<Events> tournaments =
               context.read<CalendarCubit>().getTournamentsForDay(date);
           if (tournaments.isEmpty) return null;
           return CalendarMarker(
@@ -59,7 +59,7 @@ class CalendarMarker extends StatelessWidget {
     required this.tournaments,
   });
 
-  final List<Tournament> tournaments;
+  final List<Events> tournaments;
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,7 @@ class CalendarMarker extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: tournaments
             .map(
-              (Tournament tournament) => Container(
+              (Events tournament) => Container(
                 margin: const EdgeInsets.symmetric(horizontal: 1),
                 width: tournament.specialTournamentDate != null ? 12 : 6,
                 height: tournament.specialTournamentDate != null ? 12 : 6,

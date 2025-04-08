@@ -1,14 +1,23 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mtg_helper/features/calendar/calendar_data.dart';
+import 'package:mtg_helper/domain/use_cases/calendar/get_calendar_events_use_case.dart';
+
 import 'package:mtg_helper/features/calendar/calendar_page.dart';
 import 'package:mtg_helper/utils/enums/format.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'calendar_state.dart';
 
 class CalendarCubit extends Cubit<CalendarState> {
-  CalendarCubit() : super(const CalendarState());
+  CalendarCubit({
+    required GetCalendarEventsUseCase getCalendarEventsUseCase,
+  })  : _getCalendarEventsUseCase = getCalendarEventsUseCase,
+        super(const CalendarState());
 
-  void loadTournaments() {
+  final GetCalendarEventsUseCase _getCalendarEventsUseCase;
+
+  List<Events> tournaments = <Events>[];
+
+  void loadTournaments() async {
+    tournaments = await _getCalendarEventsUseCase();
     emit(
       state.copyWith(
         allTournaments: tournaments,
@@ -31,8 +40,8 @@ class CalendarCubit extends Cubit<CalendarState> {
     emit(state.copyWith(selectedCity: city));
   }
 
-  List<Tournament> getTournamentsForDay(DateTime date) {
-    return tournaments.where((Tournament tournament) {
+  List<Events> getTournamentsForDay(DateTime date) {
+    return tournaments.where((Events tournament) {
       if (tournament.specialTournamentDate != null) {
         return isSameDay(tournament.specialTournamentDate!, date);
       }
@@ -46,8 +55,5 @@ class CalendarCubit extends Cubit<CalendarState> {
     }).toList();
   }
 
-  List<String> get availableCities => state.allTournaments
-      .map((Tournament e) => e.city.cityName)
-      .toSet()
-      .toList();
+  // List<String> get availableCities => state.allTournaments.map((Events e) => e.city.cityName).toSet().toList();
 }
