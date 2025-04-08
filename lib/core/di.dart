@@ -38,6 +38,6 @@ class DependencyInjectionContainer {
     profileFactory = ProfileFactory();
     calendarFactory = CalendarFactory();
     matchesFactory = MatchesFactory(dioService: _dioService);
-    matchRecordFactory = MatchRecordFactory();
+    matchRecordFactory = MatchRecordFactory(dioService: _dioService);
   }
 }

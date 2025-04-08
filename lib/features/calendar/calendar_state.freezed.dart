@@ -127,8 +127,8 @@ class __$$CalendarStateImplCopyWithImpl<$Res>
 
 class _$CalendarStateImpl implements _CalendarState {
   const _$CalendarStateImpl(
-      {final List<Tournament> allTournaments = const [],
-      final Set<Format> selectedFormats = const {},
+      {final List<Tournament> allTournaments = const <Tournament>[],
+      final Set<Format> selectedFormats = const <Format>{},
       this.selectedCity})
       : _allTournaments = allTournaments,
         _selectedFormats = selectedFormats;

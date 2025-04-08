@@ -25,6 +25,15 @@ class ProfilePage extends StatelessWidget {
         title: TitleWidget(
           title: context.l10n.profileTitle,
         ),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(top: 12.0),
+            child: IconButton(
+              icon: const Icon(Icons.exit_to_app),
+              onPressed: () => context.read<AuthChangeNotifier>().signOut(),
+            ),
+          ),
+        ],
       ),
       drawer: AppDrawer(
         currentPage: context.l10n.drawerProfile,

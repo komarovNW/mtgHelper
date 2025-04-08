@@ -36,11 +36,15 @@ class DioService {
   Future<Response<dynamic>> get(
     String path, {
     Map<String, dynamic>? queryParameters,
+    Map<String, String>? headers,
   }) async {
     try {
       return await _dio.get(
         path,
         queryParameters: queryParameters,
+        options: Options(
+          headers: headers,
+        ),
       );
     } on DioException catch (e, stackTrace) {
       _logError(
@@ -60,11 +64,43 @@ class DioService {
   Future<Response<dynamic>> post(
     String path, {
     dynamic data,
+    Map<String, String>? headers,
   }) async {
     try {
       return await _dio.post(
         path,
         data: data,
+        options: Options(
+          headers: headers,
+        ),
+      );
+    } on DioException catch (e, stackTrace) {
+      _logError(
+        e,
+        stackTrace,
+        CustomException(
+          message: 'Ошибка типа: ${e.type}',
+          errorDetails: e.message,
+          stackTrace: StackTrace.current,
+          requestUrl: e.requestOptions.uri.toString(),
+        ),
+      );
+      rethrow;
+    }
+  }
+
+  Future<Response<dynamic>> delete(
+    String path, {
+    dynamic data,
+    Map<String, String>? headers,
+  }) async {
+    try {
+      return await _dio.delete(
+        path,
+        data: data,
+        options: Options(
+          headers: headers,
+        ),
       );
     } on DioException catch (e, stackTrace) {
       _logError(

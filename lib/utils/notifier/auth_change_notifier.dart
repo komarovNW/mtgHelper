@@ -31,4 +31,13 @@ class AuthChangeNotifier extends ChangeNotifier {
       debugPrint('e $e');
     }
   }
+
+  Future<String?> getId() async {
+    try {
+      _user = FirebaseAuth.instance.currentUser;
+      return await _user?.getIdToken();
+    } catch (e) {
+      return null;
+    }
+  }
 }

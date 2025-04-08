@@ -111,10 +111,11 @@
       }
     }
   },
-  "matchFormat": "Вы начинали первым",
-  "matchDeckName": "Ваша колода",
+  "matchFormat": "Формат",
+  "matchDeckName": "Колода",
   "matchDeckNameOpponent": "Колода оппонента",
   "matchNameOpponent": "Имя оппонента",
+  "matchComment": "Комментарий",
   "dollar": "Доллар",
   "euro": "Евро",
   "customCourse": "Кастомный курс",
